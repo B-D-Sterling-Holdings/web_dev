@@ -26,11 +26,15 @@ export async function GET() {
 
     const res = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SHEET_ID,
-      range: 'Sheet1!B2:E2',
+      range: 'Sheet1!B2:I3',
     })
 
     const rows = res.data.values ?? []
-    return NextResponse.json(rows)
+    // Option B: destructure into header and data rows
+    const [header = [], data = []] = rows
+
+    // Return both header and data as an object
+    return NextResponse.json({ header, data })
   } catch (err) {
     console.error('❌ /api/sheet error:', err)
     return NextResponse.json({ error: err.message }, { status: 500 })

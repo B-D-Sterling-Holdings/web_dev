@@ -1,27 +1,54 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-export default function SheetRow() {
-  const [row, setRow] = useState(null)
+export default function SheetTable() {
+  const [sheet, setSheet] = useState({ header: [], data: [] })
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     fetch('/api/sheet')
-      .then(res => res.json())
-      .then(data => {
-        // data is [[…]]; grab the first (and only) row
-        setRow(data[0] || [])
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        return res.json()
+      })
+      .then(obj => setSheet(obj))
+      .catch(err => {
+        console.error('Fetch /api/sheet failed:', err)
+        setError(err.message)
       })
   }, [])
 
-  if (!row) return <p>Loading…</p>
+  const { header, data } = sheet
+
+  if (error) return <p className="text-red-600">Error: {error}</p>
+  if (!header.length) return <p>Loading…</p>
 
   return (
-    <div className="flex gap-4">
-      {row.map((cell, i) => (
-        <div key={i} className="border p-2">
-          {cell}
-        </div>
-      ))}
-    </div>
+    <table className="table-auto border-collapse border border-gray-400">
+      <thead>
+        <tr>
+          {header.map((col, i) => (
+            <th
+              key={i}
+              className="border border-gray-400 px-4 py-2 text-center bg-gray-100"
+            >
+              {col}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {data.map((cell, i) => (
+            <td
+              key={i}
+              className="border border-gray-400 px-4 py-2 text-center"
+            >
+              {cell}
+            </td>
+          ))}
+        </tr>
+      </tbody>
+    </table>
   )
 }

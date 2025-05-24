@@ -11,7 +11,7 @@ export async function GET() {
   try {
     creds = JSON.parse(readFileSync(keyPath, 'utf8'))
   } catch (err) {
-    console.error('❌ Failed to read service-account file:', err)
+    console.error('Failed to read service-account file:', err)
     return NextResponse.json({ error: 'Service account credentials missing' }, { status: 500 })
   }
 
@@ -36,7 +36,7 @@ export async function GET() {
     // Return both header and data as an object
     return NextResponse.json({ header, data })
   } catch (err) {
-    console.error('❌ /api/sheet error:', err)
+    console.error('/api/sheet error:', err)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

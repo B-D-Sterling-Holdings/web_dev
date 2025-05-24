@@ -39,14 +39,20 @@ export default function SheetTable() {
       </thead>
       <tbody>
         <tr>
-          {data.map((cell, i) => (
-            <td
-              key={i}
-              className="border border-gray-400 px-4 py-2 text-center"
-            >
-              {cell}
-            </td>
-          ))}
+          {data.map((cell, i) => {
+            const isGreen = i >= 4 && i <= 6
+            return (
+              <td
+                key={i}
+                className={
+                  `border border-gray-400 px-4 py-2 text-center ` +
+                  (isGreen ? 'bg-green-200' : '')
+                }
+              >
+                {cell}
+              </td>
+            )
+          })}
         </tr>
       </tbody>
     </table>

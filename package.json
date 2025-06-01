@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.9",
     "googleapis": "^149.0.0",
     "next": "^15.3.2",

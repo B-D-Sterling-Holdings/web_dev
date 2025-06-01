@@ -1,5 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
+import FundVsSP500Chart from '@/components/FundVsSP500Chart'
+
 
 export default function SheetTable() {
   const [sheet, setSheet] = useState({ header: [], data: [] })
@@ -24,37 +26,56 @@ export default function SheetTable() {
   if (!header.length) return <p>Loading…</p>
 
   return (
-    <table className="table-auto border-collapse border border-gray-400">
-      <thead>
-        <tr>
-          {header.map((col, i) => (
-            <th
-              key={i}
-              className="border border-gray-400 px-4 py-2 text-center bg-gray-100"
-            >
-              {col}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          {data.map((cell, i) => {
-            const isGreen = i >= 4 && i <= 6
-            return (
-              <td
-                key={i}
-                className={
-                  `border border-gray-400 px-4 py-2 text-center ` +
-                  (isGreen ? 'bg-green-200' : '')
-                }
-              >
-                {cell}
-              </td>
-            )
-          })}
-        </tr>
-      </tbody>
-    </table>
+    <div className="flex flex-col items-center space-y-4">
+      
+      {/* Text above */}
+      <p className="text-base font-medium text-center">
+        We are committed to full transparency with our investors. Below is a live snapshot of individual investor performance, tracking total returns, fund outperformance, and benchmark comparisons.<br />
+        This data helps our investors stay informed and confident in their partnership with us.
+      </p>
+
+      <div className="overflow-x-auto bg-white rounded-xl shadow-xl p-6 border border-gray-200">
+        <table className="table-auto border-collapse w-full text-lg">
+          <thead>
+            <tr>
+              {header.map((col, i) => (
+                <th
+                  key={i}
+                  className="border border-gray-300 px-4 py-3 text-center bg-gray-100 font-semibold"
+                >
+                  {col}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {data.map((cell, i) => {
+                const isGreen = i >= 4 && i <= 6
+                const isBoldF3 = i === 4
+                const cellClass =
+                  `border border-gray-300 px-4 py-3 text-center text-sm ` +
+                  (isGreen ? (isBoldF3 ? 'bg-green-400 ' : 'bg-green-200 ') : '') +
+                  (isBoldF3 ? 'font-bold ' : '')
+                return (
+                  <td key={i} className={cellClass}>
+                    {cell}
+                  </td>
+                )
+              })}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p className="text-sm font-medium">Performance data is updated at the end of the trading day.</p>
+      <div className="w-full">
+        <p className="text-lg font-medium text-left">Fund Strategy Snapshot</p>
+      </div>
+      <p className="text-base font-medium">Our fund invests in long-term quality companies when they're undervalued relative to their projected growth potential. When we see a great company sell off due to short-term market risks, we capitalize immediately and generate alpha by acquiring high-conviction positions at discounted valuations. As the market corrects its pricing over time, our disciplined approach allows us to realize outsized returns while minimizing unnecessary risk. We focus on strong fundamentals, attractive valuation, and durable competitive advantages, allowing the portfolio to compound steadily while opportunistically taking advantage of temporary dislocations.</p>
+      {/* Chart Section */}
+      <p className="text-lg font-medium">B.D. Sterling Fund Performance</p>
+      <FundVsSP500Chart />
+      {/* Text below */}
+    </div>
   )
 }

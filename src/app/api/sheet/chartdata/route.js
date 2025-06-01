@@ -1,11 +1,9 @@
-// src/app/api/sheet/route.js
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { google } from 'googleapis'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  // 1) Load the JSON credentials from disk
   const keyPath = join(process.cwd(), 'credentials', 'google-sa.json')
   let creds
   try {
@@ -15,7 +13,6 @@ export async function GET() {
     return NextResponse.json({ error: 'Service account credentials missing' }, { status: 500 })
   }
 
-  // 2) Build the Sheets client
   try {
     const auth = new google.auth.GoogleAuth({
       credentials: creds,
@@ -24,19 +21,17 @@ export async function GET() {
     const client = await auth.getClient()
     const sheets = google.sheets({ version: 'v4', auth: client })
 
+    // This is where your historical data lives (update range if needed)
     const res = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SHEET_ID,
-      range: 'Amit D. Investor Relations!B2:I3',
+      range: 'Amit D. Investor Relations!B8:D192',   // <-- UPDATE THIS SHEET NAME & RANGE IF NEEDED
     })
 
     const rows = res.data.values ?? []
-    // Option B: destructure into header and data rows
-    const [header = [], data = []] = rows
 
-    // Return both header and data as an object
-    return NextResponse.json({ header, data })
+    return NextResponse.json({ rows })
   } catch (err) {
-    console.error('/api/sheet error:', err)
+    console.error('/api/chartdata error:', err)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

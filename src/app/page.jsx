@@ -12,7 +12,7 @@ export default function Home() {
         <img
           src="/logo.png"
           alt="Logo"
-          className="absolute top-0 right-0 h-12 w-auto"
+          className="absolute -top-4 right-0 h-16 w-auto"
         />
       </div>
 

@@ -5,7 +5,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>My Next.js App</title>
+        <title>B.D. Sterling Portfolio Analytics</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
       </head>
       <body>{children}</body>
     </html>

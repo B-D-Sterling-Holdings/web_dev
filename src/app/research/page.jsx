@@ -1,9 +1,10 @@
 'use client'
 
-export default function Home() {
+export default function Research() {
   return (
     <main className="min-h-screen bg-white text-black font-sans">
-      {/* Navbar */}
+
+      {/* Global Navbar */}
       <nav className="flex justify-between items-center px-8 py-4 shadow-md">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -11,7 +12,7 @@ export default function Home() {
           <span className="text-2xl font-bold">B.D. Sterling</span>
         </div>
 
-        {/* Nav links */}
+        {/* Nav Links */}
         <div className="flex space-x-8 text-lg font-medium">
           <a href="/" className="hover:text-blue-600">Home</a>
           <a href="/about" className="hover:text-blue-600">About Us</a>
@@ -22,13 +23,20 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Landing content */}
-      <div className="flex flex-col items-center justify-center mt-32">
-        <h1 className="text-4xl font-bold mb-4">Welcome to B.D. Sterling</h1>
-        <p className="text-lg text-gray-600 text-center max-w-xl">
-          Our mission is to make a shit ton of money ;)
+      {/* Equity Research Content */}
+      <div className="max-w-5xl mx-auto py-20 px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">Equity Research</h2>
+        <p className="text-lg text-center text-gray-700 mb-8">
+          Below are research reports for select companies we have covered in the past.
         </p>
+
+        <div className="flex flex-col items-center space-y-6">
+          <a href="/research/google" className="text-xl font-semibold text-blue-600 hover:underline">Google (Alphabet Inc)</a>
+          <a href="/research/amazon" className="text-xl font-semibold text-blue-600 hover:underline">Amazon</a>
+          <a href="/research/unitedhealthcare" className="text-xl font-semibold text-blue-600 hover:underline">United Healthcare</a>
+        </div>
       </div>
+
     </main>
   )
 }

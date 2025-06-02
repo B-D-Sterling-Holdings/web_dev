@@ -1,34 +1,39 @@
 'use client'
+import Navbar from '@/components/Navbar'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-black font-sans">
-      {/* Navbar */}
-      <nav className="flex justify-between items-center px-8 py-4 shadow-md">
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
-          <span className="text-2xl font-bold">B.D. Sterling</span>
+    <main className="min-h-screen bg-white text-black">
+      
+      <Navbar/>
+
+      {/* Hero Section */}
+      <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto p-10">
+        
+        {/* Left Text */}
+        <div className="md:w-1/2 w-full mb-12 md:mb-0 mt-14">
+          <h1 className="text-5xl font-bold mb-6 -translate-x-10" style={{ color: '#082C16' }}>
+            Disciplined Investing in Mispriced Quality
+          </h1>
+          <p className="text-lg leading-relaxed text-gray-700 text-justify -translate-x-10">
+            B.D. Sterling is a project to develop a disciplined approach to capturing value dislocations and market inefficiencies. 
+            We focus on long-term compounding while minimizing downside risk by investing in high-quality businesses at favorable entry points.<br /><br />
+            Currently, B.D. Sterling is being developed by student founders at Texas A&M University, leveraging academic resources, professional mentorship, and real world investment analysis to build a foundation in disciplined capital allocation. 
+            We truly hope that through our equity research, contrarian views on market pricing, and evolving philosophy, you find value in our insights.<br /><br />
+          </p>
         </div>
 
-        {/* Nav links */}
-        <div className="flex space-x-8 text-lg font-medium">
-          <a href="/" className="hover:text-blue-600">Home</a>
-          <a href="/about" className="hover:text-blue-600">About Us</a>
-          <a href="/strategy" className="hover:text-blue-600">Investment Strategy</a>
-          <a href="/research" className="hover:text-blue-600">Equity Research</a>
-          <a href="/investor-relations" className="hover:text-blue-600">Investor Relations</a>
-          <a href="/contact" className="hover:text-blue-600">Contact Us</a>
+        {/* Right Image */}
+        <div className="md:w-1/2 w-full flex relative">
+          <img 
+            src="/tamu_pic.jpg"
+            alt="Investment Illustration"
+            className="w-[175%] h-auto opacity-90 translate-x-12"
+          />
         </div>
-      </nav>
 
-      {/* Landing content */}
-      <div className="flex flex-col items-center justify-center mt-32">
-        <h1 className="text-4xl font-bold mb-4">Welcome to B.D. Sterling</h1>
-        <p className="text-lg text-gray-600 text-center max-w-xl">
-          Our mission is to make a shit ton of money ;)
-        </p>
       </div>
+
     </main>
   )
 }

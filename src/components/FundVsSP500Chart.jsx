@@ -36,13 +36,13 @@ export default function FundVsSP500Chart() {
             {
               label: 'B.D. Sterling Fund',
               data: fundValues,
-              borderColor: 'rgb(75, 192, 192)',
+              borderColor: 'rgb(0, 106, 11)',
               tension: 0.3
             },
             {
               label: 'S&P500',
               data: spValues,
-              borderColor: 'rgb(255, 99, 132)',
+              borderColor: 'rgb(195, 0, 0)',
               tension: 0.3
             }
           ]

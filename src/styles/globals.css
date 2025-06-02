@@ -17,5 +17,5 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-family: 'Didot', 'Didot LT STD', 'Bodoni MT', 'Didot ITC', serif;
 }

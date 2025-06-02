@@ -1,27 +1,11 @@
 'use client'
+import Navbar from '@/components/Navbar'
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-white text-black font-sans">
+    <main className="min-h-screen bg-white text-black">
       
-      {/* Global Navbar */}
-      <nav className="flex justify-between items-center px-8 py-4 shadow-md">
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
-          <span className="text-2xl font-bold">B.D. Sterling</span>
-        </div>
-
-        {/* Nav Links */}
-        <div className="flex space-x-8 text-lg font-medium">
-          <a href="/" className="hover:text-blue-600">Home</a>
-          <a href="/about" className="hover:text-blue-600">About Us</a>
-          <a href="/strategy" className="hover:text-blue-600">Investment Strategy</a>
-          <a href="/research" className="hover:text-blue-600">Equity Research</a>
-          <a href="/investor-relations" className="hover:text-blue-600">Investor Relations</a>
-          <a href="/contact" className="hover:text-blue-600">Contact Us</a>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* About Us Section */}
       <div className="max-w-6xl mx-auto py-20">
@@ -43,7 +27,7 @@ export default function About() {
           {/* Dhruv */}
           <div className="flex flex-col items-center text-center">
             <img 
-              src="/dhruv.jpg" 
+              src="/dhruv.png" 
               alt="Dhruv" 
               className="w-64 h-64 object-cover rounded-full shadow-lg mb-6 opacity-90"
             />

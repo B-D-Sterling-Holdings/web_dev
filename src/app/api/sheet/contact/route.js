@@ -10,7 +10,7 @@ export async function POST(req) {
     const isVercel = process.env.VERCEL === '1';
 
     const blob = await put(filename, JSON.stringify(data), {
-    access: isVercel ? 'private' : 'public'
+    access: isVercel ? 'public' : 'public'
 });
 
 

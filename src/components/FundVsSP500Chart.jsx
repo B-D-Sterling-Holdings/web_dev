@@ -30,6 +30,8 @@ export default function FundVsSP500Chart() {
         const fundValues = rows.map(row => parseFloat(row[1]))
         const spValues = rows.map(row => parseFloat(row[2]))
 
+        console.log("spValues:", spValues)
+
         setChartData({
           labels: dates,
           datasets: [

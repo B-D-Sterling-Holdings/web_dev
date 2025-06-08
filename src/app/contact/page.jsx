@@ -155,7 +155,7 @@ export default function ContactUs() {
             Personal Contacts
           </h2>
           <p className="text-lg leading-relaxed">
-            Bhuvan S.<br />
+            Bhuvan Siddaveerappa<br />
             bsiddaveerappa@gmail.com<br />
             (512) 905-9385<br /><br />
             Dhruv Datta<br />

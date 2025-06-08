@@ -1,6 +1,7 @@
 'use client'
 import Navbar from '@/components/Navbar'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -65,9 +66,21 @@ export default function ContactUs() {
     <main className="min-h-screen bg-white text-black pt-28">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto p-10 flex flex-col md:flex-row gap-16">
+      {/* Page fade-in */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="max-w-7xl mx-auto p-10 flex flex-col md:flex-row gap-16"
+      >
 
-        <div className="md:w-2/3">
+        {/* Left Form Section */}
+        <motion.div 
+          className="md:w-2/3"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           <h1 className="text-4xl font-bold mb-4" style={{ color: '#082C16' }}>
             Contact Us
           </h1>
@@ -120,7 +133,7 @@ export default function ContactUs() {
 
             <button 
               type="submit" 
-              className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-6 rounded-full"
+              className="bg-[#0E472B] hover:bg-[#0C3E26] text-white font-semibold py-2 px-6 rounded-full transition duration-200 transform hover:scale-105"
               disabled={submitting}
             >
               {submitting ? "Submitting..." : "SUBMIT"}
@@ -129,23 +142,29 @@ export default function ContactUs() {
             {success && <p className="text-green-600 font-semibold mt-4">Thank you! Your message has been sent.</p>}
             {error && <p className="text-red-600 font-semibold mt-4">Please fill out all required fields.</p>}
           </form>
-        </div>
+        </motion.div>
 
-        <div className="md:w-1/3">
+        {/* Right Contact Info */}
+        <motion.div 
+          className="md:w-1/3"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
           <h2 className="text-2xl font-bold mb-4" style={{ color: '#082C16' }}>
             Personal Contacts
           </h2>
           <p className="text-lg leading-relaxed">
             Bhuvan S.<br />
-            bs@gmail.com<br />
-            (123) 345-3475<br /><br />
+            bsiddaveerappa@gmail.com<br />
+            (512) 905-9385<br /><br />
             Dhruv Datta<br />
             dattadhruv930@gmail.com<br />
             (346) 368-3896
           </p>
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </main>
   )
 }

@@ -62,7 +62,7 @@ export default function ContactUs() {
   }
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-white text-black pt-28">
       <Navbar />
 
       <div className="max-w-7xl mx-auto p-10 flex flex-col md:flex-row gap-16">

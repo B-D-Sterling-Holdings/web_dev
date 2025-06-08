@@ -24,7 +24,7 @@ export async function GET() {
     // This is where your historical data lives (update range if needed)
     const res = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SHEET_ID,
-      range: 'Investor Relations Master Sheet!B8:D196',   // <-- UPDATE THIS SHEET NAME & RANGE IF NEEDED
+      range: 'Investor Relations Master Sheet!B8:D299',   // <-- UPDATE THIS SHEET NAME & RANGE IF NEEDED
     })
 
     const rows = res.data.values ?? []

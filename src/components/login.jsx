@@ -40,7 +40,7 @@ export default function Login({ onSuccess }) {
           onChange={(e) => setPassword(e.target.value)}
           className="border rounded px-3 py-2"
         />
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button type="submit" className="bg-[#0E472B] text-white px-4 py-2 rounded transition transform duration-200 hover:scale-105">
           Login
         </button>
         {error && <p className="text-red-500">{error}</p>}

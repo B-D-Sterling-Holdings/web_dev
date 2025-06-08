@@ -12,6 +12,7 @@
     "@vercel/blob": "^1.1.1",
     "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.9",
+    "framer-motion": "^12.16.0",
     "googleapis": "^149.0.0",
     "next": "^15.3.2",
     "react": "^19.0.0",

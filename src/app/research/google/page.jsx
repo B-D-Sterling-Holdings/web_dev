@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 
 export default function GoogleResearch() {
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-white text-black pt-28">
 
       <Navbar/>
 

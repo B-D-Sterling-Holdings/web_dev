@@ -13,7 +13,7 @@ export default function Research() {
   
   const companies = [
     {
-      name: 'Google (Alphabet Inc)',
+      name: 'Google',
       href: '/research/google',
       logo: 'google.jpg',
       summary: 'We invested in Alphabet due to its dominant ad business and cloud growth.',

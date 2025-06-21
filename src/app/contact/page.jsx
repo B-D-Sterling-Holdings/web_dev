@@ -156,11 +156,8 @@ export default function ContactUs() {
           </h2>
           <p className="text-lg leading-relaxed">
             Bhuvan Siddaveerappa<br />
-            bsiddaveerappa@gmail.com<br />
-            (512) 905-9385<br /><br />
-            Dhruv Datta<br />
-            dattadhruv930@gmail.com<br />
-            (346) 368-3896
+            Dhruv Datta<br /><br />
+            bdsterlingfund@gmail.com
           </p>
         </motion.div>
 

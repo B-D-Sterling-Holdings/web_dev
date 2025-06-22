@@ -30,8 +30,10 @@ export default function Home() {
               <p className="text-lg leading-relaxed text-gray-700 text-justify">
                 B.D. Sterling is a project to develop a disciplined approach to capturing value dislocations and market inefficiencies. 
                 We focus on long-term compounding while minimizing downside risk by investing in high-quality businesses at favorable entry points.<br /><br />
-                Currently, B.D. Sterling is being developed by student founders at Texas A&M University, leveraging academic resources, professional mentorship, and real world investment analysis to build a foundation in disciplined capital allocation. 
-                We truly hope that through our equity research, contrarian views on market pricing, and evolving philosophy, you find value in our insights.<br /><br />
+                Currently, B.D. Sterling is being developed by student founders at Texas A&M University.
+                We have committed virtually our entire net worth in one account to demonstrate having skin in the game,
+                concentrating in a handful of deeply researched businesses where long-term compounding comfortably outweighs risk.
+                We hold cash when opportunities are scarce, act only on evidence, not noise, and communicate with transparency. 
               </p>
             </motion.div>
           </div>
@@ -44,7 +46,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <img 
-                src="/tamu_pic.jpg"
+                src="/fun_pic.jpg"
                 alt="Investment Illustration"
                 className="w-[175%] h-auto opacity-90"
               />

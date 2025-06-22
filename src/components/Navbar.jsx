@@ -21,13 +21,13 @@ export default function Navbar() {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 shadow-md text-white"
+      className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-2 shadow-md text-white"
       style={{ backgroundColor: '#082C16' }}
       animate={{ y: hideNavbar ? -90 : 0 }}
       transition={{ type: 'spring', stiffness: 120, damping: 20 }}
     >
       <div className="flex items-center space-x-2">
-        <img src="/new_logo.png" alt="Logo" className="h-20 w-auto" />
+        <img src="/new_logo.png" alt="Logo" className="h-20 w-auto ml-4" />
       </div>
 
       <div className="flex space-x-8 text-base font-medium">

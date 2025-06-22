@@ -16,19 +16,19 @@ export default function Research() {
       name: 'Google',
       href: '/research/google',
       logo: 'google.jpg',
-      summary: 'We invested in Alphabet due to its dominant ad business and cloud growth.',
+      summary: 'Google is a dominant global tech leader boasting a search engine monopoly, high-margin advertising (including YouTube), a rapidly expanding Google Cloud business and pioneering AI and Waymo ventures, all underpinned by a rock-solid balance sheet and aggressive buybacks. Despite near-term CapEx headwinds and overstated AI-related search risks, the stock’s valuation remains highly attractive with a compelling asymmetric upside even in a bear-case scenario.',
     },
     {
       name: 'Amazon',
       href: '/research/amazon',
       logo: 'amazon-logo.jpg',
-      summary: 'Amazon’s logistics moat and AWS leadership made it a long-term play.',
+      summary: '',
     },
     {
       name: 'United Healthcare',
       href: '/research/unitedhealthcare',
       logo: 'UNH-logo.jpg',
-      summary: 'We see UH as a resilient healthcare compounder with scalable margins.',
+      summary: 'The nation’s largest private healthcare platform, spanning insurance, health services, and data analytics, has seen ~$32 million in insider buying even as a DOJ probe likely ends in a modest fine; with one-time Medicare related margin pressure behind it and insurance pricing adjustments ahead, normalized earnings plus multiple rerating point to a conservative 17.7% CAGR and compelling upside from its low valuation.',
     },
   ]
 
@@ -59,7 +59,6 @@ export default function Research() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            Below are research reports for select companies we have covered in the past.
           </motion.p>
 
           {/* Panels */}

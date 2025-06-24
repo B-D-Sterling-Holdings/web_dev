@@ -4,39 +4,59 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 export default function Navbar() {
-  const [hideNavbar, setHideNavbar] = useState(false);
+  const [scrolled, setScrolled] = useState(false)   // bg swap
+  const [hide,     setHide]     = useState(false)   // slide-away
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setHideNavbar(true);
-      } else {
-        setHideNavbar(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      const y = window.scrollY
+      setScrolled(y > 50)        // 1️⃣ background / shadow trigger
+      setHide(   y > 50)         // 2️⃣ keep your slide logic – tweak if needed
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <motion.nav 
-      className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-2 shadow-md text-white"
-      style={{ backgroundColor: '#082C16' }}
-      animate={{ y: hideNavbar ? -90 : 0 }}
+    <motion.nav
+      animate={{ y: hide ? -90 : 0 }}
       transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+      className={[
+        'fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-3',
+        'transition-colors duration-300 backdrop-blur-md',
+        scrolled
+          ? 'bg-white/80 shadow-md text-emerald-900'
+          : 'bg-transparent text-emerald-900'
+      ].join(' ')}
     >
-      <div className="flex items-center space-x-2">
-        <img src="/new_logo.png" alt="Logo" className="h-20 w-auto ml-4" />
-      </div>
+      {/* ---- Logo ---- */}
+      <a href="/" className="flex items-center">
+        <img src="/new_logo.png" alt="Logo" className="h-14 w-auto" />
+      </a>
 
-      <div className="flex space-x-8 text-base font-medium">
-        <a href="/" className="hover:text-gray-300">Home</a>
-        <a href="/about" className="hover:text-gray-300">About</a>
-        <a href="/strategy" className="hover:text-gray-300">Investment Strategy</a>
-        <a href="/research" className="hover:text-gray-300">Equity Research</a>
-        <a href="/portfolio-analytics" className="hover:text-gray-300">Porfolio Analytics</a>
-        <a href="/contact" className="hover:text-gray-300">Contact Us</a>
+      {/* ---- Links ---- */}
+      <div className="hidden md:flex space-x-8 text-base font-medium">
+        {[
+          ['/', 'Home'],
+          ['/about', 'About'],
+          ['/strategy', 'Investment Strategy'],
+          ['/research', 'Equity Research'],
+          ['/portfolio-analytics', 'Portfolio Analytics'],
+          ['/contact', 'Contact Us'],
+        ].map(([href, label]) => (
+          <motion.a
+            key={href}
+            href={href}
+            whileHover={{ y: -2 }}
+            className="relative group hover:text-emerald-600 transition-colors duration-300"
+          >
+            {label}
+            {/* animated underline */}
+            <span
+              className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-600 transition-all duration-300 group-hover:w-full"
+            />
+          </motion.a>
+        ))}
       </div>
     </motion.nav>
   )

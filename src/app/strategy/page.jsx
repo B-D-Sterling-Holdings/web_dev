@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function Strategy() {
   return (
-    <main className="min-h-screen bg-white text-black pt-28">
+    <main className="min-h-screen bg-white text-black pt-24">
       <Navbar />
 
       {/* Page content entrance animation */}

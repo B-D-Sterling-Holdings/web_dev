@@ -16,7 +16,7 @@ export default function Research() {
       name: 'Google',
       href: '/research/google',
       logo: 'google.jpg',
-      summary: 'Google is a dominant global tech leader boasting a search engine monopoly, high-margin advertising (including YouTube), a rapidly expanding Google Cloud business and pioneering AI and Waymo ventures, all underpinned by a rock-solid balance sheet and aggressive buybacks. Despite near-term CapEx headwinds and overstated AI-related search risks, the stock’s valuation remains highly attractive with a compelling asymmetric upside even in a bear-case scenario.',
+      summary: 'Google is a leading tech company with a strong presence in search, high margin YouTube advertising, a growing cloud business, and exposure to artificial intelligence and autonomous driving through Waymo. With a solid balance sheet and consistent buybacks, it is diversifying its revenue and remains attractively valued despite near term capital spending and overstated AI search concerns.',
     },
     {
       name: 'Amazon',
@@ -28,7 +28,7 @@ export default function Research() {
       name: 'United Healthcare',
       href: '/research/unitedhealthcare',
       logo: 'UNH-logo.jpg',
-      summary: 'The nation’s largest private healthcare platform, spanning insurance, health services, and data analytics, has seen ~$32 million in insider buying even as a DOJ probe likely ends in a modest fine; with one-time Medicare related margin pressure behind it and insurance pricing adjustments ahead, normalized earnings plus multiple rerating point to a conservative 17.7% CAGR and compelling upside from its low valuation.',
+      summary: 'The nation’s largest private healthcare platform, spanning insurance, health services, and data analytics, has seen $32 million in insider buying as a DOJ probe likely concludes with a modest fine. With Medicare margin pressure behind and pricing adjustments ahead, normalized earnings and multiple expansion point to a conservative 17.7% growth rate and meaningful upside from its low valuation.',
     },
   ]
 
@@ -106,8 +106,9 @@ export default function Research() {
                     transition={{ duration: 0.3 }}
                     className="absolute inset-0 flex items-center justify-center bg-white px-4 text-center"
                   >
-                    <p className="text-md text-gray-800 font-medium">
-                      {company.summary}
+                    <p className="text-[15px] text-gray-800">
+                      {company.summary.replace(' (Click the panel for more info)', '')}
+                      <span className="font-bold"> Click the panel for more info</span>
                     </p>
                   </motion.div>
                 </motion.div>

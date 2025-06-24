@@ -259,102 +259,26 @@ export default function Home() {
           
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between p-10 relative">
 
-            {/* Left Image - Enhanced */}
-            <div className="md:w-1/2 w-full flex relative p-6 md:p-10">
-              <motion.div
-                initial={{ opacity: 0, x: -50, rotateY: -15 }}
-                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="relative w-full"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-blue-500 rounded-2xl blur-2xl opacity-20 scale-105"></div>
-                <div className="relative bg-white p-4 rounded-2xl shadow-2xl">
-                  <img 
-                    src="/investment_chart.jpg" 
-                    alt="Research Driven Investing" 
-                    className="rounded-lg w-full h-auto"
-                  />
-                </div>
-                
-                {/* Enhanced floating elements */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.5 }}
-                  className="absolute -top-4 -right-4 bg-emerald-500 text-white p-3 rounded-full shadow-lg"
-                >
-                  <BarChart3 className="w-6 h-6" />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.7 }}
-                  className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-3 rounded-full shadow-lg"
-                >
-                  <Users className="w-6 h-6" />
-                </motion.div>
-              </motion.div>
-            </div>
-
-            {/* Right Text - Enhanced */}
             <div className="md:w-1/2 w-full p-6 md:p-10">
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                  viewport={{ once: true }}
-                  className="flex items-center space-x-3 mb-6"
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                    <Award className="w-6 h-6 text-white" />
-                  </div>
-                  <span className="text-emerald-600 font-semibold text-lg">Research Excellence</span>
-                </motion.div>
-
-                <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-emerald-800 to-emerald-600 bg-clip-text text-transparent">
-                  Research-Driven Capital Allocation
-                </h2>
-                
-                <p className="text-xl leading-relaxed text-gray-600 mb-6">
-                  Our investment philosophy centers around comprehensive fundamental research, supported by rigorous financial modeling and industry analysis. 
-                  Every capital allocation decision is driven by deep due diligence, focusing on business quality, management competence, and pricing dislocations.
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-gradient-to-r from-emerald-50 to-blue-50 p-6 rounded-2xl border border-emerald-100 mb-6">
+                <p className="text-gray-700 leading-relaxed">
+                  <strong className="text-emerald-700">This is a cool vibe</strong> random shit hlaks lkjldfbdjklfb akljfg klasdjfg kls
                 </p>
+              </div>
 
-                <div className="bg-gradient-to-r from-emerald-50 to-blue-50 p-6 rounded-2xl border border-emerald-100 mb-6">
-                  <p className="text-gray-700 leading-relaxed">
-                    <strong className="text-emerald-700">Our Philosophy:</strong> True alpha lies in developing conviction through understanding — not speculation. 
-                    Our team evaluates each opportunity through a long-term lens, filtering out noise and focusing on sustainable growth, 
-                    competitive advantages, and margin of safety.
-                  </p>
-                </div>
+              {/* New placeholder */}
+              <div className="bg-gray-100 p-6 rounded-xl text-center text-gray-500 border border-dashed border-gray-300">
+                <p className="text-lg italic">🚧 In construction — need ideas 🚧</p>
+              </div>
+            </motion.div>
+          </div>
 
-                {/* Key metrics or features */}
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-white p-4 rounded-xl shadow-lg border border-gray-100"
-                  >
-                    <h4 className="font-bold text-emerald-700 mb-1">Deep Analysis</h4>
-                    <p className="text-sm text-gray-600">Comprehensive due diligence on every investment</p>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-white p-4 rounded-xl shadow-lg border border-gray-100"
-                  >
-                    <h4 className="font-bold text-blue-700 mb-1">Long-Term Focus</h4>
-                    <p className="text-sm text-gray-600">Multi-year investment horizons for compounding</p>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
 
           </div>
         </div>

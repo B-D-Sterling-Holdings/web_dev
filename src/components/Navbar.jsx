@@ -31,17 +31,17 @@ export default function Navbar() {
     >
       {/* ---- Logo ---- */}
       <a href="/" className="flex items-center">
-        <img src="/new_logo.png" alt="Logo" className="h-14 w-auto" />
+        <img src="/logo.png" alt="Logo" className="h-14 w-auto" />
       </a>
 
       {/* ---- Links ---- */}
       <div className="hidden md:flex space-x-8 text-base font-medium">
         {[
           ['/', 'Home'],
-          ['/about', 'About'],
+          ['/about', 'About Us'],
           ['/strategy', 'Investment Strategy'],
           ['/research', 'Equity Research'],
-          ['/portfolio-analytics', 'Portfolio Analytics'],
+          ['/portfolio-analytics', 'Portfolio'],
           ['/contact', 'Contact Us'],
         ].map(([href, label]) => (
           <motion.a

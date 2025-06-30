@@ -51,7 +51,7 @@ export default function InvestorRelations() {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <h1 className="text-center text-2xl font-bold">
-                Portfolio Analytics
+                Portfolio
               </h1>
             </motion.div>
 

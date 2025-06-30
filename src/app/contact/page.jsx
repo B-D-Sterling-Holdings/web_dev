@@ -85,7 +85,7 @@ export default function ContactUs() {
             Contact Us
           </h1>
           <p className="text-lg mb-8">
-            If you’re interested in learning more about B.D. Sterling or exploring potential opportunities, we invite you to get in touch with us.
+            If you're interested in learning more about B.D. Sterling or starting a conversation, we’d love to hear from you.
           </p>
 
           <form className="space-y-6" onSubmit={handleSubmit}>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-white text-black pt-24">
+    <main className="min-h-screen bg-white text-black pt-20">
       <Navbar />
 
       {/* Content container with delayed entrance */}
@@ -14,7 +14,7 @@ export default function About() {
         transition={{ duration: 0.6, delay: 0.1 }}
       >
         {/* Meet The Team Section */}
-        <div className="max-w-6xl mx-auto py-20">
+        <div className="max-w-6xl mx-auto py-14 px-6">
           <motion.h2 
             className="text-4xl font-bold text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -24,80 +24,51 @@ export default function About() {
             Meet The Team
           </motion.h2>
 
-          <div className="flex flex-col md:flex-row justify-center items-center gap-16">
-            {/* Bhuvan */}
-            <motion.div 
-              className="flex flex-col items-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
+          {/* Bhuvan - Image Left, Text Right */}
+          <motion.div 
+            className="flex flex-col md:flex-row items-center gap-12 mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <div className="md:w-1/2 flex justify-center">
               <img 
                 src="/bhuvan.jpeg" 
                 alt="Bhuvan" 
-                className="w-64 h-64 object-cover rounded-full shadow-lg mb-6 opacity-90"
+                className="w-64 h-64 object-cover rounded-full shadow-lg opacity-90"
               />
-              <h3 className="text-2xl font-semibold">Bhuvan</h3>
-              <p className="text-lg text-gray-600">Co-CIO, CEO</p>
-            </motion.div>
+            </div>
+            <div className="md:w-1/2 text-center md:text-left">
+              <h3 className="text-3xl font-semibold mb-2">Bhuvan</h3>
+              <p className="text-xl text-gray-600 mb-4">Co-CIO, CEO</p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Bhuvan Siddaveerappa co-launched BD Sterling as a project to institutionalize the disciplined, fundamentals driven approach he refined while managing the Sinn Fund (multi strategy hedge fund) and Maroon Fund (long only fund) at Texas A&M and interning on equity-trading desks at Kershner Trading Group. His leadership stems from past roles as Scholars of Finance chapter president and organizer of TAMU’s student finance conference, where he refined his talent for mentoring analysts and promoting values-driven decision making.
+              </p>
+            </div>
+          </motion.div>
 
-            {/* Dhruv */}
-            <motion.div 
-              className="flex flex-col items-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
+          {/* Dhruv - Text Left, Image Right */}
+          <motion.div 
+            className="flex flex-col md:flex-row-reverse items-center gap-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <div className="md:w-1/2 flex justify-center">
               <img 
                 src="/dhruv.png" 
                 alt="Dhruv" 
-                className="w-64 h-64 object-cover rounded-full shadow-lg mb-6 opacity-90"
+                className="w-64 h-64 object-cover rounded-full shadow-lg opacity-90"
               />
-              <h3 className="text-2xl font-semibold">Dhruv</h3>
-              <p className="text-lg text-gray-600">Co-CIO, Director of Quantitative Division</p>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Who We Are Section */}
-        <div className="bg-gray-100 py-20">
-          <div className="max-w-5xl mx-auto px-6 text-center">
-
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold mb-10"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              Who We Are
-            </motion.h2>
-
-            <motion.p 
-              className="text-lg md:text-xl text-gray-700 leading-relaxed"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              Insert a brief introductory paragraph here that highlights your founding team's core identity. 
-              Include key aspects such as: your professional backgrounds (engineering, finance, research, etc.),
-              your shared mission or passion, and your motivation for starting the firm or project.
-            </motion.p>
-
-            <motion.p 
-              className="text-lg md:text-xl text-gray-700 leading-relaxed mt-6"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              You may also reference any unique expertise, networks, or partnerships that differentiate your approach.
-              This section should establish credibility and communicate the unique blend of skills and experiences
-              that guide your firm's philosophy
-            </motion.p>
-
-          </div>
+            </div>
+            <div className="md:w-1/2 text-center md:text-right">
+              <h3 className="text-3xl font-semibold mb-2">Dhruv</h3>
+              <p className="text-xl text-gray-600 mb-4">Co-CIO, Director of Quantitative Division</p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Dhruv Datta is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He is a founder of 2 business ventures already and is helping build BD Sterling into a focused investment project centered on finding dislocated high quality companies. As Executive Vice President of Scholars of Finance, he helps develop leadership in the next generation of finance professionals. Dhruv takes pride in the rigor of his equity research driven approach to the markets and is leading the development of quantitative models to find an edge.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </main>

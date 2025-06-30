@@ -19,9 +19,9 @@ export default function Research() {
       summary: 'Google is a leading tech company with a strong presence in search, high margin YouTube advertising, a growing cloud business, and exposure to artificial intelligence and autonomous driving through Waymo. With a solid balance sheet and consistent buybacks, it is diversifying its revenue and remains attractively valued despite near term capital spending and overstated AI search concerns.',
     },
     {
-      name: 'Amazon',
-      href: '/research/amazon',
-      logo: 'amazon-logo.jpg',
+      name: 'ASML',
+      href: '/research/asml',
+      logo: 'ASML-Logo.png',
       summary: '',
     },
     {

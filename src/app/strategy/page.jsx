@@ -14,7 +14,7 @@ export default function Strategy() {
         transition={{ duration: 0.6, delay: 0.1 }}
       >
 
-        <div className="max-w-5xl mx-auto py-20 px-4">
+        <div className="max-w-5xl mx-auto py-16 px-4">
 
           {/* Animated Title */}
           <motion.h2
@@ -33,13 +33,13 @@ export default function Strategy() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            At B.D. Sterling, we believe in investing with discipline, patience, and a long-term mindset. 
-            Our strategy focuses on identifying companies with durable competitive advantages, strong fundamentals, and long growth runways. 
-            We leverage a value-oriented approach to acquire high-quality businesses during temporary dislocations when prices do not reflect intrinsic value.
+            At B.D. Sterling, we focus on what we call Dislocated High Quality Companies, an idea coined by Mark Mahaney. These are fundamentally sound, competitively advantaged businesses that have been temporarily mispriced due to misunderstood narratives or short term market dislocations.
             <br /><br />
-            We perform deep fundamental research, rigorous valuation modeling, and deep catalyst analysis to assess each opportunity. Our disciplined entry points allow us to minimize downside risk while maximizing upside potential as the market corrects inefficiencies over time.
+            We seek companies with proven business models, resilient cash flows, and long growth runways, yet are trading at unjustified discounts to intrinsic value. Our edge lies in recognizing when the market has overreacted or misjudged the core strength of a business.
             <br /><br />
-            By avoiding speculative short-term trends and focusing on the underlying business quality, we aim to deliver sustainable returns through all market cycles.
+            Rather than chasing momentum or reacting to headlines, we dive deep, performing thorough fundamental research, building robust valuation models, and identifying catalysts that could re-rate the business over time. Our process is structured to minimize downside while capturing asymmetric upside as quality eventually shines through short term volatility.
+            <br /><br />
+            We understand businesses and act decisively when prices disconnect from reality.
           </motion.p>
 
         </div>

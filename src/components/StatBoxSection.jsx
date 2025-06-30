@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { label: 'Total AUM', value: 18907, prefix: '$' },
+  { label: 'Total AUM', value: 20922, prefix: '$' },
   { label: 'Holdings in Portfolio', value: 10 },
   { label: 'Days Since Inception', value: 278 },
 ];
@@ -36,18 +36,16 @@ function StatBox({ label, value, prefix = '', index }) {
           onEnter: () => {
             if (hasStarted.current) return;
             hasStarted.current = true;
-            const startTime = performance.now();
-            const duration = 2000; // ms
-
-            const frame = (now) => {
-              const elapsed = now - startTime;
-              const t = Math.min(elapsed / duration, 1);
-              const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
-              setCount(Math.floor(eased * value));
-              if (t < 1) requestAnimationFrame(frame);
-            };
-
-            requestAnimationFrame(frame);
+            
+            // GSAP animation for the counter
+            gsap.to({ value: 0 }, {
+              value: value,
+              duration: 2,
+              ease: "power2.out", // You can change this to "none" for linear, "power1.out" for gentler
+              onUpdate: function() {
+                setCount(Math.floor(this.targets()[0].value));
+              }
+            });
           },
         },
       }
@@ -55,8 +53,8 @@ function StatBox({ label, value, prefix = '', index }) {
   }, [value]);
 
   // Calculate a negative delay so the 8s loop is offset evenly:
-  const offset = (index * (5 / stats.length)).toFixed(2);   // 8 s / 3 boxes ≈ 2.67 s
-  const delay  = `-${offset}s`;                             // ← fixed
+  const offset = (index * (5 / stats.length)).toFixed(2);
+  const delay = `-${offset}s`;
 
   return (
     <div ref={boxRef} className={styles.statBox}>

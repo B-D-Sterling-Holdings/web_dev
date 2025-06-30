@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react'
 import { TrendingUp, Shield, Target, BarChart3, Users, Award } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import StatBoxSection from '@/components/StatBoxSection'
+import Faq from '@/components/Faq'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-black pt-20 overflow-hidden">
+    <main className="min-h-screen bg-white text-black pt-16 overflow-hidden">
       <Navbar />
 
       {/* Floating Background Elements */}
@@ -55,25 +57,30 @@ export default function Home() {
               </h1>
               
               <p className="text-[18.4px] leading-relaxed text-gray-600 mb-8">
-                B.D. Sterling is a long only investment project grounded in four core principles: disciplined capital allocation, structured risk taking, intellectual humility, and an owner’s mindset. We’ve committed nearly our entire net worth to a single account to reflect true skin in the game, focusing on a small number of deeply researched companies where long term compounding clearly outweighs risk. When opportunities are limited, we hold cash, act only on evidence and communicate with radical transparency.
+                BD Sterling is our personal long only investment project built on four non negotiables: disciplined capital allocation, structured risk taking, adaptive learning, and aligned stewardship. Our entire net worth is committed to a single account, concentrated in a handful of deeply researched positions. We primarily focus on Dislocated High Quality  businesses. These are high quality companies with durable fundamentals that are temporarily mispriced due to short term market inefficiencies and/or misunderstood narratives. Cash is held when opportunities are scarce. We act only on evidence, not noise, and communicate with transparency.
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Learn Our Strategy
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 font-semibold rounded-xl hover:bg-emerald-50 transition-all duration-300"
-                >
-                  View Research
-                </motion.button>
+                <Link href="/strategy">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    Learn Our Strategy
+                  </motion.button>
+                </Link>
+
+                <Link href="/research">
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 font-semibold rounded-xl hover:bg-emerald-50 transition-all duration-300"
+                  >
+                    View Research
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -106,7 +113,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Portfolio Focus</p>
-                    <p className="text-sm font-bold text-gray-800">Quality Businesses</p>
+                    <p className="text-sm font-bold text-gray-800">Dislocated Quality Businesses</p>
                   </div>
                 </div>
               </motion.div>
@@ -132,7 +139,7 @@ export default function Home() {
 
 
         {/* Enhanced Core Values Section */}
-        <div className="bg-gray-50 py-20 relative">
+        <div className="bg-gray-50 py-16 relative">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0" style={{
@@ -217,12 +224,11 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-full h-2 animate-gradient bg-[linear-gradient(90deg,#10B981,#059669,#10B981)]" />
 
               <h3 className="text-xl font-bold mt-6 mb-3 text-[#082C16] uppercase tracking-wide text-center">
-                Intellectual Humility
+                Adaptive Learning
               </h3>
               <p className="text-[#4B5563] text-sm leading-relaxed text-center">
-                Markets are tough teachers. We acknowledge uncertainty, seek dissenting
-                views, and adapt when facts change. Youth matters when grounded in humility
-                and learning.
+                Markets are unforgiving teachers. We acknowledge what we don’t know, invite dissenting analyses, and pivot when new facts emerge. 
+                Our youth becomes an advantage only when matched with relentless curiosity and the courage to revise.
               </p>
             </motion.div>
 
@@ -240,11 +246,12 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-full h-2 animate-gradient bg-[linear-gradient(90deg,#10B981,#059669,#10B981)]" />
 
               <h3 className="text-xl font-bold mt-6 mb-3 text-[#082C16] uppercase tracking-wide text-center">
-                Transparent Partnership
+                Aligned Stewardship
               </h3>
               <p className="text-[#4B5563] text-sm leading-relaxed text-center">
-                Investors deserve clarity. We give timely updates, admit mistakes, and speak
-                plainly. Trust is built in years, not quarters — we earn it through honesty.
+                We believe success stems from aligned incentives. With 99% of our net worth in one account, 
+                we operate as disciplined and patient stewards, committed to long term value and fully accountable
+                for every decision and outcome.
               </p>
             </motion.div>
 
@@ -252,37 +259,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Enhanced Research Section */}
-        <div className="py-20 relative overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-transparent to-blue-50"></div>
-          
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between p-10 relative">
-
-            <div className="md:w-1/2 w-full p-6 md:p-10">
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-gradient-to-r from-emerald-50 to-blue-50 p-6 rounded-2xl border border-emerald-100 mb-6">
-                <p className="text-gray-700 leading-relaxed">
-                  <strong className="text-emerald-700">This is a cool vibe</strong> random shit hlaks lkjldfbdjklfb akljfg klasdjfg kls
-                </p>
-              </div>
-
-              {/* New placeholder */}
-              <div className="bg-gray-100 p-6 rounded-xl text-center text-gray-500 border border-dashed border-gray-300">
-                <p className="text-lg italic">🚧 In construction — need ideas 🚧</p>
-              </div>
-            </motion.div>
-          </div>
-
-
-          </div>
-        </div>
-
+        <Faq />
       </motion.div>
     </main>
   )

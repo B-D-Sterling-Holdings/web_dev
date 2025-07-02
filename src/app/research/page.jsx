@@ -22,7 +22,7 @@ export default function Research() {
       name: 'ASML',
       href: '/research/asml',
       logo: 'ASML-Logo.png',
-      summary: 'ASML’s EUV technology gives it a monopolistic edge in advanced chip manufacturing, driving high-margin system sales and recurring service revenues through its servicing segment. Recent stock weakness, due to China exposure, slow market recoveries, and elevated inventories, are short term headwinds. These factors have temporarily dislocated ASML’s price from its fundamentals.',
+      summary: 'ASML’s EUV technology gives it a monopolistic edge in advanced chip manufacturing, driving high margin system sales and recurring service revenues through its servicing segment. Recent stock weakness, due to China exposure, slow market recoveries, and elevated inventories, are short term headwinds. These factors have temporarily dislocated ASML’s price from its fundamentals.',
     },
     {
       name: 'United Healthcare',

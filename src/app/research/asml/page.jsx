@@ -14,7 +14,7 @@ export default function GoogleResearch() {
         {/* PowerPoint Embed */}
         <div className="flex justify-center mt-8">
           <iframe
-            src="/public_reports/goog_report.pdf"
+            src="/public_reports/ASML_Equity_Research_Report.pdf"
             width="960"
             height="700"
             className="rounded-lg shadow-md"

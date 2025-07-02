@@ -10,20 +10,24 @@ export default function SleekFAQSection() {
 
   const faqData = [
   {
-    q: "FAQ 1",
-    a: "Answer to FAQ 1 goes here. Provide a clear and concise response that addresses the question directly."
+    q: "What is BD Sterling?",
+    a: "B.D. Sterling an investment project. Dhruv and Bhvan work on refining their investment philosophies and skills while practicing on being good capital allocators. B.D. Sterling started as a school project, but it has continued way past the semester and has had many iterations of B.D. Sterling over time."
   },
   {
-    q: "FAQ 2",
-    a: "Answer to FAQ 2 goes here. Expand with relevant details to support your explanation."
+    q: "What is the overall strategy?",
+    a: "B.D. Sterling buys high quality qualities that are simply mispriced. The mispricing can be due to sentiment, change in business model, macro events, corporate actions, legal actions. This incorporates our appreciation for high quality companies that compound at high rate over a long period of time, as well as special situations where a company has the ability to unlock value in a clear horizon. Providing a blend of uncorrelated alpha and taking advantage of the simple science of compounding."
   },
   {
-    q: "FAQ 3",
-    a: "Answer to FAQ 3 goes here. Make sure the answer is aligned with your project's philosophy or process."
+    q: "How old are y’all?",
+    a: "Dhruv and Bhuvan are currently university students. This project was born out of a dorm room."
   },
   {
-    q: "FAQ 4",
-    a: "Answer to FAQ 4 goes here. Include any practical examples or key principles if needed."
+    q: "Why do you guys have such a concentrated amount of holdings?",
+    a: "Learning from the investment titans before us, we have adopted a concentrated portfolio strategy. Most of the model portfolio returns can be accredited to a select few names, and this is where we believe our concentration and energy should be focused on. “I like putting all my eggs into one basket, and then watching that basket very carefully.” - Stanley Druckenmiller"
+  },
+  {
+    q: "Does B.D. Sterling focus on value investing or growth investing?",
+    a: "Growth and value are not mutually exclusive. Value is in identifying opportunities where the market fails to reflect the company’s underlying fundamentals and growth potential in the stock price. A higher than market P/E ratio does not disqualify a stock if its growth trajectory significantly surpasses market averages. Growth doesn’t cancel out value, it can be the very reason value exists. In fact, many of the best value opportunities arise when the market underestimates the quality and sustainability of a company’s growth."
   }
 ];
 

@@ -65,7 +65,7 @@ export default function About() {
               <h3 className="text-3xl font-semibold mb-2">Dhruv</h3>
               <p className="text-xl text-gray-600 mb-4">Co-CIO, Director of Quantitative Division</p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Dhruv Datta is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He is a founder of 2 business ventures already and is helping build BD Sterling into a focused investment project centered on finding dislocated high quality companies. As Executive Vice President of Scholars of Finance, he helps develop leadership in the next generation of finance professionals. Dhruv takes pride in the rigor of his equity research driven approach to the markets and is leading the development of quantitative models to find an edge.
+                Dhruv Datta is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He is a founder of 2 business ventures and is helping build B.D. Sterling into a focused investment project centered on finding dislocated high quality companies. As Executive Vice President of Scholars of Finance, he helps develop leadership in the next generation of finance professionals. Dhruv takes pride in the rigor of his equity research driven approach to the markets and is leading the development of quantitative models to find an edge.
               </p>
             </div>
           </motion.div>

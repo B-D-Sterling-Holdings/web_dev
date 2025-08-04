@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { label: 'Total AUM', value: 20922, prefix: '$' },
+  { label: 'Sharpe Ratio', value: 1.72, prefix: '' },
   { label: 'Holdings in Portfolio', value: 10 },
   { label: 'Days Since Inception', value: 278 },
 ];

@@ -42,8 +42,16 @@ function StatBox({ label, value, prefix = '', index }) {
               value: value,
               duration: 2,
               ease: "power2.out", // You can change this to "none" for linear, "power1.out" for gentler
-              onUpdate: function() {
-                setCount(Math.floor(this.targets()[0].value));
+              onUpdate: function () {
+                const currentValue = this.targets()[0].value;
+
+                // For Sharpe Ratio (with decimals), keep the decimal
+                // For integers (like Holdings or Days), you might want to floor it
+                if (label === 'Sharpe Ratio') {
+                  setCount(currentValue.toFixed(2));
+                } else {
+                  setCount(Math.floor(currentValue));
+                }
               }
             });
           },

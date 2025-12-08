@@ -42,7 +42,7 @@ export default function About() {
               <h3 className="text-3xl font-semibold mb-2">Bhuvan</h3>
               <p className="text-xl text-gray-600 mb-4">Co-CIO, CEO</p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Bhuvan Siddaveerappa co-launched BD Sterling as a project to institutionalize the disciplined, fundamentals driven approach he refined while managing the Sinn Fund (multi strategy hedge fund) and Maroon Fund (long only fund) at Texas A&M and interning on equity-trading desks at Kershner Trading Group. His leadership stems from past roles as Scholars of Finance chapter president and organizer of TAMU’s student finance conference, where he refined his talent for mentoring analysts and promoting values-driven decision making.
+                Bhuvan Siddaveerappa co-launched B.D. Sterling as a project to institutionalize the disciplined, fundamentals driven approach he refined while managing the Sinn Fund (a $5 million multi strategy hedge fund) at Texas A&M and interning on equity trading desks at Kershner Trading Group. His leadership stems from past roles as Scholars of Finance chapter president and organizer of TAMU’s student finance conference, where he refined his talent for mentoring analysts and promoting values driven decision making.
               </p>
             </div>
           </motion.div>
@@ -63,9 +63,9 @@ export default function About() {
             </div>
             <div className="md:w-1/2 text-center md:text-right">
               <h3 className="text-3xl font-semibold mb-2">Dhruv</h3>
-              <p className="text-xl text-gray-600 mb-4">Co-CIO, Director of Quantitative Division</p>
+              <p className="text-xl text-gray-600 mb-4">Co-CIO, CFO, and CCO</p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Dhruv Datta is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He is a founder of 2 business ventures and is helping build B.D. Sterling into a focused investment project centered on finding dislocated high quality companies. As Executive Vice President of Scholars of Finance, he helps develop leadership in the next generation of finance professionals. Dhruv takes pride in the rigor of his equity research driven approach to the markets and is leading the development of quantitative models to find an edge.
+                Dhruv Datta is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. Dhruv takes pride in the rigor of his equity research driven approach to the markets and is leading the development of quantitative models to find an edge. He is the CIO of Maroon Fund (a $65,000 long only fund) at Texas A&M and Co-Founded Scholars of Finance alongside Bhuvan. He has a multitude of engineering experience ranging from working in 3 research laboratories and 4 internships (one of which will be with GE Vernova during the Summer of 2026). Dhruv architected the firm’s entire operational backbone from the ground up, establishing the legal frameworks and accounting infrastructure necessary to support institutional grade scaling.
               </p>
             </div>
           </motion.div>

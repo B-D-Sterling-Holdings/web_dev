@@ -57,7 +57,7 @@ export default function Home() {
               </h1>
               
               <p className="text-[18.4px] leading-relaxed text-gray-600 mb-8">
-                BD Sterling is our personal long only investment project built on four non negotiables: disciplined capital allocation, structured risk taking, adaptive learning, and aligned stewardship. Our entire net worth is committed to a single account, concentrated in a handful of deeply researched positions. We primarily focus on Dislocated High Quality  businesses. These are high quality companies with durable fundamentals that are temporarily mispriced due to short term market inefficiencies and/or misunderstood narratives. Cash is held when opportunities are scarce. We act only on evidence, not noise, and communicate with transparency.
+                B.D. Sterling Capital Management LLC is a research driven investment firm focused on identifying and investing in high quality businesses at moments of temporary dislocation. Our philosophy centers on disciplined capital allocation, structured risk management, adaptive learning, and long term stewardship. We seek opportunities where durable fundamentals intersect with market inefficiencies, applying deep fundamental research to evaluate intrinsic value and risk. Our capital is invested alongside our Limited Partners, reinforcing alignment and a long term perspective. We act deliberately, rely on evidence over noise, and maintain a culture of transparency and integrity.
               </p>
 
               {/* CTA Buttons */}
@@ -224,7 +224,7 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-full h-2 animate-gradient bg-[linear-gradient(90deg,#10B981,#059669,#10B981)]" />
 
               <h3 className="text-xl font-bold mt-6 mb-3 text-[#082C16] uppercase tracking-wide text-center">
-                Adaptive Learning
+                Adaptive <br></br> Learning
               </h3>
               <p className="text-[#4B5563] text-sm leading-relaxed text-center">
                 Markets are unforgiving teachers. We acknowledge what we don’t know, invite dissenting analyses, and pivot when new facts emerge. 

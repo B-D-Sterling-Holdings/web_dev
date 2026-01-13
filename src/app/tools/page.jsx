@@ -954,10 +954,6 @@ export default function ToolsPage() {
               <div className="max-w-6xl mx-auto w-full px-6 pb-16">
                 <div className="mb-10">
                   <h1 className="text-4xl font-bold text-[#082C16] mb-3">Tools</h1>
-                  <p className="text-lg text-gray-600">
-                    Use the portfolio rebalancer to align your holdings with target weights and
-                    receive a step by step execution plan.
-                  </p>
                 </div>
 
                 <section className="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm">

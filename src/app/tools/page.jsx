@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   Chart as ChartJS,
   LinearScale,
@@ -315,6 +315,8 @@ const rebalanceExecutionPlan = ({
     steps: consolidatedSteps,
     buyDollars: buySummary,
     sellDollars: sellSummary,
+    currentValues: current,
+    startingTotal,
     finalValues,
     finalWeights,
   }
@@ -339,17 +341,45 @@ export default function ToolsPage() {
   const [simulationError, setSimulationError] = useState('')
   const [simulationResult, setSimulationResult] = useState(null)
   const [simulationChart, setSimulationChart] = useState(null)
-  const [startingCapital, setStartingCapital] = useState('')
-  const [endingCapital, setEndingCapital] = useState('')
-  const [sellTaxRate, setSellTaxRate] = useState('')
+  const [taxInputs, setTaxInputs] = useState({})
 
-  const startingCapitalValue = parseNumber(startingCapital)
-  const endingCapitalValue = parseNumber(endingCapital)
-  const sellTaxRateValue = parseNumber(sellTaxRate)
-  const capitalGainsValue = endingCapitalValue - startingCapitalValue
-  const taxOwedValue = capitalGainsValue * (sellTaxRateValue / 100)
-  const aumValue = startingCapitalValue + endingCapitalValue + sellTaxRateValue
-  const taxOwedPctOfAum = aumValue ? (taxOwedValue / aumValue) * 100 : 0
+  const aumValue = plan?.startingTotal || 0
+
+  const taxBreakdown = useMemo(() => {
+    if (!plan) {
+      return { rows: [], totalTax: 0, totalGains: 0 }
+    }
+
+    const rows = Object.entries(plan.sellDollars).map(([ticker, plannedSold]) => {
+      const inputs = taxInputs[ticker] || {}
+      const initialValue = parseNumber(inputs.initialValue)
+      const finalValue = parseNumber(inputs.finalValue)
+      const amountSoldInput =
+        inputs.amountSold === '' || inputs.amountSold === undefined ? plannedSold : inputs.amountSold
+      const amountSold = parseNumber(amountSoldInput)
+      const taxRate = parseNumber(inputs.taxRate)
+      const gainFraction = finalValue ? (finalValue - initialValue) / finalValue : 0
+      const gainRealized = amountSold * gainFraction
+      const taxOwed = gainRealized * (taxRate / 100)
+
+      return {
+        ticker,
+        initialValue,
+        finalValue,
+        amountSold,
+        taxRate,
+        gainRealized,
+        taxOwed,
+      }
+    })
+
+    const totalTax = rows.reduce((sum, row) => sum + row.taxOwed, 0)
+    const totalGains = rows.reduce((sum, row) => sum + row.gainRealized, 0)
+
+    return { rows, totalTax, totalGains }
+  }, [plan, taxInputs])
+
+  const taxOwedPctOfAum = aumValue ? (taxBreakdown.totalTax / aumValue) * 100 : 0
 
   const totalTargetPercent = useMemo(() => {
     const holdingsTotal = holdings.reduce((sum, row) => sum + parseNumber(row.targetWeight), 0)
@@ -391,6 +421,45 @@ export default function ToolsPage() {
     }),
     []
   )
+
+  useEffect(() => {
+    if (!plan) {
+      setTaxInputs({})
+      return
+    }
+
+    setTaxInputs((prev) => {
+      const next = {}
+      Object.entries(plan.sellDollars).forEach(([ticker, value]) => {
+        const existing = prev[ticker] || {}
+        const currentValue = plan.currentValues?.[ticker]
+        next[ticker] = {
+          initialValue: existing.initialValue ?? '',
+          finalValue:
+            existing.finalValue ??
+            (Number.isFinite(currentValue) ? currentValue.toFixed(2) : ''),
+          amountSold: existing.amountSold ?? value.toFixed(2),
+          taxRate: existing.taxRate ?? '',
+        }
+      })
+      return next
+    })
+  }, [plan])
+
+  const updateTaxInput = (ticker, field, value) => {
+    setTaxInputs((prev) => {
+      const current = prev[ticker] || {}
+      const updated = { ...current, [field]: value }
+      const finalValue = parseNumber(field === 'finalValue' ? value : updated.finalValue)
+      const amountSold = parseNumber(field === 'amountSold' ? value : updated.amountSold)
+
+      if (finalValue > 0 && amountSold > finalValue) {
+        updated.amountSold = `${finalValue}`
+      }
+
+      return { ...prev, [ticker]: updated }
+    })
+  }
 
   const updateHolding = (id, field, value) => {
     setHoldings((prev) =>
@@ -1112,64 +1181,115 @@ export default function ToolsPage() {
               <div className="bg-white border border-gray-200 rounded-2xl p-5">
                 <h4 className="font-semibold text-[#082C16] mb-3">Capital Gains Tax Impact</h4>
                 <p className="text-sm text-gray-500 mb-4">
-                  Enter your capital inputs to estimate tax owed from the sells above.
+                  Enter the cost basis and current value for each sold position to estimate tax owed.
                 </p>
-                <div className="grid gap-4 md:grid-cols-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Starting Capital ($)
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value={startingCapital}
-                      onChange={(event) => setStartingCapital(event.target.value)}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                      placeholder="0.00"
-                    />
+                {taxBreakdown.rows.length === 0 ? (
+                  <p className="text-sm text-gray-500">No sells required, so no tax impact.</p>
+                ) : (
+                  <div className="grid gap-4">
+                    {taxBreakdown.rows.map((row) => (
+                      <div
+                        key={row.ticker}
+                        className="rounded-2xl border border-gray-200 bg-gray-50 p-4"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                          <h5 className="font-semibold text-[#082C16]">{row.ticker}</h5>
+                          <span className="text-xs text-gray-500">
+                            Planned sell: {formatCurrency(plan.sellDollars[row.ticker])}
+                          </span>
+                        </div>
+                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              Initial Value ($)
+                            </label>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={taxInputs[row.ticker]?.initialValue ?? ''}
+                              onChange={(event) =>
+                                updateTaxInput(row.ticker, 'initialValue', event.target.value)
+                              }
+                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                              placeholder="0.00"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              Final/Current Value ($)
+                            </label>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={taxInputs[row.ticker]?.finalValue ?? ''}
+                              onChange={(event) =>
+                                updateTaxInput(row.ticker, 'finalValue', event.target.value)
+                              }
+                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                              placeholder="0.00"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              Amount Sold ($)
+                            </label>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={taxInputs[row.ticker]?.amountSold ?? ''}
+                              onChange={(event) =>
+                                updateTaxInput(row.ticker, 'amountSold', event.target.value)
+                              }
+                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                              placeholder="0.00"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              Capital Gains Tax Rate (%)
+                            </label>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={taxInputs[row.ticker]?.taxRate ?? ''}
+                              onChange={(event) =>
+                                updateTaxInput(row.ticker, 'taxRate', event.target.value)
+                              }
+                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                              placeholder="0"
+                            />
+                          </div>
+                        </div>
+                        <div className="mt-4 grid gap-3 md:grid-cols-2 text-sm text-gray-700">
+                          <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3">
+                            <span>Gain Realized</span>
+                            <span className="font-semibold">{formatCurrency(row.gainRealized)}</span>
+                          </div>
+                          <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3">
+                            <span>Tax Owed</span>
+                            <span className="font-semibold">{formatCurrency(row.taxOwed)}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Ending Capital ($)
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value={endingCapital}
-                      onChange={(event) => setEndingCapital(event.target.value)}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                      placeholder="0.00"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Sell Tax Rate (%)
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value={sellTaxRate}
-                      onChange={(event) => setSellTaxRate(event.target.value)}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                      placeholder="0"
-                    />
-                  </div>
-                </div>
+                )}
 
                 <div className="mt-5 grid gap-3 md:grid-cols-2 text-sm text-gray-700">
                   <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
-                    <span>Capital Gains</span>
-                    <span className="font-semibold">{formatCurrency(capitalGainsValue)}</span>
+                    <span>Total Capital Gains</span>
+                    <span className="font-semibold">{formatCurrency(taxBreakdown.totalGains)}</span>
                   </div>
                   <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
-                    <span>Estimated Tax Owed</span>
-                    <span className="font-semibold">{formatCurrency(taxOwedValue)}</span>
+                    <span>Total Estimated Tax Owed</span>
+                    <span className="font-semibold">{formatCurrency(taxBreakdown.totalTax)}</span>
                   </div>
                   <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
-                    <span>AUM (sum of inputs)</span>
+                    <span>AUM (cash + positions)</span>
                     <span className="font-semibold">{formatCurrency(aumValue)}</span>
                   </div>
                   <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">

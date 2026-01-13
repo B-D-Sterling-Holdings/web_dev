@@ -943,14 +943,7 @@ export default function ToolsPage() {
       >
         {loggedIn ? (
           <>
-            <motion.div
-              className="relative mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <h1 className="text-center text-2xl font-bold">Tools</h1>
-            </motion.div>
+
 
             <motion.div
               className="flex justify-center"
@@ -960,10 +953,10 @@ export default function ToolsPage() {
             >
               <div className="max-w-6xl mx-auto w-full px-6 pb-16">
                 <div className="mb-10">
-                  <h2 className="text-4xl font-bold text-[#082C16] mb-3">Tools</h2>
+                  <h1 className="text-4xl font-bold text-[#082C16] mb-3">Tools</h1>
                   <p className="text-lg text-gray-600">
                     Use the portfolio rebalancer to align your holdings with target weights and
-                    receive a step-by-step execution plan.
+                    receive a step by step execution plan.
                   </p>
                 </div>
 
@@ -1412,15 +1405,14 @@ export default function ToolsPage() {
               <table className="min-w-full text-left text-sm">
                 <thead className="text-gray-600 border-b border-gray-300">
                   <tr>
-                    <th className="px-3 py-2 font-semibold">Ticker</th>
-                    <th className="px-3 py-2 font-semibold">Expected Return (%)</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Ticker</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Expected Return (%)</th>
                     {riskFactors.map((factor) => (
-                      <th key={factor} className="px-3 py-2 font-semibold text-center">
-                        {factor}
+                      <th key={factor} className="px-3 py-2 font-semibold text-center whitespace-nowrap">                        {factor}
                       </th>
                     ))}
-                    <th className="px-3 py-2 font-semibold">User Weight (%)</th>
-                    <th className="px-3 py-2 font-semibold"></th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap">User Weight (%)</th>
+                    <th className="px-3 py-2 font-semibold whitespace-nowrap"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1539,7 +1531,7 @@ export default function ToolsPage() {
                   </ul>
                 </div>
                 <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
-                  <h4 className="font-semibold text-[#082C16] mb-2">Min Volatility</h4>
+                  <h4 className="font-semibold text-[#082C16] mb-2">Min Risk</h4>
                   <p className="text-sm text-gray-600 mb-4">
                     Return {(simulationResult.minVol.expectedReturn * 100).toFixed(2)}% • Volatility{' '}
                     {(simulationResult.minVol.volatility * 100).toFixed(2)}% • Composite Ratio{' '}
@@ -1581,14 +1573,6 @@ export default function ToolsPage() {
           </>
         ) : (
           <>
-            <motion.div
-              className="relative mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <h1 className="text-center text-2xl font-bold">Tools</h1>
-            </motion.div>
 
             <motion.div
               className="flex justify-center"
@@ -1596,7 +1580,10 @@ export default function ToolsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Login onSuccess={() => setLoggedIn(true)} />
+              <div className="w-full max-w-xl px-6 pb-16">
+                <h1 className="text-3xl font-bold text-[#082C16] mb-6 text-center">Tools</h1>
+                <Login onSuccess={() => setLoggedIn(true)} />
+              </div>
             </motion.div>
           </>
         )}

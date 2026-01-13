@@ -1297,10 +1297,9 @@ export default function ToolsPage() {
 
         <section className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm mt-12">
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-[#082C16]">Monte Carlo Allocation Tool</h2>
+            <h2 className="text-2xl font-semibold text-[#082C16]">Project Optimum</h2>
             <p className="text-sm text-gray-500 mt-1">
-              Input expected returns and risk parameters to simulate portfolios using modern
-              portfolio theory constraints.
+              Input expected returns and risk parameters to simulate the optimal risk to reward portfolios.
             </p>
           </div>
 

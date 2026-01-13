@@ -57,7 +57,7 @@ export default function Home() {
               </h1>
               
               <p className="text-[18.4px] leading-relaxed text-gray-600 mb-8">
-                B.D. Sterling Capital Management LLC is a research driven investment firm focused on identifying and investing in high quality businesses at moments of temporary dislocation. Our philosophy centers on disciplined capital allocation, structured risk management, adaptive learning, and long term stewardship. We seek opportunities where durable fundamentals intersect with market inefficiencies, applying deep fundamental research to evaluate intrinsic value and risk. Our capital is invested alongside our Limited Partners, reinforcing alignment and a long term perspective. We act deliberately, rely on evidence over noise, and maintain a culture of transparency and integrity.
+                B.D. Sterling is a research driven investment project focused on investing in high quality businesses at moments of temporary dislocation. It is not currently a registered investment adviser, fund, or legal investment entity, and it does not manage outside client assets. The strategy is implemented through a joint account in order to build an auditable track record and reflect actual portfolio decision making under institutional risk standards. Our philosophy centers on disciplined capital allocation, structured risk management, adaptive learning, and long term stewardship. We seek opportunities where durable business fundamentals intersect with temporary market dislocations, applying fundamental research to evaluate intrinsic value, downside risk, and long term compounding potential.
               </p>
 
               {/* CTA Buttons */}
@@ -125,17 +125,23 @@ export default function Home() {
 
         {/* Stats Section */}
         <div className="pb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <StatBoxSection />
 
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <StatBoxSection />
-        </motion.div>
+            {/* Disclosure */}
+            <p className="mt-4 text-center text-xs text-gray-500 max-w-4xl mx-auto px-6 leading-relaxed">
+              *The performance shown reflects results from a joint account used to build an auditable track record from 09/18/24 to 12/01/25.
+              It is not the performance of a fund or registered investment adviser, and does not reflect the
+              performance of outside client accounts. Past performance is not necessarily indicative of future results. All numbers and data are from the data 12/01/25 and have not been updated to show any further performance or holding changes.
+            </p>
+          </motion.div>
         </div>
+
 
 
         {/* Enhanced Core Values Section */}

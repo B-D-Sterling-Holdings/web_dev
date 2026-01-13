@@ -11,15 +11,15 @@ export default function SleekFAQSection() {
   const faqData = [
   {
     q: "What is B.D. Sterling?",
-    a: "B.D. Sterling Capital Management LLC is the investment manager to Sycamore Fund LP, a private pooled investment partnership operating under Regulation D. We manage capital through a research driven, long term philosophy focused on Dislocated High Quality Companies."
+    a: "B.D. Sterling is a research driven investment project and model portfolio operated by its portfolio managers. The strategy is executed through a jointly managed account to establish a real world track record under live market conditions."
   },
   {
     q: "What is the overall strategy?",
     a: "B.D. Sterling buys high quality qualities that are simply mispriced. The mispricing can be due to sentiment, change in business model, macro events, corporate actions, legal actions. This incorporates our appreciation for high quality companies that compound at high rate over a long period of time, as well as special situations where a company has the ability to unlock value in a clear horizon. Providing a blend of uncorrelated alpha and taking advantage of the simple science of compounding."
   },
   {
-    q: "How can I invest in this fund?",
-    a: "We are NOT publicly solicitating at this moment. We only accept investors who we have a substantial preexisting relationship with and are interested in our services. If you come across our website and our interested in investing with us you will NOT be able too unless we already have a preexisting relationship with you."
+    q: "Can I invest in this fund?",
+    a: "We are NOT publicly solicitating at this moment. We do not accept ANY external investors."
   },
   {
     q: "Why do you guys have such a concentrated amount of holdings?",

@@ -8,14 +8,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { label: 'Assets Under Management', value: 32000, prefix: '$' },
-  { label: 'Holdings in Portfolio', value: 10 },
-  { label: 'Days Since Inception', value: 278 },
+  { label: 'Performance Since Inception*', value: 76.51, suffix: '%', decimals: 2 },
+  { label: 'Holdings in Portfolio', value: 10, suffix: '', decimals: 0 },
+  { label: 'Days Since Inception', value: 439, suffix: '', decimals: 0 },
 ];
 
-function StatBox({ label, value, prefix = '', index }) {
+function StatBox({ label, value, prefix = '', suffix = '', decimals = 0, index }) {
   const boxRef = useRef(null);
-  const [count, setCount] = useState(0);
+  const [display, setDisplay] = useState('0');
   const hasStarted = useRef(false);
 
   useEffect(() => {
@@ -36,48 +36,51 @@ function StatBox({ label, value, prefix = '', index }) {
           onEnter: () => {
             if (hasStarted.current) return;
             hasStarted.current = true;
-            
-            // GSAP animation for the counter
-            gsap.to({ value: 0 }, {
-              value: value,
-              duration: 2,
-              ease: "power2.out", // You can change this to "none" for linear, "power1.out" for gentler
-              onUpdate: function () {
-                const currentValue = this.targets()[0].value;
 
-                // For Sharpe Ratio (with decimals), keep the decimal
-                // For integers (like Holdings or Days), you might want to floor it
-                if (label === 'Sharpe Ratio') {
-                  setCount(currentValue.toFixed(2));
-                } else {
-                  setCount(Math.floor(currentValue));
-                }
-              }
+            const obj = { v: 0 };
+
+            gsap.to(obj, {
+              v: value,
+              duration: 2,
+              ease: 'power2.out',
+              onUpdate: () => {
+                const n = obj.v;
+
+                // format number for display
+                const formatted =
+                  decimals > 0
+                    ? n.toFixed(decimals)
+                    : Math.floor(n).toString();
+
+                // add commas while preserving decimals
+                const withCommas =
+                  decimals > 0
+                    ? Number(formatted).toLocaleString(undefined, {
+                        minimumFractionDigits: decimals,
+                        maximumFractionDigits: decimals,
+                      })
+                    : Number(formatted).toLocaleString();
+
+                setDisplay(withCommas);
+              },
             });
           },
         },
       }
     );
-  }, [value]);
+  }, [value, decimals]);
 
-  // Calculate a negative delay so the 8s loop is offset evenly:
   const offset = (index * (5 / stats.length)).toFixed(2);
   const delay = `-${offset}s`;
 
   return (
     <div ref={boxRef} className={styles.statBox}>
       <div className={styles.statValue}>
-        <span 
-          className={styles.glowOutline}
-          style={{ animationDelay: delay }}
-        >
-          {prefix}{count.toLocaleString()}
+        <span className={styles.glowOutline} style={{ animationDelay: delay }}>
+          {prefix}{display}{suffix}
         </span>
-        <span
-          className={styles.glowText}
-          style={{ animationDelay: delay }}
-        >
-          {prefix}{count.toLocaleString()}
+        <span className={styles.glowText} style={{ animationDelay: delay }}>
+          {prefix}{display}{suffix}
         </span>
       </div>
       <div className={styles.statLabel}>{label}</div>
@@ -94,7 +97,9 @@ export default function StatBoxSection() {
           index={i}
           label={s.label}
           value={s.value}
-          prefix={s.prefix}
+          prefix={s.prefix || ''}
+          suffix={s.suffix || ''}
+          decimals={s.decimals ?? 0}
         />
       ))}
     </div>

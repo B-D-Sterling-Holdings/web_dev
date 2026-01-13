@@ -339,6 +339,21 @@ export default function ToolsPage() {
   const [simulationError, setSimulationError] = useState('')
   const [simulationResult, setSimulationResult] = useState(null)
   const [simulationChart, setSimulationChart] = useState(null)
+  const [taxInputs, setTaxInputs] = useState({})
+
+  const updateTaxInput = (ticker, field, value) => {
+    setTaxInputs((prev) => ({
+      ...prev,
+      [ticker]: {
+        initialValue: '',
+        finalValue: '',
+        sellAmount: '',
+        taxRate: '',
+        ...prev[ticker],
+        [field]: value,
+      },
+    }))
+  }
 
   const totalTargetPercent = useMemo(() => {
     const holdingsTotal = holdings.reduce((sum, row) => sum + parseNumber(row.targetWeight), 0)
@@ -1096,6 +1111,134 @@ export default function ToolsPage() {
                       </div>
                     ))}
                 </div>
+              </div>
+
+              <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                <h4 className="font-semibold text-[#082C16] mb-3">Capital Gains Tax Impact</h4>
+                <p className="text-sm text-gray-500 mb-4">
+                  Provide cost basis, current value, sold amount, and tax rate for each sold holding.
+                </p>
+                {Object.keys(plan.sellDollars).length === 0 ? (
+                  <p className="text-sm text-gray-500">No sells detected to estimate taxes.</p>
+                ) : (
+                  <>
+                    <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
+                      <table className="min-w-full text-left text-sm">
+                        <thead className="bg-gray-100 text-gray-600">
+                          <tr>
+                            <th className="px-4 py-3 font-semibold">Ticker</th>
+                            <th className="px-4 py-3 font-semibold">Cost Basis ($)</th>
+                            <th className="px-4 py-3 font-semibold">Current Value ($)</th>
+                            <th className="px-4 py-3 font-semibold">Amount Sold ($)</th>
+                            <th className="px-4 py-3 font-semibold">Tax Rate (%)</th>
+                            <th className="px-4 py-3 font-semibold">Tax Owed ($)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {Object.entries(plan.sellDollars).map(([ticker, value]) => {
+                            const inputs = taxInputs[ticker] || {}
+                            const initialValue = parseNumber(inputs.initialValue)
+                            const finalValue = parseNumber(inputs.finalValue)
+                            const sellAmount = parseNumber(inputs.sellAmount)
+                            const taxRate = parseNumber(inputs.taxRate)
+                            const hasFinalValue = finalValue > 0
+                            const gainFraction = hasFinalValue ? (finalValue - initialValue) / finalValue : 0
+                            const taxOwed = sellAmount * gainFraction * (taxRate / 100)
+                            const exceedsPosition = sellAmount > finalValue && finalValue > 0
+
+                            return (
+                              <tr key={ticker} className="border-t border-gray-200">
+                                <td className="px-4 py-3 font-medium text-gray-700">{ticker}</td>
+                                <td className="px-4 py-3">
+                                  <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value={inputs.initialValue || ''}
+                                    onChange={(event) =>
+                                      updateTaxInput(ticker, 'initialValue', event.target.value)
+                                    }
+                                    className="w-36 border border-gray-300 rounded-lg px-3 py-2"
+                                    placeholder="0.00"
+                                  />
+                                </td>
+                                <td className="px-4 py-3">
+                                  <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value={inputs.finalValue || ''}
+                                    onChange={(event) =>
+                                      updateTaxInput(ticker, 'finalValue', event.target.value)
+                                    }
+                                    className="w-36 border border-gray-300 rounded-lg px-3 py-2"
+                                    placeholder="0.00"
+                                  />
+                                </td>
+                                <td className="px-4 py-3">
+                                  <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    max={finalValue || undefined}
+                                    value={inputs.sellAmount || ''}
+                                    onChange={(event) =>
+                                      updateTaxInput(ticker, 'sellAmount', event.target.value)
+                                    }
+                                    className={`w-36 border rounded-lg px-3 py-2 ${
+                                      exceedsPosition ? 'border-red-400' : 'border-gray-300'
+                                    }`}
+                                    placeholder={formatCurrency(value)}
+                                  />
+                                  {exceedsPosition && (
+                                    <p className="mt-1 text-xs text-red-600">
+                                      Amount sold must be ≤ current value.
+                                    </p>
+                                  )}
+                                </td>
+                                <td className="px-4 py-3">
+                                  <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value={inputs.taxRate || ''}
+                                    onChange={(event) =>
+                                      updateTaxInput(ticker, 'taxRate', event.target.value)
+                                    }
+                                    className="w-28 border border-gray-300 rounded-lg px-3 py-2"
+                                    placeholder="0"
+                                  />
+                                </td>
+                                <td className="px-4 py-3 font-semibold text-gray-700">
+                                  {formatCurrency(taxOwed)}
+                                </td>
+                              </tr>
+                            )
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="mt-4 flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-700">
+                      <span className="font-medium">Total Estimated Tax Owed</span>
+                      <span className="font-semibold">
+                        {formatCurrency(
+                          Object.keys(plan.sellDollars).reduce((sum, ticker) => {
+                            const inputs = taxInputs[ticker] || {}
+                            const initialValue = parseNumber(inputs.initialValue)
+                            const finalValue = parseNumber(inputs.finalValue)
+                            const sellAmount = parseNumber(inputs.sellAmount)
+                            const taxRate = parseNumber(inputs.taxRate)
+                            if (!finalValue) {
+                              return sum
+                            }
+                            const gainFraction = (finalValue - initialValue) / finalValue
+                            return sum + sellAmount * gainFraction * (taxRate / 100)
+                          }, 0)
+                        )}
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           )}

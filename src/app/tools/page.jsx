@@ -339,6 +339,17 @@ export default function ToolsPage() {
   const [simulationError, setSimulationError] = useState('')
   const [simulationResult, setSimulationResult] = useState(null)
   const [simulationChart, setSimulationChart] = useState(null)
+  const [startingCapital, setStartingCapital] = useState('')
+  const [endingCapital, setEndingCapital] = useState('')
+  const [sellTaxRate, setSellTaxRate] = useState('')
+
+  const startingCapitalValue = parseNumber(startingCapital)
+  const endingCapitalValue = parseNumber(endingCapital)
+  const sellTaxRateValue = parseNumber(sellTaxRate)
+  const capitalGainsValue = endingCapitalValue - startingCapitalValue
+  const taxOwedValue = capitalGainsValue * (sellTaxRateValue / 100)
+  const aumValue = startingCapitalValue + endingCapitalValue + sellTaxRateValue
+  const taxOwedPctOfAum = aumValue ? (taxOwedValue / aumValue) * 100 : 0
 
   const totalTargetPercent = useMemo(() => {
     const holdingsTotal = holdings.reduce((sum, row) => sum + parseNumber(row.targetWeight), 0)
@@ -1095,6 +1106,76 @@ export default function ToolsPage() {
                         </span>
                       </div>
                     ))}
+                </div>
+              </div>
+
+              <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                <h4 className="font-semibold text-[#082C16] mb-3">Capital Gains Tax Impact</h4>
+                <p className="text-sm text-gray-500 mb-4">
+                  Enter your capital inputs to estimate tax owed from the sells above.
+                </p>
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Starting Capital ($)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={startingCapital}
+                      onChange={(event) => setStartingCapital(event.target.value)}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                      placeholder="0.00"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Ending Capital ($)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={endingCapital}
+                      onChange={(event) => setEndingCapital(event.target.value)}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                      placeholder="0.00"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Sell Tax Rate (%)
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={sellTaxRate}
+                      onChange={(event) => setSellTaxRate(event.target.value)}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-5 grid gap-3 md:grid-cols-2 text-sm text-gray-700">
+                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
+                    <span>Capital Gains</span>
+                    <span className="font-semibold">{formatCurrency(capitalGainsValue)}</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
+                    <span>Estimated Tax Owed</span>
+                    <span className="font-semibold">{formatCurrency(taxOwedValue)}</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
+                    <span>AUM (sum of inputs)</span>
+                    <span className="font-semibold">{formatCurrency(aumValue)}</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
+                    <span>Tax as % of AUM</span>
+                    <span className="font-semibold">{taxOwedPctOfAum.toFixed(2)}%</span>
+                  </div>
                 </div>
               </div>
             </div>

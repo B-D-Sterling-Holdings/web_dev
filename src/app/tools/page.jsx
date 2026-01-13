@@ -10,6 +10,8 @@ import {
 } from 'chart.js'
 import { Scatter } from 'react-chartjs-2'
 import Navbar from '@/components/Navbar'
+import Login from '@/components/login'
+import { motion } from 'framer-motion'
 
 const createRow = (overrides = {}) => ({
   id: crypto.randomUUID(),
@@ -319,6 +321,7 @@ const rebalanceExecutionPlan = ({
 }
 
 export default function ToolsPage() {
+  const [loggedIn, setLoggedIn] = useState(false)
   const [holdings, setHoldings] = useState(createDefaultHoldings)
   const [cash, setCash] = useState('')
   const [targetCashPercent, setTargetCashPercent] = useState('0')
@@ -849,132 +852,155 @@ export default function ToolsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white text-black pt-24">
+    <main className="min-h-screen bg-white text-black pt-28">
       <Navbar />
 
-      <div className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="mb-10">
-          <h1 className="text-4xl font-bold text-[#082C16] mb-3">Tools</h1>
-          <p className="text-lg text-gray-600">
-            Use the portfolio rebalancer to align your holdings with target weights and
-            receive a step-by-step execution plan.
-          </p>
-        </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="p-8"
+      >
+        {loggedIn ? (
+          <>
+            <motion.div
+              className="relative mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <h1 className="text-center text-2xl font-bold">Tools</h1>
+            </motion.div>
 
-        <section className="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
-            <div>
-              <h2 className="text-2xl font-semibold text-[#082C16]">Portfolio Rebalancer</h2>
-              <p className="text-sm text-gray-500 mt-1">
-                Enter current values and target percentages for each holding.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Cash Balance ($)
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  value={cash}
-                  onChange={(event) => setCash(event.target.value)}
-                  className="w-48 border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="0.00"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Target Cash (%)
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  value={targetCashPercent}
-                  onChange={(event) => setTargetCashPercent(event.target.value)}
-                  className="w-40 border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="0"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Transaction Cost (%)
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  value={transactionCostPct}
-                  onChange={(event) => setTransactionCostPct(event.target.value)}
-                  className="w-40 border border-gray-300 rounded-lg px-3 py-2"
-                  placeholder="0.00"
-                />
-              </div>
-            </div>
-          </div>
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <div className="max-w-6xl mx-auto w-full px-6 pb-16">
+                <div className="mb-10">
+                  <h2 className="text-4xl font-bold text-[#082C16] mb-3">Tools</h2>
+                  <p className="text-lg text-gray-600">
+                    Use the portfolio rebalancer to align your holdings with target weights and
+                    receive a step-by-step execution plan.
+                  </p>
+                </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-            <table className="min-w-full text-left text-sm">
-              <thead className="bg-gray-100 text-gray-600">
-                <tr>
-                  <th className="px-4 py-3 font-semibold">Ticker</th>
-                  <th className="px-4 py-3 font-semibold">Current Value ($)</th>
-                  <th className="px-4 py-3 font-semibold">Target %</th>
-                  <th className="px-4 py-3 font-semibold"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {holdings.map((row) => (
-                  <tr key={row.id} className="border-t border-gray-200">
-                    <td className="px-4 py-3">
-                      <input
-                        type="text"
-                        value={row.ticker}
-                        onChange={(event) => updateHolding(row.id, 'ticker', event.target.value)}
-                        className="w-32 border border-gray-300 rounded-lg px-3 py-2"
-                        placeholder="AAPL"
-                      />
-                    </td>
-                    <td className="px-4 py-3">
-                      <input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={row.currentValue}
-                        onChange={(event) => updateHolding(row.id, 'currentValue', event.target.value)}
-                        className="w-48 border border-gray-300 rounded-lg px-3 py-2"
-                        placeholder="0.00"
-                      />
-                    </td>
-                    <td className="px-4 py-3">
-                      <input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={row.targetWeight}
-                        onChange={(event) => updateHolding(row.id, 'targetWeight', event.target.value)}
-                        className="w-32 border border-gray-300 rounded-lg px-3 py-2"
-                        placeholder="0"
-                      />
-                    </td>
-                    <td className="px-4 py-3">
-                      {holdings.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => removeHolding(row.id)}
-                          className="text-sm font-semibold text-red-600 hover:text-red-700"
-                        >
-                          Remove
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                <section className="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
+                    <div>
+                      <h3 className="text-2xl font-semibold text-[#082C16]">Portfolio Rebalancer</h3>
+                      <p className="text-sm text-gray-500 mt-1">
+                        Enter current values and target percentages for each holding.
+                      </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Cash Balance ($)
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          value={cash}
+                          onChange={(event) => setCash(event.target.value)}
+                          className="w-48 border border-gray-300 rounded-lg px-3 py-2"
+                          placeholder="0.00"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Target Cash (%)
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          value={targetCashPercent}
+                          onChange={(event) => setTargetCashPercent(event.target.value)}
+                          className="w-40 border border-gray-300 rounded-lg px-3 py-2"
+                          placeholder="0"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Transaction Cost (%)
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          value={transactionCostPct}
+                          onChange={(event) => setTransactionCostPct(event.target.value)}
+                          className="w-40 border border-gray-300 rounded-lg px-3 py-2"
+                          placeholder="0.00"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
+                    <table className="min-w-full text-left text-sm">
+                      <thead className="bg-gray-100 text-gray-600">
+                        <tr>
+                          <th className="px-4 py-3 font-semibold">Ticker</th>
+                          <th className="px-4 py-3 font-semibold">Current Value ($)</th>
+                          <th className="px-4 py-3 font-semibold">Target %</th>
+                          <th className="px-4 py-3 font-semibold"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {holdings.map((row) => (
+                          <tr key={row.id} className="border-t border-gray-200">
+                            <td className="px-4 py-3">
+                              <input
+                                type="text"
+                                value={row.ticker}
+                                onChange={(event) => updateHolding(row.id, 'ticker', event.target.value)}
+                                className="w-32 border border-gray-300 rounded-lg px-3 py-2"
+                                placeholder="AAPL"
+                              />
+                            </td>
+                            <td className="px-4 py-3">
+                              <input
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                value={row.currentValue}
+                                onChange={(event) => updateHolding(row.id, 'currentValue', event.target.value)}
+                                className="w-48 border border-gray-300 rounded-lg px-3 py-2"
+                                placeholder="0.00"
+                              />
+                            </td>
+                            <td className="px-4 py-3">
+                              <input
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                value={row.targetWeight}
+                                onChange={(event) => updateHolding(row.id, 'targetWeight', event.target.value)}
+                                className="w-32 border border-gray-300 rounded-lg px-3 py-2"
+                                placeholder="0"
+                              />
+                            </td>
+                            <td className="px-4 py-3">
+                              {holdings.length > 1 && (
+                                <button
+                                  type="button"
+                                  onClick={() => removeHolding(row.id)}
+                                  className="text-sm font-semibold text-red-600 hover:text-red-700"
+                                >
+                                  Remove
+                                </button>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
             <button
@@ -1350,6 +1376,30 @@ export default function ToolsPage() {
           )}
         </section>
       </div>
+            </motion.div>
+          </>
+        ) : (
+          <>
+            <motion.div
+              className="relative mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <h1 className="text-center text-2xl font-bold">Tools</h1>
+            </motion.div>
+
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <Login onSuccess={() => setLoggedIn(true)} />
+            </motion.div>
+          </>
+        )}
+      </motion.div>
     </main>
   )
 }

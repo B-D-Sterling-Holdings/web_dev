@@ -327,10 +327,10 @@ const rebalanceExecutionPlan = ({
 export default function ToolsPage() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [currentPrice, setCurrentPrice] = useState('')
-  const [epsTTM, setEpsTTM] = useState('17.91')
-  const [epsGrowthRate, setEpsGrowthRate] = useState('15')
-  const [appropriateMultiple, setAppropriateMultiple] = useState('35')
-  const [desiredReturn, setDesiredReturn] = useState('15')
+  const [epsTTM, setEpsTTM] = useState('')
+  const [epsGrowthRate, setEpsGrowthRate] = useState('')
+  const [appropriateMultiple, setAppropriateMultiple] = useState('')
+  const [desiredReturn, setDesiredReturn] = useState('')
   const [holdings, setHoldings] = useState(createDefaultHoldings)
   const [cash, setCash] = useState('')
   const [targetCashPercent, setTargetCashPercent] = useState('0')
@@ -394,23 +394,27 @@ export default function ToolsPage() {
   }, [holdings, targetCashPercent])
 
   const projection = useMemo(() => {
-    const currentPriceValue = parseNumber(currentPrice)
+    const currentPriceValue = Math.max(0, parseNumber(currentPrice))
     const eps0 = parseNumber(epsTTM)
     const growthRate = parseNumber(epsGrowthRate) / 100
     const peTarget = parseNumber(appropriateMultiple)
     const desiredReturnRate = parseNumber(desiredReturn) / 100
     const years = Array.from({ length: 6 }, (_, index) => index)
     const epsValues = years.map((t) => eps0 * (1 + growthRate) ** t)
-    const priceValues = epsValues.map((value) => value * peTarget)
-    const futurePrice = priceValues[5] || 0
+    const projectedPrices = epsValues.map((value) => Math.max(0, value * peTarget))
+    const futurePrice = projectedPrices[5] || 0
     const cagr =
       currentPriceValue > 0 && futurePrice > 0
         ? (futurePrice / currentPriceValue) ** (1 / 5) - 1
         : 0
     const entryPrice =
       futurePrice > 0 ? futurePrice / (1 + desiredReturnRate) ** 5 : 0
-    const baseYear = new Date().getFullYear() + 1
-    const labels = years.map((t) => `Q1 ${baseYear + t}`)
+    const baseYear = new Date().getFullYear()
+    const labels = years.map((t) => `${baseYear + t}`)
+    const priceValues = [
+      currentPriceValue,
+      ...projectedPrices.slice(1),
+    ]
 
     return {
       labels,
@@ -449,6 +453,7 @@ export default function ToolsPage() {
       },
       scales: {
         y: {
+          min: 0,
           ticks: {
             callback: (value) => formatCurrency(value),
           },

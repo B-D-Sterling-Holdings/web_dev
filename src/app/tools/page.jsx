@@ -411,10 +411,9 @@ export default function ToolsPage() {
       futurePrice > 0 ? futurePrice / (1 + desiredReturnRate) ** 5 : 0
     const baseYear = new Date().getFullYear()
     const labels = years.map((t) => `${baseYear + t}`)
-    const priceValues = [
-      currentPriceValue,
-      ...projectedPrices.slice(1),
-    ]
+    const priceValues = years.map((t) =>
+      Math.max(0, currentPriceValue * (1 + cagr) ** t)
+    )
 
     return {
       labels,

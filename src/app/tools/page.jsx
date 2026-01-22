@@ -5,10 +5,12 @@ import {
   Chart as ChartJS,
   LinearScale,
   PointElement,
+  LineElement,
+  CategoryScale,
   Tooltip,
   Legend,
 } from 'chart.js'
-import { Scatter } from 'react-chartjs-2'
+import { Line, Scatter } from 'react-chartjs-2'
 import Navbar from '@/components/Navbar'
 import Login from '@/components/login'
 import { motion } from 'framer-motion'
@@ -79,7 +81,7 @@ const createDefaultAllocations = () => [
   }),
 ]
 
-ChartJS.register(LinearScale, PointElement, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend)
 
 const parseNumber = (value) => {
   const parsed = Number.parseFloat(value)
@@ -324,6 +326,11 @@ const rebalanceExecutionPlan = ({
 
 export default function ToolsPage() {
   const [loggedIn, setLoggedIn] = useState(false)
+  const [currentPrice, setCurrentPrice] = useState('')
+  const [epsTTM, setEpsTTM] = useState('17.91')
+  const [epsGrowthRate, setEpsGrowthRate] = useState('15')
+  const [appropriateMultiple, setAppropriateMultiple] = useState('35')
+  const [desiredReturn, setDesiredReturn] = useState('15')
   const [holdings, setHoldings] = useState(createDefaultHoldings)
   const [cash, setCash] = useState('')
   const [targetCashPercent, setTargetCashPercent] = useState('0')
@@ -385,6 +392,73 @@ export default function ToolsPage() {
     const holdingsTotal = holdings.reduce((sum, row) => sum + parseNumber(row.targetWeight), 0)
     return holdingsTotal + parseNumber(targetCashPercent)
   }, [holdings, targetCashPercent])
+
+  const projection = useMemo(() => {
+    const currentPriceValue = parseNumber(currentPrice)
+    const eps0 = parseNumber(epsTTM)
+    const growthRate = parseNumber(epsGrowthRate) / 100
+    const peTarget = parseNumber(appropriateMultiple)
+    const desiredReturnRate = parseNumber(desiredReturn) / 100
+    const years = Array.from({ length: 6 }, (_, index) => index)
+    const epsValues = years.map((t) => eps0 * (1 + growthRate) ** t)
+    const priceValues = epsValues.map((value) => value * peTarget)
+    const futurePrice = priceValues[5] || 0
+    const cagr =
+      currentPriceValue > 0 && futurePrice > 0
+        ? (futurePrice / currentPriceValue) ** (1 / 5) - 1
+        : 0
+    const entryPrice =
+      futurePrice > 0 ? futurePrice / (1 + desiredReturnRate) ** 5 : 0
+    const baseYear = new Date().getFullYear() + 1
+    const labels = years.map((t) => `Q1 ${baseYear + t}`)
+
+    return {
+      labels,
+      priceValues,
+      cagr,
+      entryPrice,
+    }
+  }, [appropriateMultiple, currentPrice, desiredReturn, epsGrowthRate, epsTTM])
+
+  const projectionChartData = useMemo(
+    () => ({
+      labels: projection.labels,
+      datasets: [
+        {
+          label: 'Projected Price',
+          data: projection.priceValues,
+          borderColor: '#3E9F62',
+          backgroundColor: 'rgba(62, 159, 98, 0.2)',
+          pointBackgroundColor: '#3E9F62',
+          pointBorderColor: '#3E9F62',
+          pointRadius: 5,
+          tension: 0.3,
+        },
+      ],
+    }),
+    [projection.labels, projection.priceValues]
+  )
+
+  const projectionChartOptions = useMemo(
+    () => ({
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      scales: {
+        y: {
+          ticks: {
+            callback: (value) => formatCurrency(value),
+          },
+        },
+      },
+    }),
+    []
+  )
+
+  const isPositiveValue = (value) => parseNumber(value) > 0
 
   const simulationChartOptions = useMemo(
     () => ({
@@ -931,6 +1005,10 @@ export default function ToolsPage() {
     }
   }
 
+  const isGrowthValid = isPositiveValue(epsGrowthRate)
+  const isMultipleValid = isPositiveValue(appropriateMultiple)
+  const desiredReturnValue = parseNumber(desiredReturn)
+
   return (
     <main className="min-h-screen bg-white text-black pt-28">
       <Navbar />
@@ -955,6 +1033,171 @@ export default function ToolsPage() {
                 <div className="mb-10">
                   <h1 className="text-4xl font-bold text-[#082C16] mb-3">Tools</h1>
                 </div>
+
+                <section className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm mb-12">
+                  <div className="grid lg:grid-cols-2 gap-8">
+                    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+                      <h2 className="text-xl font-semibold text-[#082C16] mb-5">Assumptions</h2>
+                      <div className="space-y-5">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Current Price
+                          </label>
+                          <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white">
+                            <span className="text-gray-500">$</span>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={currentPrice}
+                              onChange={(event) => setCurrentPrice(event.target.value)}
+                              className="w-full bg-transparent outline-none text-gray-900"
+                              placeholder="0.00"
+                            />
+                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            The current market price per share.
+                          </p>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            EPS (TTM)
+                          </label>
+                          <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white">
+                            <span className="text-gray-500">$</span>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={epsTTM}
+                              onChange={(event) => setEpsTTM(event.target.value)}
+                              className="w-full bg-transparent outline-none text-gray-900"
+                              placeholder="0.00"
+                            />
+                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            The Earnings Per Share over the last 12 months.
+                          </p>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            EPS Growth Rate
+                          </label>
+                          <div
+                            className={`flex items-center gap-2 border rounded-lg px-3 py-2 bg-white ${
+                              isGrowthValid ? 'border-emerald-500' : 'border-gray-300'
+                            }`}
+                          >
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={epsGrowthRate}
+                              onChange={(event) => setEpsGrowthRate(event.target.value)}
+                              className="w-full bg-transparent outline-none text-gray-900"
+                              placeholder="0"
+                            />
+                            <span
+                              className={`text-emerald-500 text-lg font-semibold ${
+                                isGrowthValid ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              aria-hidden="true"
+                            >
+                              ✓
+                            </span>
+                            <span className="text-gray-500">%</span>
+                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            Your assumption of the company&apos;s expected yearly EPS growth rate.
+                          </p>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Appropriate EPS Multiple
+                          </label>
+                          <div
+                            className={`flex items-center gap-2 border rounded-lg px-3 py-2 bg-white ${
+                              isMultipleValid ? 'border-emerald-500' : 'border-gray-300'
+                            }`}
+                          >
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={appropriateMultiple}
+                              onChange={(event) => setAppropriateMultiple(event.target.value)}
+                              className="w-full bg-transparent outline-none text-gray-900"
+                              placeholder="0"
+                            />
+                            <span
+                              className={`text-emerald-500 text-lg font-semibold ${
+                                isMultipleValid ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              aria-hidden="true"
+                            >
+                              ✓
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            The PE ratio you consider appropriate for the stock to trade at.
+                          </p>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Desired Return
+                          </label>
+                          <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white">
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={desiredReturn}
+                              onChange={(event) => setDesiredReturn(event.target.value)}
+                              className="w-full bg-transparent outline-none text-gray-900"
+                              placeholder="0"
+                            />
+                            <span className="text-gray-500">%</span>
+                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            The annualized return you aim to achieve from the stock.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+                      <h2 className="text-xl font-semibold text-[#082C16] mb-5">5-Year Projection</h2>
+                      <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-6">
+                        <h3 className="text-sm font-semibold text-gray-700 mb-4">
+                          Calculation Results
+                        </h3>
+                        <div className="grid gap-4 md:grid-cols-2 text-sm text-gray-700">
+                          <div>
+                            <p className="text-gray-500">Return from today&apos;s price</p>
+                            <p className="text-lg font-semibold text-[#082C16]">
+                              {(projection.cagr * 100).toFixed(2)}%
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500">
+                              Entry price for {desiredReturnValue.toFixed(0)}% return
+                            </p>
+                            <p className="text-lg font-semibold text-[#082C16]">
+                              {formatCurrency(projection.entryPrice)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                        <Line data={projectionChartData} options={projectionChartOptions} />
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
                 <section className="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm">
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">

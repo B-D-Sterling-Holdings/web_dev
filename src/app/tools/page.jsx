@@ -330,7 +330,7 @@ export default function ToolsPage() {
   const [epsTTM, setEpsTTM] = useState('')
   const [epsGrowthRate, setEpsGrowthRate] = useState('')
   const [appropriateMultiple, setAppropriateMultiple] = useState('')
-  const [desiredReturn, setDesiredReturn] = useState('')
+  const [desiredReturn, setDesiredReturn] = useState('15')
   const [holdings, setHoldings] = useState(createDefaultHoldings)
   const [cash, setCash] = useState('')
   const [targetCashPercent, setTargetCashPercent] = useState('0')
@@ -448,6 +448,14 @@ export default function ToolsPage() {
       plugins: {
         legend: {
           display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: (context) =>
+              `${context.dataset?.label || 'Projected Price'}: ${formatCurrency(
+                context.parsed.y ?? 0
+              )}`,
+          },
         },
       },
       scales: {
@@ -1039,6 +1047,11 @@ export default function ToolsPage() {
                 </div>
 
                 <section className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm mb-12">
+                  <div className="mb-6">
+                    <h2 className="text-2xl font-semibold text-[#082C16]">
+                      EPS multiple based projection
+                    </h2>
+                  </div>
                   <div className="grid lg:grid-cols-2 gap-8">
                     <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
                       <h2 className="text-xl font-semibold text-[#082C16] mb-5">Assumptions</h2>
@@ -1120,7 +1133,7 @@ export default function ToolsPage() {
 
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Appropriate EPS Multiple
+                            Exit PE Ratio
                           </label>
                           <div
                             className={`flex items-center gap-2 border rounded-lg px-3 py-2 bg-white ${
@@ -1146,7 +1159,7 @@ export default function ToolsPage() {
                             </span>
                           </div>
                           <p className="text-sm text-gray-500 mt-2">
-                            The PE ratio you consider appropriate for the stock to trade at.
+                            The PE ratio you consider the stock will trade at in 5 years.
                           </p>
                         </div>
 

@@ -40,6 +40,7 @@ export default function Navbar() {
           ['/', 'Home'],
           ['/about', 'About Us'],
           ['/strategy', 'Investment Strategy'],
+          ['/ai-initiatives', 'AI Initiatives'],
           ['/research', 'Equity Research'],
           ['/progress-letters', 'Progress Letters'],
           ['/tools', 'Tools'],

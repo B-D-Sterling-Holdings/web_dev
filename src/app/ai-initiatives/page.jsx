@@ -18,7 +18,10 @@ import {
   BarChart3,
   PieChart,
   Workflow,
-  Bot
+  Bot,
+  FileText,
+  Download,
+  ExternalLink
 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
@@ -593,43 +596,120 @@ export default function AIInitiatives() {
         </section>
 
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+        {/* Published Research & Papers Section */}
+        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              className="text-center mb-16"
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                Explore Our Research
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                See how we apply AI-augmented analysis to real investment opportunities.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/research">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 justify-center"
-                  >
-                    View Research
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
-                </Link>
-                <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 transition-all duration-300"
-                  >
-                    Get in Touch
-                  </motion.button>
-                </Link>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full mb-6">
+                <FileText className="w-4 h-4 text-emerald-600" />
+                <span className="text-sm font-medium text-emerald-700">Published Work</span>
               </div>
+
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Our Research Papers
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Explore our published research at the intersection of artificial intelligence and investment analysis.
+              </p>
             </motion.div>
+
+            {/* PDF Cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: 'AI-Driven Investment Analysis Framework',
+                  description: 'A comprehensive framework for integrating large language models into fundamental equity research workflows.',
+                  category: 'AI & Finance',
+                  date: 'Coming Soon',
+                  file: null
+                },
+                {
+                  title: 'NLP for Financial Document Processing',
+                  description: 'Techniques for extracting structured insights from SEC filings, earnings transcripts, and analyst reports using natural language processing.',
+                  category: 'Natural Language Processing',
+                  date: 'Coming Soon',
+                  file: null
+                },
+                {
+                  title: 'Quantitative Portfolio Optimization with ML',
+                  description: 'Machine learning approaches to dynamic position sizing, risk management, and portfolio construction in concentrated strategies.',
+                  category: 'Quantitative Methods',
+                  date: 'Coming Soon',
+                  file: null
+                },
+                {
+                  title: 'RAG Systems for Financial Intelligence',
+                  description: 'Building retrieval-augmented generation systems that ground AI responses in proprietary financial databases for accurate, auditable insights.',
+                  category: 'Knowledge Systems',
+                  date: 'Coming Soon',
+                  file: null
+                },
+                {
+                  title: 'Market Dislocation Detection via Sentiment Analysis',
+                  description: 'Using sentiment analysis and alternative data to identify temporary market dislocations in high-quality businesses.',
+                  category: 'Sentiment Analysis',
+                  date: 'Coming Soon',
+                  file: null
+                },
+                {
+                  title: 'Prism AI: Architecture & Design',
+                  description: 'Technical deep-dive into the architecture of our proprietary AI research assistant, including model selection, prompt engineering, and evaluation.',
+                  category: 'AI Platform',
+                  date: 'Coming Soon',
+                  file: null
+                }
+              ].map((paper, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                  className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-emerald-200 transition-all duration-500 flex flex-col"
+                >
+                  {/* Category Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full mb-4 w-fit">
+                    <span className="text-xs font-medium text-emerald-700">{paper.category}</span>
+                  </div>
+
+                  {/* Paper Icon */}
+                  <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-emerald-100 transition-colors duration-300">
+                    <FileText className="w-6 h-6 text-gray-500 group-hover:text-emerald-600 transition-colors duration-300" />
+                  </div>
+
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{paper.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">{paper.description}</p>
+
+                  {/* Footer */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <span className="text-xs text-gray-400">{paper.date}</span>
+                    {paper.file ? (
+                      <a
+                        href={paper.file}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 hover:text-emerald-700 transition-colors"
+                      >
+                        <Download className="w-4 h-4" />
+                        Download PDF
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-gray-400">
+                        <FileText className="w-4 h-4" />
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 

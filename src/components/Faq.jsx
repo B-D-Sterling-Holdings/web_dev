@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { Plus, Minus } from 'lucide-react'
 import { useState } from 'react'
-import Link from 'next/link'
 
 export default function SleekFAQSection() {
   const [openIndex, setOpenIndex] = useState(null)
@@ -17,17 +16,33 @@ export default function SleekFAQSection() {
     q: "What is the overall strategy?",
     a: "B.D. Sterling buys high quality qualities that are simply mispriced. The mispricing can be due to sentiment, change in business model, macro events, corporate actions, legal actions. This incorporates our appreciation for high quality companies that compound at high rate over a long period of time, as well as special situations where a company has the ability to unlock value in a clear horizon. Providing a blend of uncorrelated alpha and taking advantage of the simple science of compounding."
   },
-  {
-    q: "Can I invest in this fund?",
-    a: "We are NOT publicly solicitating at this moment. We do not accept ANY external investors."
-  },
-  {
+{
     q: "Why do you guys have such a concentrated amount of holdings?",
-    a: "Learning from the investment titans before us, we have adopted a concentrated portfolio strategy. Most of the model portfolio returns can be accredited to a select few names, and this is where we believe our concentration and energy should be focused on. “I like putting all my eggs into one basket, and then watching that basket very carefully.” - Stanley Druckenmiller"
+    a: "Learning from the investment titans before us, we have adopted a concentrated portfolio strategy. Most of the model portfolio returns can be accredited to a select few names, and this is where we believe our concentration and energy should be focused on. \"I like putting all my eggs into one basket, and then watching that basket very carefully.\" - Stanley Druckenmiller"
   },
   {
     q: "Does B.D. Sterling focus on value investing or growth investing?",
-    a: "Growth and value are not mutually exclusive. Value is in identifying opportunities where the market fails to reflect the company’s underlying fundamentals and growth potential in the stock price. A higher than market P/E ratio does not disqualify a stock if its growth trajectory significantly surpasses market averages. Growth doesn’t cancel out value, it can be the very reason value exists. In fact, many of the best value opportunities arise when the market underestimates the quality and sustainability of a company’s growth."
+    a: "Growth and value are not mutually exclusive. Value is in identifying opportunities where the market fails to reflect the company's underlying fundamentals and growth potential in the stock price. A higher than market P/E ratio does not disqualify a stock if its growth trajectory significantly surpasses market averages. Growth doesn't cancel out value, it can be the very reason value exists. In fact, many of the best value opportunities arise when the market underestimates the quality and sustainability of a company's growth."
+  },
+  {
+    q: "What AI initiatives is B.D. Sterling working on?",
+    a: "We are actively developing proprietary AI systems to enhance our investment research capabilities. Our flagship projects include Prism AI—an AI-powered research assistant for real-time financial analysis—a Retrieval-Augmented Generation (RAG) knowledge system with over 500K indexed documents, and an AI-driven portfolio allocation model. These tools augment human judgment rather than replace it, allowing us to process data at scale while maintaining rigorous fundamental analysis."
+  },
+  {
+    q: "What is Prism AI?",
+    a: "Prism AI is our proprietary research assistant built specifically for investment analysis. It can analyze earnings calls in real-time, parse SEC filings to detect key changes, synthesize competitive intelligence across companies, and even generate counter-arguments to stress-test investment theses. Prism allows our team to conduct research up to 10x faster without sacrificing depth or rigor."
+  },
+  {
+    q: "How does AI improve your investment research process?",
+    a: "AI serves as a force multiplier for our research team. Our systems continuously monitor earnings calls, SEC filings, market data, and alternative data sources to surface investment-relevant insights. Machine learning models analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations. Importantly, AI augments our judgment—it doesn't replace the rigor of fundamental analysis. Every AI-generated insight is reviewed and validated by our team."
+  },
+  {
+    q: "What is the RAG Knowledge System?",
+    a: "Our Retrieval-Augmented Generation (RAG) system creates a living knowledge base of financial intelligence. Unlike generic AI models that can hallucinate or provide outdated information, our RAG model retrieves context from our proprietary research database of 500K+ documents—including SEC filings, earnings transcripts, and internal research—to deliver precise, source-backed insights with full auditability."
+  },
+  {
+    q: "Does B.D. Sterling publish AI research papers?",
+    a: "Yes, we are committed to contributing to the intersection of artificial intelligence and finance. We publish research papers and whitepapers covering topics such as AI-driven investment analysis, natural language processing for financial documents, quantitative portfolio optimization, and the application of machine learning to market dislocation detection. You can explore our published work on our AI Initiatives page."
   }
 ];
 
@@ -106,27 +121,6 @@ export default function SleekFAQSection() {
           ))}
         </div>
 
-        {/* Contact CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <p className="text-gray-600 mb-6">
-            Have more questions? We'd love to hear from you.
-          </p>
-          <Link href="/contact">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border-2 border-emerald-600 text-emerald-600 font-semibold rounded-xl hover:bg-emerald-50 transition-all duration-300"
-            >
-              Get in Touch
-            </motion.button>
-          </Link>
-        </motion.div>
       </div>
     </div>
   )

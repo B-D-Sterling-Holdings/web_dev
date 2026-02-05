@@ -231,27 +231,6 @@ export default function ProgressLetters() {
               <p className="text-lg text-gray-600 mb-8">
                 Reach out to receive our periodic investment updates directly.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 justify-center"
-                  >
-                    Get in Touch
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
-                </Link>
-                <Link href="/research">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 transition-all duration-300"
-                  >
-                    View Research
-                  </motion.button>
-                </Link>
-              </div>
             </motion.div>
           </div>
         </section>

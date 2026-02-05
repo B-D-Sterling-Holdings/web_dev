@@ -90,15 +90,6 @@ export default function Strategy() {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
                 </Link>
-                <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 hover:bg-emerald-50/50 transition-all duration-300"
-                  >
-                    Get in Touch
-                  </motion.button>
-                </Link>
               </div>
             </motion.div>
           </div>
@@ -346,45 +337,6 @@ export default function Strategy() {
 
 
         {/* CTA Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                See Our Strategy in Action
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Explore our detailed equity research on current portfolio holdings.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/research">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 justify-center"
-                  >
-                    View Research
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
-                </Link>
-                <Link href="/progress-letters">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 transition-all duration-300"
-                  >
-                    Read Our Letters
-                  </motion.button>
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
       </div>
     </main>
   )

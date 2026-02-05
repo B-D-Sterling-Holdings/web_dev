@@ -90,15 +90,14 @@ export default function Home() {
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                   <Link href="/strategy">
                     <motion.button
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group px-8 py-4 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300 flex items-center gap-3"
+                      className="px-7 py-3.5 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300"
                     >
                       Learn Our Strategy
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </motion.button>
                   </Link>
 
@@ -106,9 +105,20 @@ export default function Home() {
                     <motion.button
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 hover:bg-emerald-50/50 transition-all duration-300"
+                      className="px-7 py-3.5 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 hover:bg-emerald-50/50 transition-all duration-300"
                     >
                       View Research
+                    </motion.button>
+                  </Link>
+
+                  <Link href="/ai-initiatives">
+                    <motion.button
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="px-7 py-3.5 bg-gradient-to-r from-emerald-600 to-cyan-500 text-white font-semibold rounded-2xl shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 flex items-center gap-2"
+                    >
+                      <Brain className="w-5 h-5" />
+                      AI Initiatives
                     </motion.button>
                   </Link>
                 </div>
@@ -360,13 +370,13 @@ export default function Home() {
                     <p className="text-gray-400">AI augments our judgment—it doesn't replace the rigor of fundamental analysis.</p>
                   </div>
                 </div>
-                <Link href="/research">
+                <Link href="/ai-initiatives">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="px-6 py-3 bg-white/10 border border-white/20 text-white font-medium rounded-xl hover:bg-white/20 transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
                   >
-                    Explore Our Research
+                    Explore AI Initiatives
                     <ArrowRight className="w-4 h-4" />
                   </motion.button>
                 </Link>
@@ -490,40 +500,43 @@ export default function Home() {
 
         <Faq />
 
-        {/* Footer CTA Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-4xl mx-auto px-6 text-center">
+        {/* Disclaimer Section */}
+        <section className="py-16 bg-gray-50 border-t border-gray-200">
+          <div className="max-w-5xl mx-auto px-6 lg:px-12">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                Interested in Learning More?
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Explore our research, strategy, and approach to value investing.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/strategy">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    Our Strategy
-                  </motion.button>
-                </Link>
-                <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 transition-all duration-300"
-                  >
-                    Get in Touch
-                  </motion.button>
-                </Link>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">Important Disclosures</h3>
+              <div className="space-y-4 text-xs text-gray-500 leading-relaxed">
+                <p>
+                  The performance figures presented herein reflect results generated by B.D. Sterling Capital Management through proprietary portfolios and accounts managed by the portfolio manager using a consistent investment philosophy and substantially similar strategy throughout the duration of the track record.
+                </p>
+                <p>
+                  Performance shown may include results achieved prior to the launch of any specific fund or series structure and is presented for informational purposes only. Results reflect the reinvestment of profits and do not reflect the impact of fees, expenses, or taxes that would be incurred in an actual investment vehicle. Individual investor results may differ materially due to differences in timing of capital contributions, withdrawals, cash balances, transaction costs, tax considerations, and portfolio implementation.
+                </p>
+                <p>
+                  Benchmark data, including references to the S&amp;P 500, is sourced from Interactive Brokers LLC. Index performance is provided for comparative purposes only and does not represent the performance of any investable product.
+                </p>
+                <p>
+                  Past performance is not necessarily indicative of future results. All investments involve risk, including the potential loss of principal. This material is provided for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to purchase any security. Our fiscal year begins on January 1 and ends on December 31 of each calendar year.
+                </p>
+                <div className="border-t border-gray-200 pt-4 mt-4">
+                  <p>
+                    B.D. Sterling Capital Management is currently evaluating a potential strategic relationship with the Plainview platform. As of the date of this presentation, no definitive agreements have been executed, and the strategy is not currently operated on or affiliated with Plainview.
+                  </p>
+                  <p className="mt-3">
+                    If finalized, it is anticipated that the strategy would be launched as a dedicated series within Plainview Securities Fund, L.P., a Delaware series limited partnership. Each series is offered under Regulation D, Rule 506(c), relies on the Section 3(c)(1) exemption under the Investment Company Act of 1940, and maintains segregated economics, expenses, and disclosures through a standalone series supplement.
+                  </p>
+                  <p className="mt-3">
+                    Under the contemplated structure, Plainview would bear platform level regulatory and infrastructure costs, while strategy specific expenses, including administration, audit, compliance, custody, brokerage, and series specific legal costs, would be allocated to the applicable series. Management and performance fees would be charged at the series level and shared between Plainview and the strategy provider pursuant to documented agreements. Fund expenses such as administration and audit are borne by the Fund and allocated pro rata among investors based on their respective capital commitments and periods of participation.
+                  </p>
+                  <p className="mt-3">
+                    Any future offering would be made solely pursuant to definitive offering documents. Terms, structure, and economics remain subject to change.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>

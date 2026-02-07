@@ -34,7 +34,7 @@ export default function About() {
       highlights: [
         'Engineering Experience with NASA and GE Vernova',
         'Co-CIO of Maroon Fund ($70K Long-Only Fund)',
-        'Co-Founder of Scholars of Finance, Texas A&M Chapter',
+        "Co-Founder of Scholars of Finance, Texas A&M Chapter",
         "Architect of firm's operational infrastructure"
       ]
     }

@@ -16,10 +16,9 @@ export default function UNHResearch() {
     <main className="min-h-screen bg-[#fafafa] text-black overflow-hidden">
       <Navbar />
 
-      {/* Background Effects */}
+      {/* Clean Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/80 via-white to-emerald-50/60" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-purple-200/30 via-transparent to-transparent rounded-full blur-3xl opacity-35" />
+        <div className="absolute inset-0 bg-emerald-50/30" />
       </div>
 
       <div className="relative z-10">

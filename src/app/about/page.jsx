@@ -18,11 +18,11 @@ export default function About() {
       name: 'Bhuvan Siddaveerappa',
       role: 'Co-CIO, CEO',
       image: '/bhuvan.jpeg',
-      bio: 'Bhuvan co-launched B.D. Sterling to institutionalize the disciplined, fundamentals-driven approach he refined while managing Texas A&M\'s Student Managed Fund called Sinn Fund, a multi-strategy hedge fund with approximately $6M AUM across 8 books (Quant, Corporate Activism, FI/FX/EM, Macro, Energy, Metals, Biotech, Factor), and interning on equity trading desks at Kershner Trading Group.',
+      bio: 'Bhuvan currently serves as Co-CIO of Sinn Fund, Texas A&M\'s Student Managed Fund, a multi-strategy hedge fund with approximately $6M AUM across 8 books (Quant, Corporate Activism, FI/FX/EM, Macro, Energy, Metals, Biotech, Factor). He co-launched B.D. Sterling as an independent venture, applying the disciplined, fundamentals-driven approach he has developed through years of active portfolio management. He also gained hands-on experience interning on equity trading desks at Kershner Trading Group.',
       highlights: [
-        'Former Portfolio Manager, Sinn Fund (~$6M AUM)',
+        'Co-CIO, Sinn Fund (~$6M AUM)',
         'Equity Trading Intern, Kershner Trading Group',
-        'Co-Founder, Scholars of Finance, Texas A&M Chapter',
+        'Founding President, Scholars of Finance, Texas A&M Chapter',
         'B.S. in Business & M.S. in Financial Management, Texas A&M University'
       ]
     },
@@ -32,8 +32,8 @@ export default function About() {
       image: '/dhruv.png',
       bio: 'Dhruv is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He takes pride in the rigor of his equity research-driven approach and is leading the development of quantitative models to find an edge.',
       highlights: [
-        'Co-CIO, Maroon Fund ($70K Long-Only Fund)',
-        'Co-Founder, Scholars of Finance — Texas A&M Chapter',
+        'Co-CIO, Maroon Fund, Scholars of Finance ($70K Long-Only Fund)',
+        'Co-Founder, Scholars of Finance, Texas A&M Chapter',
         'Engineering Intern at NASA & GE Vernova',
         'Architect of firm operational infrastructure'
       ]
@@ -44,11 +44,9 @@ export default function About() {
     <main className="min-h-screen bg-[#fafafa] text-black overflow-hidden">
       <Navbar />
 
-      {/* Background Effects */}
+      {/* Clean Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-cyan-50/60" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/30 via-transparent to-transparent rounded-full blur-3xl opacity-35" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-200/20 via-transparent to-transparent rounded-full blur-3xl opacity-25" />
+        <div className="absolute inset-0 bg-emerald-50/30" />
       </div>
 
       <div className="relative z-10">
@@ -143,7 +141,7 @@ export default function About() {
                     {team[0].bio}
                   </p>
 
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100">
+                  <div className="bg-white rounded-2xl p-6 border border-gray-100">
                     <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Award className="w-5 h-5 text-emerald-600" />
                       Key Experience
@@ -189,7 +187,7 @@ export default function About() {
                     {team[1].bio}
                   </p>
 
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100">
+                  <div className="bg-white rounded-2xl p-6 border border-gray-100">
                     <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Award className="w-5 h-5 text-emerald-600" />
                       Key Experience

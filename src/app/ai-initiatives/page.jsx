@@ -28,11 +28,9 @@ export default function AIInitiatives() {
     <main className="min-h-screen bg-[#fafafa] text-black overflow-hidden">
       <Navbar />
 
-      {/* Background Effects */}
+      {/* Clean Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-emerald-50/40" />
-        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-bl from-emerald-100/40 via-cyan-100/20 to-transparent rounded-full blur-3xl opacity-35" />
-        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-purple-100/30 via-transparent to-transparent rounded-full blur-3xl opacity-25" />
+        <div className="absolute inset-0 bg-emerald-50/30" />
       </div>
 
       <div className="relative z-10">
@@ -56,7 +54,7 @@ export default function AIInitiatives() {
 
               <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
                 At B.D. Sterling, we're developing proprietary AI systems that augment human judgment
-                with machine intelligence—enhancing research depth, accelerating insights, and
+                with machine intelligence, enhancing research depth, accelerating insights, and
                 optimizing portfolio decisions while maintaining rigorous fundamental analysis.
               </p>
 
@@ -169,7 +167,7 @@ export default function AIInitiatives() {
                     <div className="w-3 h-3 rounded-full bg-red-500/80" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                    <span className="ml-4 text-gray-500 text-sm">Prism AI — Document Analysis</span>
+                    <span className="ml-4 text-gray-500 text-sm">Prism AI - Document Analysis</span>
                   </div>
 
                   <div className="space-y-4">
@@ -177,7 +175,7 @@ export default function AIInitiatives() {
                     <div className="bg-gray-700/30 rounded-xl p-4 border border-gray-600/30">
                       <div className="flex items-center gap-2 mb-3">
                         <FileText className="w-4 h-4 text-emerald-400" />
-                        <span className="text-emerald-400 text-sm font-medium">SEC Filing Analysis — GOOGL 10-K</span>
+                        <span className="text-emerald-400 text-sm font-medium">SEC Filing Analysis - GOOGL 10-K</span>
                       </div>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between text-gray-400">
@@ -360,7 +358,7 @@ export default function AIInitiatives() {
 
 
         {/* Portfolio Allocation Model Section */}
-        <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative">
+        <section className="py-24 bg-emerald-50/30 relative">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -476,8 +474,8 @@ export default function AIInitiatives() {
                       { name: 'GOOGL', allocation: 25, conviction: 'High', risk: 'Med' },
                       { name: 'ASML', allocation: 20, conviction: 'High', risk: 'Med' },
                       { name: 'UNH', allocation: 15, conviction: 'Med', risk: 'Low' },
-                      { name: 'Other', allocation: 25, conviction: '—', risk: '—' },
-                      { name: 'Cash', allocation: 15, conviction: '—', risk: '—' },
+                      { name: 'Other', allocation: 25, conviction: '-', risk: '-' },
+                      { name: 'Cash', allocation: 15, conviction: '-', risk: '-' },
                     ].map((holding, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <span className="text-white font-medium w-16 text-sm">{holding.name}</span>

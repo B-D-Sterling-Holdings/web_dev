@@ -24,11 +24,9 @@ export default function Strategy() {
     <main className="min-h-screen bg-[#fafafa] text-black overflow-hidden">
       <Navbar />
 
-      {/* Background Effects */}
+      {/* Clean Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-cyan-50/60" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/30 via-transparent to-transparent rounded-full blur-3xl opacity-35" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-200/20 via-transparent to-transparent rounded-full blur-3xl opacity-25" />
+        <div className="absolute inset-0 bg-emerald-50/30" />
       </div>
 
       <div className="relative z-10">
@@ -206,7 +204,7 @@ export default function Strategy() {
 
 
         {/* Key Principles Section - Light */}
-        <section className="py-24 bg-gradient-to-br from-emerald-50/60 via-white to-green-50/40 relative overflow-hidden">
+        <section className="py-24 bg-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -263,7 +261,7 @@ export default function Strategy() {
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
-                  className="group p-8 bg-gradient-to-b from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
+                  className="group p-8 bg-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
                 >
                   <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500 transition-colors duration-300">
                     <item.icon className="w-7 h-7 text-emerald-600 group-hover:text-white transition-colors duration-300" />
@@ -435,7 +433,7 @@ export default function Strategy() {
 
 
         {/* Philosophy Quote Section - Light */}
-        <section className="py-24 bg-gradient-to-b from-emerald-50/50 via-green-50/30 to-emerald-50/40">
+        <section className="py-24 bg-emerald-50/30">
           <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

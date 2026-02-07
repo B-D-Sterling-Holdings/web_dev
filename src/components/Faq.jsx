@@ -26,15 +26,15 @@ export default function SleekFAQSection() {
   },
   {
     q: "What AI initiatives is B.D. Sterling working on?",
-    a: "We are actively developing proprietary AI systems to enhance our investment research capabilities. Our flagship projects include Prism AI—an AI-powered document analysis tool—a Retrieval-Augmented Generation (RAG) knowledge system, and an AI-driven portfolio allocation model. These tools augment human judgment rather than replace it, helping us process financial documents at scale while maintaining rigorous fundamental analysis."
+    a: "We are actively developing proprietary AI systems to enhance our investment research capabilities. Our flagship projects include Prism AI, an AI-powered document analysis tool, a Retrieval-Augmented Generation (RAG) knowledge system, and an AI-driven portfolio allocation model. These tools augment human judgment rather than replace it, helping us process financial documents at scale while maintaining rigorous fundamental analysis."
   },
   {
     q: "What is Prism AI?",
-    a: "Prism AI is our proprietary document analysis tool built specifically for investment research. It leverages a curated knowledge base of financial documents—including SEC filings, research reports, and internal analysis—to help our team synthesize competitive intelligence and validate investment theses. Prism is a research tool, not a chatbot; it helps us conduct deeper analysis without sacrificing rigor."
+    a: "Prism AI is our proprietary document analysis tool built specifically for investment research. It leverages a curated knowledge base of financial documents, including SEC filings, research reports, and internal analysis, to help our team synthesize competitive intelligence and validate investment theses. Prism is a research tool, not a chatbot; it helps us conduct deeper analysis without sacrificing rigor."
   },
   {
     q: "How does AI improve your investment research process?",
-    a: "AI serves as a force multiplier for our research team. Our systems process SEC filings, market data, and financial documents to surface investment-relevant insights. Machine learning models analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations. Importantly, AI augments our judgment—it doesn't replace the rigor of fundamental analysis. Every AI-generated insight is reviewed and validated by our team."
+    a: "AI serves as a force multiplier for our research team. Our systems process SEC filings, market data, and financial documents to surface investment-relevant insights. Machine learning models analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations. Importantly, AI augments our judgment. It doesn't replace the rigor of fundamental analysis. Every AI-generated insight is reviewed and validated by our team."
   },
 ];
 
@@ -44,7 +44,7 @@ export default function SleekFAQSection() {
   }
 
   return (
-    <div className="py-20 bg-gradient-to-b from-emerald-50/70 via-green-50/40 to-emerald-50/50">
+    <div className="py-20 bg-gray-900 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <motion.div 
@@ -54,10 +54,10 @@ export default function SleekFAQSection() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Frequently Asked Questions
           </h2>
-          <div className="w-20 h-1 bg-emerald-600 mx-auto rounded-full"></div>
+          <div className="w-20 h-1 bg-emerald-400 mx-auto rounded-full"></div>
         </motion.div>
 
         {/* FAQ Items */}
@@ -69,14 +69,14 @@ export default function SleekFAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="border border-gray-700/50 rounded-2xl overflow-hidden bg-gray-800/60 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               {/* Question */}
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-700/30 transition-colors duration-200"
               >
-                <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                <h3 className="text-lg font-semibold text-white pr-4">
                   {item.q}
                 </h3>
                 <motion.div
@@ -85,9 +85,9 @@ export default function SleekFAQSection() {
                   className="flex-shrink-0"
                 >
                   {openIndex === index ? (
-                    <Minus className="w-5 h-5 text-emerald-600" />
+                    <Minus className="w-5 h-5 text-emerald-400" />
                   ) : (
-                    <Plus className="w-5 h-5 text-gray-400" />
+                    <Plus className="w-5 h-5 text-gray-500" />
                   )}
                 </motion.div>
               </button>
@@ -103,8 +103,8 @@ export default function SleekFAQSection() {
                 className="overflow-hidden"
               >
                 <div className="px-8 pb-6 pt-0">
-                  <div className="w-full h-px bg-gray-200 mb-6"></div>
-                  <p className="text-gray-600 leading-relaxed">
+                  <div className="w-full h-px bg-gray-700 mb-6"></div>
+                  <p className="text-gray-400 leading-relaxed">
                     {item.a}
                   </p>
                 </div>

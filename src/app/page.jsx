@@ -11,19 +11,9 @@ export default function Home() {
     <main className="min-h-screen bg-[#fafafa] text-black overflow-hidden">
       <Navbar />
 
-      {/* Modern Gradient Mesh Background */}
+      {/* Clean Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/90 via-white to-green-50/70" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/40 via-green-100/20 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-green-100/30 via-transparent to-transparent rounded-full blur-3xl" />
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
-          }}
-        />
+        <div className="absolute inset-0 bg-emerald-50/30" />
       </div>
 
       {/* Content container */}
@@ -49,7 +39,7 @@ export default function Home() {
                 </h1>
 
                 <p className="text-base lg:text-lg text-gray-600 mb-10 leading-relaxed max-w-xl">
-                  B.D. Sterling is a research-driven investment project focused on investing in high-quality businesses at moments of temporary dislocation. Our philosophy centers on disciplined capital allocation, structured risk management, adaptive learning, and long-term stewardship. We are also actively developing proprietary AI tools—including Prism AI and a RAG knowledge system—to augment our fundamental research and enhance our decision-making process.
+                  B.D. Sterling is a research-driven investment project focused on investing in high-quality businesses at moments of temporary dislocation. Our philosophy centers on disciplined capital allocation, structured risk management, adaptive learning, and long-term stewardship. We are also actively developing proprietary AI tools, including Prism AI and a RAG knowledge system, to augment our fundamental research and enhance our decision-making process.
                 </p>
 
                 {/* CTA Buttons */}
@@ -118,14 +108,8 @@ export default function Home() {
         </section>
 
 
-        {/* Gradient transition into Track Record */}
-        <div className="relative h-20">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-100/40 to-emerald-50/60" />
-        </div>
-
         {/* Performance Stats Section - Prominent Display */}
-        <section className="py-24 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/60 via-green-50/30 to-transparent" />
+        <section className="py-24 relative bg-emerald-50/30">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -315,13 +299,8 @@ export default function Home() {
         </section>
 
 
-        {/* Smooth dark-to-light transition zone */}
-        <div className="relative h-56 -mb-1" style={{
-          background: 'linear-gradient(to bottom, #111827 0%, #0d1d19 12%, #0f2a23 24%, #143d33 36%, #1f5548 48%, #3a7e6b 58%, #6bab98 67%, #9dcebe 76%, #c5e5da 85%, #e2f5ee 93%, #ecfdf5 100%)'
-        }} />
-
         {/* Core Principles Section - Modernized */}
-        <section className="pt-16 pb-24 relative bg-gradient-to-b from-[#ecfdf5] via-emerald-50/40 to-transparent">
+        <section className="py-24 relative bg-emerald-50/30">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -342,7 +321,7 @@ export default function Home() {
 
               {/* Principle 1 */}
               <motion.div
-                className="group p-8 bg-gradient-to-b from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
+                className="group p-8 bg-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -364,7 +343,7 @@ export default function Home() {
 
               {/* Principle 2 */}
               <motion.div
-                className="group p-8 bg-gradient-to-b from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
+                className="group p-8 bg-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -386,7 +365,7 @@ export default function Home() {
 
               {/* Principle 3 */}
               <motion.div
-                className="group p-8 bg-gradient-to-b from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
+                className="group p-8 bg-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -408,7 +387,7 @@ export default function Home() {
 
               {/* Principle 4 */}
               <motion.div
-                className="group p-8 bg-gradient-to-b from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
+                className="group p-8 bg-white rounded-3xl border border-gray-100 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-500"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -432,15 +411,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Gradient transition into FAQ */}
-        <div className="relative h-28">
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/60 via-green-100/50 to-emerald-50/70" />
-        </div>
-
         <Faq />
 
         {/* Disclaimer Section */}
-        <section className="py-16 bg-gradient-to-b from-emerald-50/40 to-green-50/30">
+        <section className="py-16 bg-emerald-50/30">
           <div className="max-w-5xl mx-auto px-6 lg:px-12">
             <motion.div
               initial={{ opacity: 0 }}

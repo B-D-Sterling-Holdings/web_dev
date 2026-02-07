@@ -327,7 +327,7 @@ export default function Strategy() {
                   {
                     icon: LineChart,
                     title: 'Predictive Analytics',
-                    description: 'Machine learning models that analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations.',
+                    description: 'Quantitative models that analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations.',
                   },
                 ].map((tool, i) => (
                   <motion.div

@@ -34,7 +34,7 @@ export default function SleekFAQSection() {
   },
   {
     q: "How does AI improve your investment research process?",
-    a: "AI serves as a force multiplier for our research team. Our systems process SEC filings, market data, and financial documents to surface investment-relevant insights. Machine learning models analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations. Importantly, AI augments our judgment. It doesn't replace the rigor of fundamental analysis. Every AI-generated insight is reviewed and validated by our team."
+    a: "AI serves as a force multiplier for our research team. Our systems process SEC filings, market data, and financial documents to surface investment-relevant insights. Quantitative models analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations. Importantly, AI augments our judgment. It doesn't replace the rigor of fundamental analysis. Every AI-generated insight is reviewed and validated by our team."
   },
 ];
 

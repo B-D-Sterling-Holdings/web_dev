@@ -377,7 +377,7 @@ export default function AIInitiatives() {
               </h2>
 
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Our AI-driven allocation model combines modern portfolio theory with machine learning
+                Our AI-driven allocation model combines modern portfolio theory with quantitative analysis
                 to optimize position sizing, manage risk, and maximize risk-adjusted returns.
               </p>
             </motion.div>
@@ -388,13 +388,13 @@ export default function AIInitiatives() {
                 {
                   icon: BarChart3,
                   title: 'Dynamic Position Sizing',
-                  description: 'ML models that adjust position sizes based on conviction levels, volatility regimes, and correlation dynamics across the portfolio.',
+                  description: 'Quantitative models that adjust position sizes based on conviction levels, volatility regimes, and correlation dynamics across the portfolio.',
                   color: 'emerald'
                 },
                 {
                   icon: Shield,
                   title: 'Risk Optimization',
-                  description: 'Real-time Value-at-Risk calculations, drawdown protection triggers, and automated hedging recommendations.',
+                  description: 'Portfolio risk analysis, drawdown monitoring, and correlation-based hedging assessment.',
                   color: 'cyan'
                 },
                 {

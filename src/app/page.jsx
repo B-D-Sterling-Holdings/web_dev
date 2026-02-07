@@ -232,7 +232,7 @@ export default function Home() {
                     Predictive Analytics
                   </h3>
                   <p className="text-gray-400 leading-relaxed">
-                    Machine learning models that analyze historical patterns, sentiment data,
+                    Quantitative models that analyze historical patterns, sentiment data,
                     and fundamental metrics to identify potential market dislocations.
                   </p>
                 </div>

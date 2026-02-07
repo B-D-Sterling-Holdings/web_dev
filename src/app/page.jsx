@@ -1,7 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import { TrendingUp, Shield, Target, BarChart3, Users, Award, Brain, Cpu, Sparkles, LineChart, Zap, ArrowRight } from 'lucide-react'
+import { Shield, Target, BarChart3, Users, Cpu, Sparkles, LineChart, Zap, ArrowRight } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import StatBoxSection from '@/components/StatBoxSection'
 import Faq from '@/components/Faq'
@@ -14,23 +13,9 @@ export default function Home() {
 
       {/* Modern Gradient Mesh Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-cyan-50/60" />
-        <motion.div
-          className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/30 via-transparent to-transparent rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.4, 0.3]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-200/20 via-transparent to-transparent rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.2, 0.35, 0.2]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/90 via-white to-green-50/70" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/40 via-green-100/20 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-green-100/30 via-transparent to-transparent rounded-full blur-3xl" />
         {/* Subtle grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.015]"
@@ -42,17 +27,12 @@ export default function Home() {
       </div>
 
       {/* Content container */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10"
-      >
+      <div className="relative z-10">
 
         {/* Hero Section - More Modern & Minimal */}
         <section className="min-h-screen flex items-center pt-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-14 items-center">
 
               {/* Left Content */}
               <motion.div
@@ -60,54 +40,27 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                {/* Badge */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200/60 rounded-full mb-8"
-                >
-                  <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                  <span className="text-sm font-medium text-emerald-700">Research-Driven Investment Project</span>
-                </motion.div>
-
-                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
-                  <span className="text-gray-900">Disciplined</span>
+                  <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
+                  <span className="text-gray-900">Disciplined </span>
+                  <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent">Investing</span>
+                  <span className="text-gray-900"> in</span>
                   <br />
-                  <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent">
-                    Investing
-                  </span>
-                  <br />
-                  <span className="text-gray-900">in Mispriced</span>
-                  <br />
-                  <span className="text-gray-900">Quality</span>
+                  <span className="text-gray-900">Mispriced Quality</span>
                 </h1>
 
-                <p className="text-lg lg:text-xl text-gray-600 mb-10 leading-relaxed max-w-xl">
-                  We identify high-quality businesses at moments of temporary dislocation,
-                  applying fundamental research to evaluate intrinsic value and long-term
-                  compounding potential.
+                <p className="text-base lg:text-lg text-gray-600 mb-10 leading-relaxed max-w-xl">
+                  B.D. Sterling is a research-driven investment project focused on investing in high-quality businesses at moments of temporary dislocation. Our philosophy centers on disciplined capital allocation, structured risk management, adaptive learning, and long-term stewardship. We are also actively developing proprietary AI tools—including Prism AI and a RAG knowledge system—to augment our fundamental research and enhance our decision-making process.
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link href="/strategy">
                     <motion.button
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-7 py-3.5 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300"
+                      className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-2xl shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-gray-900/30 transition-all duration-300"
                     >
                       Learn Our Strategy
-                    </motion.button>
-                  </Link>
-
-                  <Link href="/research">
-                    <motion.button
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="px-7 py-3.5 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 hover:bg-emerald-50/50 transition-all duration-300"
-                    >
-                      View Research
                     </motion.button>
                   </Link>
 
@@ -115,9 +68,8 @@ export default function Home() {
                     <motion.button
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-7 py-3.5 bg-gradient-to-r from-emerald-600 to-cyan-500 text-white font-semibold rounded-2xl shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 flex items-center gap-2"
+                      className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl hover:border-emerald-300 hover:bg-emerald-50/50 transition-all duration-300"
                     >
-                      <Brain className="w-5 h-5" />
                       AI Initiatives
                     </motion.button>
                   </Link>
@@ -147,29 +99,16 @@ export default function Home() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1 }}
-                    className="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-xl p-5 rounded-2xl shadow-xl border border-gray-100"
+                    className="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-xl p-5 rounded-2xl shadow-xl border border-gray-100"
                   >
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-xl flex items-center justify-center">
-                        <TrendingUp className="w-6 h-6 text-white" />
+                        <BarChart3 className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-500">Investment Focus</p>
-                        <p className="text-base font-bold text-gray-900">Quality at Dislocation</p>
+                        <p className="text-sm text-gray-500">Portfolio Focus</p>
+                        <p className="text-base font-bold text-gray-900">Dislocated Quality Businesses</p>
                       </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Second Floating Card */}
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1.2 }}
-                    className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-xl px-5 py-3 rounded-xl shadow-lg border border-gray-100"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-emerald-500" />
-                      <span className="text-sm font-semibold text-gray-700">Fundamental Research</span>
                     </div>
                   </motion.div>
                 </div>
@@ -179,9 +118,14 @@ export default function Home() {
         </section>
 
 
+        {/* Gradient transition into Track Record */}
+        <div className="relative h-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-100/40 to-emerald-50/60" />
+        </div>
+
         {/* Performance Stats Section - Prominent Display */}
         <section className="py-24 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-50/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/60 via-green-50/30 to-transparent" />
           <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -223,17 +167,13 @@ export default function Home() {
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent" />
-            {/* Animated grid */}
-            <motion.div
+            {/* Grid pattern */}
+            <div
               className="absolute inset-0 opacity-10"
               style={{
                 backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
                 backgroundSize: '40px 40px'
               }}
-              animate={{
-                backgroundPosition: ['0px 0px', '40px 40px']
-              }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             />
           </div>
 
@@ -246,17 +186,6 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6"
-              >
-                <Brain className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm font-medium text-emerald-400">Innovation Lab</span>
-              </motion.div>
-
               <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
                 AI-Powered Investment
                 <br />
@@ -265,8 +194,8 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                We're building next-generation tools that combine artificial intelligence with
-                fundamental analysis to enhance our research capabilities and decision-making process.
+                We're building advanced tools that combine artificial intelligence with
+                fundamental analysis to enhance our research capabilities and decision making process.
               </p>
             </motion.div>
 
@@ -293,8 +222,8 @@ export default function Home() {
                     Automated Research Pipeline
                   </h3>
                   <p className="text-gray-400 leading-relaxed">
-                    AI-driven systems that continuously monitor earnings calls, SEC filings,
-                    and market data to surface investment-relevant insights in real-time.
+                    AI driven systems designed to process SEC filings, market data, and
+                    financial documents to surface investment relevant insights.
                   </p>
                 </div>
               </motion.div>
@@ -367,7 +296,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-white">Human + Machine Intelligence</h4>
-                    <p className="text-gray-400">AI augments our judgment—it doesn't replace the rigor of fundamental analysis.</p>
+                    <p className="text-gray-400">AI augments our judgment. It doesn't replace the rigor of fundamental analysis.</p>
                   </div>
                 </div>
                 <Link href="/ai-initiatives">
@@ -386,8 +315,13 @@ export default function Home() {
         </section>
 
 
+        {/* Smooth dark-to-light transition zone */}
+        <div className="relative h-56 -mb-1" style={{
+          background: 'linear-gradient(to bottom, #111827 0%, #0d1d19 12%, #0f2a23 24%, #143d33 36%, #1f5548 48%, #3a7e6b 58%, #6bab98 67%, #9dcebe 76%, #c5e5da 85%, #e2f5ee 93%, #ecfdf5 100%)'
+        }} />
+
         {/* Core Principles Section - Modernized */}
-        <section className="py-24 bg-white relative">
+        <section className="pt-16 pb-24 relative bg-gradient-to-b from-[#ecfdf5] via-emerald-50/40 to-transparent">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -498,10 +432,15 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Gradient transition into FAQ */}
+        <div className="relative h-28">
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/60 via-green-100/50 to-emerald-50/70" />
+        </div>
+
         <Faq />
 
         {/* Disclaimer Section */}
-        <section className="py-16 bg-gray-50 border-t border-gray-200">
+        <section className="py-16 bg-gradient-to-b from-emerald-50/40 to-green-50/30">
           <div className="max-w-5xl mx-auto px-6 lg:px-12">
             <motion.div
               initial={{ opacity: 0 }}
@@ -542,7 +481,7 @@ export default function Home() {
           </div>
         </section>
 
-      </motion.div>
+      </div>
     </main>
   )
 }

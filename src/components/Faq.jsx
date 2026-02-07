@@ -26,24 +26,16 @@ export default function SleekFAQSection() {
   },
   {
     q: "What AI initiatives is B.D. Sterling working on?",
-    a: "We are actively developing proprietary AI systems to enhance our investment research capabilities. Our flagship projects include Prism AI—an AI-powered research assistant for real-time financial analysis—a Retrieval-Augmented Generation (RAG) knowledge system with over 500K indexed documents, and an AI-driven portfolio allocation model. These tools augment human judgment rather than replace it, allowing us to process data at scale while maintaining rigorous fundamental analysis."
+    a: "We are actively developing proprietary AI systems to enhance our investment research capabilities. Our flagship projects include Prism AI—an AI-powered document analysis tool—a Retrieval-Augmented Generation (RAG) knowledge system, and an AI-driven portfolio allocation model. These tools augment human judgment rather than replace it, helping us process financial documents at scale while maintaining rigorous fundamental analysis."
   },
   {
     q: "What is Prism AI?",
-    a: "Prism AI is our proprietary research assistant built specifically for investment analysis. It can analyze earnings calls in real-time, parse SEC filings to detect key changes, synthesize competitive intelligence across companies, and even generate counter-arguments to stress-test investment theses. Prism allows our team to conduct research up to 10x faster without sacrificing depth or rigor."
+    a: "Prism AI is our proprietary document analysis tool built specifically for investment research. It leverages a curated knowledge base of financial documents—including SEC filings, research reports, and internal analysis—to help our team synthesize competitive intelligence and validate investment theses. Prism is a research tool, not a chatbot; it helps us conduct deeper analysis without sacrificing rigor."
   },
   {
     q: "How does AI improve your investment research process?",
-    a: "AI serves as a force multiplier for our research team. Our systems continuously monitor earnings calls, SEC filings, market data, and alternative data sources to surface investment-relevant insights. Machine learning models analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations. Importantly, AI augments our judgment—it doesn't replace the rigor of fundamental analysis. Every AI-generated insight is reviewed and validated by our team."
+    a: "AI serves as a force multiplier for our research team. Our systems process SEC filings, market data, and financial documents to surface investment-relevant insights. Machine learning models analyze historical patterns, sentiment data, and fundamental metrics to identify potential market dislocations. Importantly, AI augments our judgment—it doesn't replace the rigor of fundamental analysis. Every AI-generated insight is reviewed and validated by our team."
   },
-  {
-    q: "What is the RAG Knowledge System?",
-    a: "Our Retrieval-Augmented Generation (RAG) system creates a living knowledge base of financial intelligence. Unlike generic AI models that can hallucinate or provide outdated information, our RAG model retrieves context from our proprietary research database of 500K+ documents—including SEC filings, earnings transcripts, and internal research—to deliver precise, source-backed insights with full auditability."
-  },
-  {
-    q: "Does B.D. Sterling publish AI research papers?",
-    a: "Yes, we are committed to contributing to the intersection of artificial intelligence and finance. We publish research papers and whitepapers covering topics such as AI-driven investment analysis, natural language processing for financial documents, quantitative portfolio optimization, and the application of machine learning to market dislocation detection. You can explore our published work on our AI Initiatives page."
-  }
 ];
 
 
@@ -52,7 +44,7 @@ export default function SleekFAQSection() {
   }
 
   return (
-    <div className="py-20 bg-white">
+    <div className="py-20 bg-gradient-to-b from-emerald-50/70 via-green-50/40 to-emerald-50/50">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <motion.div 

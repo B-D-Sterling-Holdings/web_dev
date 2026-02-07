@@ -4,7 +4,6 @@ import {
   Users,
   Award,
   Briefcase,
-  GraduationCap,
   TrendingUp,
   Target,
   ArrowRight,
@@ -19,12 +18,12 @@ export default function About() {
       name: 'Bhuvan Siddaveerappa',
       role: 'Co-CIO, CEO',
       image: '/bhuvan.jpeg',
-      bio: 'Bhuvan co-launched B.D. Sterling as a project to institutionalize the disciplined, fundamentals-driven approach he refined while managing the Sinn Fund (a $5 million multi-strategy hedge fund) at Texas A&M and interning on equity trading desks at Kershner Trading Group.',
+      bio: 'Bhuvan co-launched B.D. Sterling to institutionalize the disciplined, fundamentals-driven approach he refined while managing Texas A&M\'s Student Managed Fund called Sinn Fund, a multi-strategy hedge fund with approximately $6M AUM across 8 books (Quant, Corporate Activism, FI/FX/EM, Macro, Energy, Metals, Biotech, Factor), and interning on equity trading desks at Kershner Trading Group.',
       highlights: [
-        'Former Portfolio Manager, Sinn Fund ($5M AUM)',
+        'Former Portfolio Manager, Sinn Fund (~$6M AUM)',
         'Equity Trading Intern, Kershner Trading Group',
-        'Former President, Scholars of Finance',
-        'Organizer, TAMU Student Finance Conference'
+        'Co-Founder, Scholars of Finance, Texas A&M Chapter',
+        'B.S. in Business & M.S. in Financial Management, Texas A&M University'
       ]
     },
     {
@@ -34,7 +33,7 @@ export default function About() {
       bio: 'Dhruv is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He takes pride in the rigor of his equity research-driven approach and is leading the development of quantitative models to find an edge.',
       highlights: [
         'Co-CIO, Maroon Fund ($70K Long-Only Fund)',
-        'Co-Founder, Scholars of Finance',
+        'Co-Founder, Scholars of Finance — Texas A&M Chapter',
         'Engineering Intern at NASA & GE Vernova',
         'Architect of firm operational infrastructure'
       ]
@@ -48,22 +47,8 @@ export default function About() {
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-cyan-50/60" />
-        <motion.div
-          className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/30 via-transparent to-transparent rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.4, 0.3]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-200/20 via-transparent to-transparent rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.2, 0.35, 0.2]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/30 via-transparent to-transparent rounded-full blur-3xl opacity-35" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-200/20 via-transparent to-transparent rounded-full blur-3xl opacity-25" />
       </div>
 
       <div className="relative z-10">
@@ -77,17 +62,6 @@ export default function About() {
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200/60 rounded-full mb-8"
-              >
-                <Users className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm font-semibold text-emerald-700">Our Team</span>
-              </motion.div>
-
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
                 <span className="text-gray-900">Meet the</span>
                 <br />
@@ -266,7 +240,7 @@ export default function About() {
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center">
-                          <GraduationCap className="w-5 h-5 text-white" />
+                          <Briefcase className="w-5 h-5 text-white" />
                         </div>
                         <div>
                           <p className="text-sm text-gray-500">Role</p>

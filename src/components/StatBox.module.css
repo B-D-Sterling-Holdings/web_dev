@@ -66,22 +66,11 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: glow-pulse 4s infinite ease-in-out;
+  opacity: 0.9;
 }
 
 .glowOutline {
   color: #111827;
-}
-
-@keyframes glow-pulse {
-  0%, 100% {
-    opacity: 1;
-    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
-  }
-  50% {
-    opacity: 0.6;
-    filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.5));
-  }
 }
 
 .statLabel {

@@ -44,7 +44,7 @@ export default function Navbar() {
         { href: '/tools', label: 'Tools', icon: Wrench, desc: 'Financial analysis tools' },
       ]
     },
-    { href: '/about', label: 'About' },
+    { href: '/about', label: 'About Us' },
     { href: '/contact', label: 'Contact' },
   ]
 

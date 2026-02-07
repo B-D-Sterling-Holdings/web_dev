@@ -3,12 +3,9 @@ import { motion } from 'framer-motion'
 import {
   FileText,
   Download,
-  Calendar,
-  ArrowRight,
-  BookOpen
+  Calendar
 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
-import Link from 'next/link'
 
 // Define letters by year, organized by quarter
 const lettersByYear = {
@@ -87,22 +84,8 @@ export default function ProgressLetters() {
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/80 via-white to-cyan-50/60" />
-        <motion.div
-          className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/30 via-transparent to-transparent rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.4, 0.3]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-200/20 via-transparent to-transparent rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.2, 0.35, 0.2]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-emerald-200/30 via-transparent to-transparent rounded-full blur-3xl opacity-35" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-200/20 via-transparent to-transparent rounded-full blur-3xl opacity-25" />
       </div>
 
       <div className="relative z-10">
@@ -116,17 +99,6 @@ export default function ProgressLetters() {
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200/60 rounded-full mb-8"
-              >
-                <BookOpen className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm font-semibold text-emerald-700">Investor Updates</span>
-              </motion.div>
-
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
                 <span className="text-gray-900">Progress</span>
                 <br />
@@ -139,42 +111,6 @@ export default function ProgressLetters() {
                 Regular updates on our investment activities, portfolio performance,
                 and market perspectives shared with our stakeholders.
               </p>
-            </motion.div>
-          </div>
-        </section>
-
-
-        {/* About Letters Section */}
-        <section className="py-8 px-6 lg:px-12">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl p-8 border border-emerald-200/50"
-            >
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm">
-                    <FileText className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900">Our Communication Philosophy</h4>
-                    <p className="text-gray-600">Transparent, detailed updates on strategy execution and market views</p>
-                  </div>
-                </div>
-                <Link href="/strategy">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-6 py-3 bg-white border border-gray-200 text-gray-700 font-medium rounded-xl hover:border-emerald-300 hover:bg-emerald-50/50 transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
-                  >
-                    Learn Our Strategy
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.button>
-                </Link>
-              </div>
             </motion.div>
           </div>
         </section>

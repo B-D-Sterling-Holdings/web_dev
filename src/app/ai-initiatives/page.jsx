@@ -14,13 +14,10 @@ import {
   Shield,
   Layers,
   GitBranch,
-  MessageSquare,
   BarChart3,
   PieChart,
   Workflow,
-  Bot,
   FileText,
-  Download,
   ExternalLink
 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
@@ -34,16 +31,8 @@ export default function AIInitiatives() {
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-emerald-50/40" />
-        <motion.div
-          className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-bl from-emerald-100/40 via-cyan-100/20 to-transparent rounded-full blur-3xl"
-          animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.4, 0.3] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-purple-100/30 via-transparent to-transparent rounded-full blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-        />
+        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-bl from-emerald-100/40 via-cyan-100/20 to-transparent rounded-full blur-3xl opacity-35" />
+        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-purple-100/30 via-transparent to-transparent rounded-full blur-3xl opacity-25" />
       </div>
 
       <div className="relative z-10">
@@ -57,17 +46,6 @@ export default function AIInitiatives() {
               transition={{ duration: 0.8 }}
               className="text-center max-w-4xl mx-auto"
             >
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-50 to-cyan-50 border border-emerald-200/60 rounded-full mb-8"
-              >
-                <Brain className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm font-semibold text-emerald-700">AI Innovation Lab</span>
-              </motion.div>
-
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
                 <span className="text-gray-900">Building the Future of</span>
                 <br />
@@ -111,7 +89,7 @@ export default function AIInitiatives() {
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-900/30 via-transparent to-transparent" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent" />
-            <motion.div
+            <div
               className="absolute inset-0 opacity-10"
               style={{
                 backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
@@ -139,18 +117,18 @@ export default function AIInitiatives() {
                 </h2>
 
                 <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  Our proprietary AI research assistant designed specifically for investment analysis.
-                  Prism synthesizes vast amounts of financial data, news, and research to surface
-                  actionable insights in real-time.
+                  Our proprietary AI-powered document analysis tool designed specifically for
+                  investment research. Prism leverages a curated knowledge base to help our
+                  team synthesize financial data and generate deeper research insights.
                 </p>
 
                 <div className="space-y-4 mb-10">
                   {[
-                    'Real-time earnings call analysis and sentiment extraction',
-                    'Automated SEC filing parsing and key change detection',
+                    'SEC filing parsing and key change detection',
                     'Cross-company competitive intelligence synthesis',
-                    'Natural language querying of financial databases',
+                    'Document-based querying of financial knowledge base',
                     'Thesis validation and counter-argument generation',
+                    'Structured output for investment memos',
                   ].map((feature, i) => (
                     <motion.div
                       key={i}
@@ -186,55 +164,48 @@ export default function AIInitiatives() {
                 className="relative"
               >
                 <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
-                  {/* Mock UI */}
+                  {/* Mock UI - Document Analysis View */}
                   <div className="flex items-center gap-2 mb-6">
                     <div className="w-3 h-3 rounded-full bg-red-500/80" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                    <span className="ml-4 text-gray-500 text-sm">Prism AI Terminal</span>
+                    <span className="ml-4 text-gray-500 text-sm">Prism AI — Document Analysis</span>
                   </div>
 
                   <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <MessageSquare className="w-4 h-4 text-emerald-400" />
+                    {/* Document Analysis Output */}
+                    <div className="bg-gray-700/30 rounded-xl p-4 border border-gray-600/30">
+                      <div className="flex items-center gap-2 mb-3">
+                        <FileText className="w-4 h-4 text-emerald-400" />
+                        <span className="text-emerald-400 text-sm font-medium">SEC Filing Analysis — GOOGL 10-K</span>
                       </div>
-                      <div className="bg-gray-700/50 rounded-2xl rounded-tl-none p-4 flex-1">
-                        <p className="text-gray-300 text-sm">Analyze GOOGL's latest earnings call and compare cloud revenue growth to MSFT and AMZN</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Bot className="w-4 h-4 text-cyan-400" />
-                      </div>
-                      <div className="bg-emerald-900/30 rounded-2xl rounded-tl-none p-4 flex-1 border border-emerald-500/20">
-                        <p className="text-gray-300 text-sm mb-3">Based on Q4 2024 earnings analysis:</p>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex justify-between text-gray-400">
-                            <span>Google Cloud YoY Growth</span>
-                            <span className="text-emerald-400 font-semibold">+26%</span>
-                          </div>
-                          <div className="flex justify-between text-gray-400">
-                            <span>Azure YoY Growth</span>
-                            <span className="text-cyan-400 font-semibold">+29%</span>
-                          </div>
-                          <div className="flex justify-between text-gray-400">
-                            <span>AWS YoY Growth</span>
-                            <span className="text-purple-400 font-semibold">+13%</span>
-                          </div>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between text-gray-400">
+                          <span>Revenue Growth (YoY)</span>
+                          <span className="text-emerald-400 font-semibold">+14%</span>
+                        </div>
+                        <div className="flex justify-between text-gray-400">
+                          <span>Operating Margin</span>
+                          <span className="text-cyan-400 font-semibold">32.4%</span>
+                        </div>
+                        <div className="flex justify-between text-gray-400">
+                          <span>Free Cash Flow</span>
+                          <span className="text-purple-400 font-semibold">$69.5B</span>
                         </div>
                       </div>
                     </div>
 
-                    <motion.div
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="flex items-center gap-2 text-gray-500 text-sm"
-                    >
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                      Prism is analyzing 847 data points...
-                    </motion.div>
+                    <div className="bg-emerald-900/20 rounded-xl p-4 border border-emerald-500/20">
+                      <p className="text-emerald-400 text-xs font-medium mb-2">KEY INSIGHT</p>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        Cloud segment margins expanded 400bps YoY, approaching breakeven for the first time. Capital expenditure guidance suggests continued infrastructure investment.
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-gray-500 text-xs">
+                      <span className="px-2 py-1 bg-gray-700/50 rounded">Source: SEC EDGAR</span>
+                      <span className="px-2 py-1 bg-gray-700/50 rounded">Confidence: High</span>
+                    </div>
                   </div>
                 </div>
 
@@ -246,7 +217,7 @@ export default function AIInitiatives() {
                   viewport={{ once: true }}
                   className="absolute -bottom-4 -right-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-4 py-2 rounded-xl shadow-lg text-sm font-semibold"
                 >
-                  Powered by GPT-4 & Custom Models
+                  Document-Powered Analysis
                 </motion.div>
               </motion.div>
             </div>
@@ -276,7 +247,7 @@ export default function AIInitiatives() {
                       {[
                         { icon: Database, label: 'SEC Filings' },
                         { icon: LineChart, label: 'Market Data' },
-                        { icon: MessageSquare, label: 'Earnings Calls' },
+                        { icon: FileText, label: 'Research Reports' },
                       ].map((item, i) => (
                         <motion.div
                           key={i}
@@ -294,31 +265,23 @@ export default function AIInitiatives() {
 
                     {/* Arrow */}
                     <div className="flex justify-center mb-6">
-                      <motion.div
-                        animate={{ y: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center"
-                      >
+                      <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-emerald-600 rotate-90" />
-                      </motion.div>
+                      </div>
                     </div>
 
                     {/* Vector Store */}
                     <div className="bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-2xl p-4 mb-6 text-white text-center">
                       <Layers className="w-6 h-6 mx-auto mb-2" />
                       <p className="font-semibold">Vector Embeddings Store</p>
-                      <p className="text-sm text-emerald-100">500K+ documents indexed</p>
+                      <p className="text-sm text-emerald-100">Curated financial document library</p>
                     </div>
 
                     {/* Arrow */}
                     <div className="flex justify-center mb-6">
-                      <motion.div
-                        animate={{ y: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-                        className="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center"
-                      >
+                      <div className="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center">
                         <ArrowRight className="w-4 h-4 text-cyan-600 rotate-90" />
-                      </motion.div>
+                      </div>
                     </div>
 
                     {/* Output */}
@@ -362,8 +325,8 @@ export default function AIInitiatives() {
 
                 <div className="grid sm:grid-cols-2 gap-4 mb-10">
                   {[
-                    { icon: Database, title: '500K+ Documents', desc: 'SEC filings, transcripts, research' },
-                    { icon: GitBranch, title: 'Real-time Updates', desc: 'Continuous data ingestion' },
+                    { icon: Database, title: 'Curated Knowledge Base', desc: 'SEC filings, reports, research' },
+                    { icon: GitBranch, title: 'Growing Database', desc: 'Continuously expanding library' },
                     { icon: Target, title: 'Precision Retrieval', desc: 'Semantic search accuracy' },
                     { icon: Shield, title: 'Source Attribution', desc: 'Every insight is traceable' },
                   ].map((item, i) => (
@@ -502,43 +465,44 @@ export default function AIInitiatives() {
                 </div>
 
                 <div className="bg-gray-800/50 rounded-2xl p-6 border border-gray-700/50">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-gray-400 text-sm">Model Output Preview</span>
-                    <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs rounded-full">Live</span>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-white font-semibold">Allocation Model Output</span>
+                    <span className="px-2 py-1 bg-gray-700 text-gray-400 text-xs rounded-full">Sample</span>
                   </div>
+                  <p className="text-gray-500 text-xs mb-5">Suggested portfolio weights based on conviction, risk, and correlation analysis</p>
 
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {[
-                      { name: 'GOOGL', allocation: 18, change: '+2.3%' },
-                      { name: 'ASML', allocation: 15, change: '+1.1%' },
-                      { name: 'UNH', allocation: 12, change: '-0.5%' },
-                      { name: 'Cash', allocation: 8, change: '0%' },
+                      { name: 'GOOGL', allocation: 25, conviction: 'High', risk: 'Med' },
+                      { name: 'ASML', allocation: 20, conviction: 'High', risk: 'Med' },
+                      { name: 'UNH', allocation: 15, conviction: 'Med', risk: 'Low' },
+                      { name: 'Other', allocation: 25, conviction: '—', risk: '—' },
+                      { name: 'Cash', allocation: 15, conviction: '—', risk: '—' },
                     ].map((holding, i) => (
-                      <div key={i} className="flex items-center justify-between">
-                        <span className="text-white font-medium">{holding.name}</span>
-                        <div className="flex items-center gap-4">
-                          <div className="w-32 bg-gray-700 rounded-full h-2">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${holding.allocation * 5}%` }}
-                              transition={{ duration: 1, delay: i * 0.1 }}
-                              viewport={{ once: true }}
-                              className="bg-gradient-to-r from-emerald-500 to-cyan-500 h-2 rounded-full"
-                            />
-                          </div>
-                          <span className="text-gray-400 text-sm w-12">{holding.allocation}%</span>
-                          <span className={`text-sm ${holding.change.startsWith('+') ? 'text-emerald-400' : holding.change.startsWith('-') ? 'text-red-400' : 'text-gray-400'}`}>
-                            {holding.change}
-                          </span>
+                      <div key={i} className="flex items-center gap-3">
+                        <span className="text-white font-medium w-16 text-sm">{holding.name}</span>
+                        <div className="flex-1 bg-gray-700 rounded-full h-2.5">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${holding.allocation}%` }}
+                            transition={{ duration: 1, delay: i * 0.1 }}
+                            viewport={{ once: true }}
+                            className="bg-gradient-to-r from-emerald-500 to-cyan-500 h-2.5 rounded-full"
+                          />
                         </div>
+                        <span className="text-gray-300 text-sm font-medium w-10 text-right">{holding.allocation}%</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-6 pt-6 border-t border-gray-700">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Portfolio Sharpe</span>
+                  <div className="mt-5 pt-4 border-t border-gray-700 grid grid-cols-2 gap-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Est. Sharpe</span>
                       <span className="text-emerald-400 font-semibold">1.87</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Max Drawdown</span>
+                      <span className="text-cyan-400 font-semibold">-12.3%</span>
                     </div>
                   </div>
                 </div>
@@ -548,170 +512,6 @@ export default function AIInitiatives() {
         </section>
 
 
-        {/* Our Philosophy Section */}
-        <section className="py-24 bg-white">
-          <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-                Human Intelligence,
-                <br />
-                <span className="bg-gradient-to-r from-emerald-600 to-cyan-500 bg-clip-text text-transparent">
-                  Machine Amplified
-                </span>
-              </h2>
-
-              <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-                We believe AI should augment human judgment, not replace it. Our systems handle
-                data processing at scale while our team focuses on what humans do best—creative
-                thinking, relationship building, and making decisions under uncertainty.
-              </p>
-
-              <div className="grid sm:grid-cols-3 gap-8">
-                {[
-                  { value: '10x', label: 'Faster Research' },
-                  { value: '500K+', label: 'Documents Indexed' },
-                  { value: '24/7', label: 'Market Monitoring' },
-                ].map((stat, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <p className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-500 bg-clip-text text-transparent mb-2">
-                      {stat.value}
-                    </p>
-                    <p className="text-gray-600">{stat.label}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-
-        {/* Published Research & Papers Section */}
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full mb-6">
-                <FileText className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm font-medium text-emerald-700">Published Work</span>
-              </div>
-
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Our Research Papers
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Explore our published research at the intersection of artificial intelligence and investment analysis.
-              </p>
-            </motion.div>
-
-            {/* PDF Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: 'AI-Driven Investment Analysis Framework',
-                  description: 'A comprehensive framework for integrating large language models into fundamental equity research workflows.',
-                  category: 'AI & Finance',
-                  date: 'Coming Soon',
-                  file: null
-                },
-                {
-                  title: 'NLP for Financial Document Processing',
-                  description: 'Techniques for extracting structured insights from SEC filings, earnings transcripts, and analyst reports using natural language processing.',
-                  category: 'Natural Language Processing',
-                  date: 'Coming Soon',
-                  file: null
-                },
-                {
-                  title: 'Quantitative Portfolio Optimization with ML',
-                  description: 'Machine learning approaches to dynamic position sizing, risk management, and portfolio construction in concentrated strategies.',
-                  category: 'Quantitative Methods',
-                  date: 'Coming Soon',
-                  file: null
-                },
-                {
-                  title: 'RAG Systems for Financial Intelligence',
-                  description: 'Building retrieval-augmented generation systems that ground AI responses in proprietary financial databases for accurate, auditable insights.',
-                  category: 'Knowledge Systems',
-                  date: 'Coming Soon',
-                  file: null
-                },
-                {
-                  title: 'Market Dislocation Detection via Sentiment Analysis',
-                  description: 'Using sentiment analysis and alternative data to identify temporary market dislocations in high-quality businesses.',
-                  category: 'Sentiment Analysis',
-                  date: 'Coming Soon',
-                  file: null
-                },
-                {
-                  title: 'Prism AI: Architecture & Design',
-                  description: 'Technical deep-dive into the architecture of our proprietary AI research assistant, including model selection, prompt engineering, and evaluation.',
-                  category: 'AI Platform',
-                  date: 'Coming Soon',
-                  file: null
-                }
-              ].map((paper, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                  className="group bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-emerald-200 transition-all duration-500 flex flex-col"
-                >
-                  {/* Category Badge */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full mb-4 w-fit">
-                    <span className="text-xs font-medium text-emerald-700">{paper.category}</span>
-                  </div>
-
-                  {/* Paper Icon */}
-                  <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-emerald-100 transition-colors duration-300">
-                    <FileText className="w-6 h-6 text-gray-500 group-hover:text-emerald-600 transition-colors duration-300" />
-                  </div>
-
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{paper.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">{paper.description}</p>
-
-                  {/* Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-xs text-gray-400">{paper.date}</span>
-                    {paper.file ? (
-                      <a
-                        href={paper.file}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 hover:text-emerald-700 transition-colors"
-                      >
-                        <Download className="w-4 h-4" />
-                        Download PDF
-                      </a>
-                    ) : (
-                      <span className="inline-flex items-center gap-2 text-sm font-medium text-gray-400">
-                        <FileText className="w-4 h-4" />
-                        Coming Soon
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
       </div>
     </main>

@@ -20,7 +20,7 @@ export default function About() {
       image: '/bhuvan.jpeg',
       bio: 'Bhuvan currently serves as Co-CIO of Sinn Fund, Texas A&M\'s Student Managed Fund, a multi-strategy hedge fund with approximately $6M AUM across 8 books (Quant, Corporate Activism, FI/FX/EM, Macro, Energy, Metals, Biotech, Factor). He co-launched B.D. Sterling as an independent venture, applying the disciplined, fundamentals-driven approach he has developed through years of active portfolio management. He also gained hands-on experience interning on equity trading desks at Kershner Trading Group.',
       highlights: [
-        'Co-CIO, Sinn Fund (~$6M AUM)',
+        'Co-CIO of Sinn Fund (~$6M AUM)',
         'Equity Trading Intern, Kershner Trading Group',
         'Founding President, Scholars of Finance, Texas A&M Chapter',
         'B.S. in Business & M.S. in Financial Management, Texas A&M University'
@@ -30,12 +30,12 @@ export default function About() {
       name: 'Dhruv Datta',
       role: 'Co-CIO, CFO, CCO',
       image: '/dhruv.png',
-      bio: 'Dhruv is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He takes pride in the rigor of his equity research-driven approach and is leading the development of quantitative models to find an edge.',
+      bio: 'Dhruv is an engineer by academics and a businessman at heart, combining technical skills with an entrepreneurial mindset. He takes pride in the rigor of his equity research-driven approach and is leading the development of the AI models that is the backbone of the fund.',
       highlights: [
-        'Co-CIO, Maroon Fund, Scholars of Finance ($70K Long-Only Fund)',
-        'Co-Founder, Scholars of Finance, Texas A&M Chapter',
-        'Engineering Intern at NASA & GE Vernova',
-        'Architect of firm operational infrastructure'
+        'Engineering Experience with NASA and GE Vernova',
+        'Co-CIO of Maroon Fund ($70K Long-Only Fund)',
+        'Co-Founder of Scholars of Finance, Texas A&M Chapter',
+        "Architect of firm's operational infrastructure"
       ]
     }
   ]

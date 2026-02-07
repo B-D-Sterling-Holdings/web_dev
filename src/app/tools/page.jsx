@@ -14,6 +14,19 @@ import { Line, Scatter } from 'react-chartjs-2'
 import Navbar from '@/components/Navbar'
 import Login from '@/components/login'
 import { motion } from 'framer-motion'
+import {
+  Calculator,
+  PieChart,
+  TrendingUp,
+  Settings,
+  Lock,
+  ArrowRight,
+  BarChart3,
+  Percent,
+  DollarSign,
+  Target,
+  Zap
+} from 'lucide-react'
 
 const createRow = (overrides = {}) => ({
   id: crypto.randomUUID(),
@@ -430,10 +443,10 @@ export default function ToolsPage() {
         {
           label: 'Projected Price',
           data: projection.priceValues,
-          borderColor: '#3E9F62',
-          backgroundColor: 'rgba(62, 159, 98, 0.2)',
-          pointBackgroundColor: '#3E9F62',
-          pointBorderColor: '#3E9F62',
+          borderColor: '#10b981',
+          backgroundColor: 'rgba(16, 185, 129, 0.2)',
+          pointBackgroundColor: '#10b981',
+          pointBorderColor: '#10b981',
           pointRadius: 5,
           tension: 0.3,
         },
@@ -1022,46 +1035,80 @@ export default function ToolsPage() {
   const desiredReturnValue = parseNumber(desiredReturn)
 
   return (
-    <main className="min-h-screen bg-white text-black pt-28">
+    <main className="min-h-screen bg-[#fafafa] text-black overflow-hidden">
       <Navbar />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="p-8"
-      >
+      {/* Clean Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-emerald-50/30" />
+      </div>
+
+      <div className="relative z-10">
         {loggedIn ? (
           <>
+            {/* Hero Section - Logged In */}
+            <section className="pt-32 pb-12 px-6 lg:px-12">
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-center max-w-4xl mx-auto mb-12"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200/60 rounded-full mb-6"
+                  >
+                    <Calculator className="w-4 h-4 text-emerald-600" />
+                    <span className="text-sm font-semibold text-emerald-700">Investment Tools</span>
+                  </motion.div>
 
+                  <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight tracking-tight">
+                    <span className="text-gray-900">Analytical</span>{' '}
+                    <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent">
+                      Tools
+                    </span>
+                  </h1>
 
-            <motion.div
-              className="flex justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="max-w-6xl mx-auto w-full px-6 pb-16">
-                <div className="mb-10">
-                  <h1 className="text-4xl font-bold text-[#082C16] mb-3">Tools</h1>
-                </div>
+                  <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                    Professional-grade calculators for EPS projections, portfolio rebalancing, and Monte Carlo optimization.
+                  </p>
+                </motion.div>
+              </div>
+            </section>
 
-                <section className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm mb-12">
-                  <div className="mb-6">
-                    <h2 className="text-2xl font-semibold text-[#082C16]">
-                      EPS multiple based projection
-                    </h2>
+            {/* EPS Projection Section */}
+            <section className="py-8 px-6 lg:px-12">
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm"
+                >
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+                      <TrendingUp className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900">EPS Multiple Based Projection</h2>
+                      <p className="text-gray-500">Calculate expected returns based on earnings growth</p>
+                    </div>
                   </div>
+
                   <div className="grid lg:grid-cols-2 gap-8">
                     <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
-                      <h2 className="text-xl font-semibold text-[#082C16] mb-5">Assumptions</h2>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-5">Assumptions</h3>
                       <div className="space-y-5">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             Current Price
                           </label>
-                          <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white">
-                            <span className="text-gray-500">$</span>
+                          <div className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-3 bg-white focus-within:border-emerald-500 focus-within:ring-1 focus-within:ring-emerald-500 transition-all">
+                            <DollarSign className="w-4 h-4 text-gray-400" />
                             <input
                               type="number"
                               min="0"
@@ -1081,8 +1128,8 @@ export default function ToolsPage() {
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             EPS (TTM)
                           </label>
-                          <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white">
-                            <span className="text-gray-500">$</span>
+                          <div className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-3 bg-white focus-within:border-emerald-500 focus-within:ring-1 focus-within:ring-emerald-500 transition-all">
+                            <DollarSign className="w-4 h-4 text-gray-400" />
                             <input
                               type="number"
                               min="0"
@@ -1103,8 +1150,8 @@ export default function ToolsPage() {
                             EPS Growth Rate
                           </label>
                           <div
-                            className={`flex items-center gap-2 border rounded-lg px-3 py-2 bg-white ${
-                              isGrowthValid ? 'border-emerald-500' : 'border-gray-300'
+                            className={`flex items-center gap-2 border rounded-xl px-4 py-3 bg-white transition-all ${
+                              isGrowthValid ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-gray-300'
                             }`}
                           >
                             <input
@@ -1117,14 +1164,14 @@ export default function ToolsPage() {
                               placeholder="0"
                             />
                             <span
-                              className={`text-emerald-500 text-lg font-semibold ${
+                              className={`text-emerald-500 text-lg font-semibold transition-opacity ${
                                 isGrowthValid ? 'opacity-100' : 'opacity-0'
                               }`}
                               aria-hidden="true"
                             >
                               ✓
                             </span>
-                            <span className="text-gray-500">%</span>
+                            <Percent className="w-4 h-4 text-gray-400" />
                           </div>
                           <p className="text-sm text-gray-500 mt-2">
                             Your assumption of the company&apos;s expected yearly EPS growth rate.
@@ -1136,8 +1183,8 @@ export default function ToolsPage() {
                             Exit PE Ratio
                           </label>
                           <div
-                            className={`flex items-center gap-2 border rounded-lg px-3 py-2 bg-white ${
-                              isMultipleValid ? 'border-emerald-500' : 'border-gray-300'
+                            className={`flex items-center gap-2 border rounded-xl px-4 py-3 bg-white transition-all ${
+                              isMultipleValid ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-gray-300'
                             }`}
                           >
                             <input
@@ -1150,7 +1197,7 @@ export default function ToolsPage() {
                               placeholder="0"
                             />
                             <span
-                              className={`text-emerald-500 text-lg font-semibold ${
+                              className={`text-emerald-500 text-lg font-semibold transition-opacity ${
                                 isMultipleValid ? 'opacity-100' : 'opacity-0'
                               }`}
                               aria-hidden="true"
@@ -1167,7 +1214,7 @@ export default function ToolsPage() {
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             Desired Return
                           </label>
-                          <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2 bg-white">
+                          <div className="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-3 bg-white focus-within:border-emerald-500 focus-within:ring-1 focus-within:ring-emerald-500 transition-all">
                             <input
                               type="number"
                               min="0"
@@ -1177,7 +1224,7 @@ export default function ToolsPage() {
                               className="w-full bg-transparent outline-none text-gray-900"
                               placeholder="0"
                             />
-                            <span className="text-gray-500">%</span>
+                            <Percent className="w-4 h-4 text-gray-400" />
                           </div>
                           <p className="text-sm text-gray-500 mt-2">
                             The annualized return you aim to achieve from the stock.
@@ -1187,23 +1234,23 @@ export default function ToolsPage() {
                     </div>
 
                     <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
-                      <h2 className="text-xl font-semibold text-[#082C16] mb-5">5-Year Projection</h2>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-5">5-Year Projection</h3>
                       <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-6">
-                        <h3 className="text-sm font-semibold text-gray-700 mb-4">
+                        <h4 className="text-sm font-semibold text-gray-700 mb-4">
                           Calculation Results
-                        </h3>
+                        </h4>
                         <div className="grid gap-4 md:grid-cols-2 text-sm text-gray-700">
-                          <div>
-                            <p className="text-gray-500">Return from today&apos;s price</p>
-                            <p className="text-lg font-semibold text-[#082C16]">
+                          <div className="bg-emerald-50 rounded-xl p-4">
+                            <p className="text-gray-600 mb-1">Return from today&apos;s price</p>
+                            <p className="text-2xl font-bold text-emerald-600">
                               {(projection.cagr * 100).toFixed(2)}%
                             </p>
                           </div>
-                          <div>
-                            <p className="text-gray-500">
+                          <div className="bg-cyan-50 rounded-xl p-4">
+                            <p className="text-gray-600 mb-1">
                               Entry price for {desiredReturnValue.toFixed(0)}% return
                             </p>
-                            <p className="text-lg font-semibold text-[#082C16]">
+                            <p className="text-2xl font-bold text-cyan-600">
                               {formatCurrency(projection.entryPrice)}
                             </p>
                           </div>
@@ -1214,15 +1261,31 @@ export default function ToolsPage() {
                       </div>
                     </div>
                   </div>
-                </section>
+                </motion.div>
+              </div>
+            </section>
 
-                <section className="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm">
+            {/* Portfolio Rebalancer Section */}
+            <section className="py-8 px-6 lg:px-12">
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="bg-gray-50 border border-gray-200 rounded-3xl p-8"
+                >
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
-                    <div>
-                      <h3 className="text-2xl font-semibold text-[#082C16]">Portfolio Rebalancer</h3>
-                      <p className="text-sm text-gray-500 mt-1">
-                        Enter current values and target percentages for each holding.
-                      </p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+                        <PieChart className="w-6 h-6 text-emerald-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-900">Portfolio Rebalancer</h3>
+                        <p className="text-sm text-gray-500 mt-1">
+                          Enter current values and target percentages for each holding.
+                        </p>
+                      </div>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4">
                       <div>
@@ -1235,7 +1298,7 @@ export default function ToolsPage() {
                           step="0.01"
                           value={cash}
                           onChange={(event) => setCash(event.target.value)}
-                          className="w-48 border border-gray-300 rounded-lg px-3 py-2"
+                          className="w-48 border border-gray-300 rounded-xl px-4 py-2.5 bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                           placeholder="0.00"
                         />
                       </div>
@@ -1249,7 +1312,7 @@ export default function ToolsPage() {
                           step="0.01"
                           value={targetCashPercent}
                           onChange={(event) => setTargetCashPercent(event.target.value)}
-                          className="w-40 border border-gray-300 rounded-lg px-3 py-2"
+                          className="w-40 border border-gray-300 rounded-xl px-4 py-2.5 bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                           placeholder="0"
                         />
                       </div>
@@ -1263,7 +1326,7 @@ export default function ToolsPage() {
                           step="0.01"
                           value={transactionCostPct}
                           onChange={(event) => setTransactionCostPct(event.target.value)}
-                          className="w-40 border border-gray-300 rounded-lg px-3 py-2"
+                          className="w-40 border border-gray-300 rounded-xl px-4 py-2.5 bg-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                           placeholder="0.00"
                         />
                       </div>
@@ -1288,7 +1351,7 @@ export default function ToolsPage() {
                                 type="text"
                                 value={row.ticker}
                                 onChange={(event) => updateHolding(row.id, 'ticker', event.target.value)}
-                                className="w-32 border border-gray-300 rounded-lg px-3 py-2"
+                                className="w-32 border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                                 placeholder="AAPL"
                               />
                             </td>
@@ -1299,7 +1362,7 @@ export default function ToolsPage() {
                                 step="0.01"
                                 value={row.currentValue}
                                 onChange={(event) => updateHolding(row.id, 'currentValue', event.target.value)}
-                                className="w-48 border border-gray-300 rounded-lg px-3 py-2"
+                                className="w-48 border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                                 placeholder="0.00"
                               />
                             </td>
@@ -1310,7 +1373,7 @@ export default function ToolsPage() {
                                 step="0.01"
                                 value={row.targetWeight}
                                 onChange={(event) => updateHolding(row.id, 'targetWeight', event.target.value)}
-                                className="w-32 border border-gray-300 rounded-lg px-3 py-2"
+                                className="w-32 border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                                 placeholder="0"
                               />
                             </td>
@@ -1331,518 +1394,607 @@ export default function ToolsPage() {
                     </table>
                   </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
-            <button
-              type="button"
-              onClick={addHolding}
-              className="inline-flex items-center justify-center px-4 py-2 border border-emerald-600 text-emerald-700 rounded-lg font-semibold hover:bg-emerald-50"
-            >
-              Add Holding
-            </button>
-            <div className="text-sm text-gray-500">
-              Target total: <span className="font-semibold">{totalTargetPercent.toFixed(2)}%</span>
-            </div>
-            <button
-              type="button"
-              onClick={handleGeneratePlan}
-              className="inline-flex items-center justify-center px-6 py-2 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700"
-            >
-              Generate Rebalance Plan
-            </button>
-          </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
+                    <motion.button
+                      type="button"
+                      onClick={addHolding}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center justify-center px-5 py-2.5 border-2 border-emerald-600 text-emerald-700 rounded-xl font-semibold hover:bg-emerald-50 transition-colors"
+                    >
+                      Add Holding
+                    </motion.button>
+                    <div className="text-sm text-gray-500">
+                      Target total: <span className="font-semibold text-gray-900">{totalTargetPercent.toFixed(2)}%</span>
+                    </div>
+                    <motion.button
+                      type="button"
+                      onClick={handleGeneratePlan}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-700 transition-colors"
+                    >
+                      Generate Rebalance Plan
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.button>
+                  </div>
 
-          {error && <p className="mt-4 text-sm text-red-600 font-semibold">{error}</p>}
+                  {error && <p className="mt-4 text-sm text-red-600 font-semibold">{error}</p>}
 
-          {plan && (
-            <div className="mt-10 space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold text-[#082C16] mb-3">Step-by-Step Plan</h3>
-                <ol className="space-y-2 text-gray-700">
-                  {plan.steps.length > 0 ? (
-                    plan.steps.map((step, index) => {
-                      const toneStyles = {
-                        buy: 'bg-emerald-50 border-emerald-200 text-emerald-900',
-                        sell: 'bg-rose-50 border-rose-200 text-rose-900',
-                        note: 'bg-gray-50 border-gray-200 text-gray-600',
-                      }
-                      const toneClass = toneStyles[step.type] || toneStyles.note
-                      return (
-                        <li key={`${step.text}-${index}`} className={`border rounded-xl p-3 ${toneClass}`}>
-                          {step.text}
-                        </li>
-                      )
-                    })
-                  ) : (
-                    <li className="text-gray-500">No trades required. Portfolio is already balanced.</li>
-                  )}
-                </ol>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="bg-white border border-gray-200 rounded-2xl p-5">
-                  <h4 className="font-semibold text-[#082C16] mb-3">Buy Summary</h4>
-                  {Object.keys(plan.buyDollars).length === 0 ? (
-                    <p className="text-sm text-gray-500">No buys required.</p>
-                  ) : (
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      {Object.entries(plan.buyDollars).map(([ticker, value]) => (
-                        <li key={ticker} className="flex items-center justify-between">
-                          <span>{ticker}</span>
-                          <span className="font-semibold">{formatCurrency(value)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                <div className="bg-white border border-gray-200 rounded-2xl p-5">
-                  <h4 className="font-semibold text-[#082C16] mb-3">Sell Summary</h4>
-                  {Object.keys(plan.sellDollars).length === 0 ? (
-                    <p className="text-sm text-gray-500">No sells required.</p>
-                  ) : (
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      {Object.entries(plan.sellDollars).map(([ticker, value]) => (
-                        <li key={ticker} className="flex items-center justify-between">
-                          <span>{ticker}</span>
-                          <span className="font-semibold">{formatCurrency(value)}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </div>
-
-              <div className="bg-white border border-gray-200 rounded-2xl p-5">
-                <h4 className="font-semibold text-[#082C16] mb-3">Projected Allocation</h4>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {Object.entries(plan.finalValues)
-                    .sort(([tickerA], [tickerB]) => plan.finalWeights[tickerB] - plan.finalWeights[tickerA])
-                    .map(([ticker, value]) => (
-                      <div key={ticker} className="flex items-center justify-between text-sm text-gray-700">
-                        <span>{ticker}</span>
-                        <span className="font-semibold">
-                          {formatCurrency(value)} ({(plan.finalWeights[ticker] * 100).toFixed(2)}%)
-                        </span>
+                  {plan && (
+                    <div className="mt-10 space-y-8">
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">Step-by-Step Plan</h3>
+                        <ol className="space-y-2 text-gray-700">
+                          {plan.steps.length > 0 ? (
+                            plan.steps.map((step, index) => {
+                              const toneStyles = {
+                                buy: 'bg-emerald-50 border-emerald-200 text-emerald-900',
+                                sell: 'bg-rose-50 border-rose-200 text-rose-900',
+                                note: 'bg-gray-50 border-gray-200 text-gray-600',
+                              }
+                              const toneClass = toneStyles[step.type] || toneStyles.note
+                              return (
+                                <li key={`${step.text}-${index}`} className={`border rounded-xl p-4 ${toneClass}`}>
+                                  {step.text}
+                                </li>
+                              )
+                            })
+                          ) : (
+                            <li className="text-gray-500">No trades required. Portfolio is already balanced.</li>
+                          )}
+                        </ol>
                       </div>
-                    ))}
-                </div>
-              </div>
 
-              <div className="bg-white border border-gray-200 rounded-2xl p-5">
-                <h4 className="font-semibold text-[#082C16] mb-3">Capital Gains Tax Impact</h4>
-                <p className="text-sm text-gray-500 mb-4">
-                  Enter the cost basis and current value for each sold position to estimate tax owed.
-                </p>
-                {taxBreakdown.rows.length === 0 ? (
-                  <p className="text-sm text-gray-500">No sells required, so no tax impact.</p>
-                ) : (
-                  <div className="grid gap-4">
-                    {taxBreakdown.rows.map((row) => (
-                      <div
-                        key={row.ticker}
-                        className="rounded-2xl border border-gray-200 bg-gray-50 p-4"
-                      >
-                        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                          <h5 className="font-semibold text-[#082C16]">{row.ticker}</h5>
-                          <span className="text-xs text-gray-500">
-                            Planned sell: {formatCurrency(plan.sellDollars[row.ticker])}
-                          </span>
+                      <div className="grid gap-6 md:grid-cols-2">
+                        <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                          <h4 className="font-semibold text-gray-900 mb-3">Buy Summary</h4>
+                          {Object.keys(plan.buyDollars).length === 0 ? (
+                            <p className="text-sm text-gray-500">No buys required.</p>
+                          ) : (
+                            <ul className="space-y-2 text-sm text-gray-700">
+                              {Object.entries(plan.buyDollars).map(([ticker, value]) => (
+                                <li key={ticker} className="flex items-center justify-between">
+                                  <span>{ticker}</span>
+                                  <span className="font-semibold text-emerald-600">{formatCurrency(value)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
-                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Initial Value ($)
-                            </label>
-                            <input
-                              type="number"
-                              min="0"
-                              step="0.01"
-                              value={taxInputs[row.ticker]?.initialValue ?? ''}
-                              onChange={(event) =>
-                                updateTaxInput(row.ticker, 'initialValue', event.target.value)
-                              }
-                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                              placeholder="0.00"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Final/Current Value ($)
-                            </label>
-                            <input
-                              type="number"
-                              min="0"
-                              step="0.01"
-                              value={taxInputs[row.ticker]?.finalValue ?? ''}
-                              onChange={(event) =>
-                                updateTaxInput(row.ticker, 'finalValue', event.target.value)
-                              }
-                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                              placeholder="0.00"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Amount Sold ($)
-                            </label>
-                            <input
-                              type="number"
-                              min="0"
-                              step="0.01"
-                              value={taxInputs[row.ticker]?.amountSold ?? ''}
-                              onChange={(event) =>
-                                updateTaxInput(row.ticker, 'amountSold', event.target.value)
-                              }
-                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                              placeholder="0.00"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              Capital Gains Tax Rate (%)
-                            </label>
-                            <input
-                              type="number"
-                              min="0"
-                              step="0.01"
-                              value={taxInputs[row.ticker]?.taxRate ?? ''}
-                              onChange={(event) =>
-                                updateTaxInput(row.ticker, 'taxRate', event.target.value)
-                              }
-                              className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                              placeholder="0"
-                            />
-                          </div>
-                        </div>
-                        <div className="mt-4 grid gap-3 md:grid-cols-2 text-sm text-gray-700">
-                          <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3">
-                            <span>Gain Realized</span>
-                            <span className="font-semibold">{formatCurrency(row.gainRealized)}</span>
-                          </div>
-                          <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3">
-                            <span>Tax Owed</span>
-                            <span className="font-semibold">{formatCurrency(row.taxOwed)}</span>
-                          </div>
+                        <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                          <h4 className="font-semibold text-gray-900 mb-3">Sell Summary</h4>
+                          {Object.keys(plan.sellDollars).length === 0 ? (
+                            <p className="text-sm text-gray-500">No sells required.</p>
+                          ) : (
+                            <ul className="space-y-2 text-sm text-gray-700">
+                              {Object.entries(plan.sellDollars).map(([ticker, value]) => (
+                                <li key={ticker} className="flex items-center justify-between">
+                                  <span>{ticker}</span>
+                                  <span className="font-semibold text-rose-600">{formatCurrency(value)}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )}
 
-                <div className="mt-5 grid gap-3 md:grid-cols-2 text-sm text-gray-700">
-                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
-                    <span>Total Capital Gains</span>
-                    <span className="font-semibold">{formatCurrency(taxBreakdown.totalGains)}</span>
-                  </div>
-                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
-                    <span>Total Estimated Tax Owed</span>
-                    <span className="font-semibold">{formatCurrency(taxBreakdown.totalTax)}</span>
-                  </div>
-                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
-                    <span>AUM (cash + positions)</span>
-                    <span className="font-semibold">{formatCurrency(aumValue)}</span>
-                  </div>
-                  <div className="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3">
-                    <span>Tax as % of AUM</span>
-                    <span className="font-semibold">{taxOwedPctOfAum.toFixed(2)}%</span>
-                  </div>
-                </div>
+                      <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                        <h4 className="font-semibold text-gray-900 mb-3">Projected Allocation</h4>
+                        <div className="grid gap-3 md:grid-cols-2">
+                          {Object.entries(plan.finalValues)
+                            .sort(([tickerA], [tickerB]) => plan.finalWeights[tickerB] - plan.finalWeights[tickerA])
+                            .map(([ticker, value]) => (
+                              <div key={ticker} className="flex items-center justify-between text-sm text-gray-700 bg-gray-50 rounded-xl px-4 py-3">
+                                <span className="font-medium">{ticker}</span>
+                                <span className="font-semibold">
+                                  {formatCurrency(value)} ({(plan.finalWeights[ticker] * 100).toFixed(2)}%)
+                                </span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      <div className="bg-white border border-gray-200 rounded-2xl p-5">
+                        <h4 className="font-semibold text-gray-900 mb-3">Capital Gains Tax Impact</h4>
+                        <p className="text-sm text-gray-500 mb-4">
+                          Enter the cost basis and current value for each sold position to estimate tax owed.
+                        </p>
+                        {taxBreakdown.rows.length === 0 ? (
+                          <p className="text-sm text-gray-500">No sells required, so no tax impact.</p>
+                        ) : (
+                          <div className="grid gap-4">
+                            {taxBreakdown.rows.map((row) => (
+                              <div
+                                key={row.ticker}
+                                className="rounded-2xl border border-gray-200 bg-gray-50 p-4"
+                              >
+                                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                                  <h5 className="font-semibold text-gray-900">{row.ticker}</h5>
+                                  <span className="text-xs text-gray-500">
+                                    Planned sell: {formatCurrency(plan.sellDollars[row.ticker])}
+                                  </span>
+                                </div>
+                                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                                  <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                      Initial Value ($)
+                                    </label>
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      step="0.01"
+                                      value={taxInputs[row.ticker]?.initialValue ?? ''}
+                                      onChange={(event) =>
+                                        updateTaxInput(row.ticker, 'initialValue', event.target.value)
+                                      }
+                                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                      placeholder="0.00"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                      Final/Current Value ($)
+                                    </label>
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      step="0.01"
+                                      value={taxInputs[row.ticker]?.finalValue ?? ''}
+                                      onChange={(event) =>
+                                        updateTaxInput(row.ticker, 'finalValue', event.target.value)
+                                      }
+                                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                      placeholder="0.00"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                      Amount Sold ($)
+                                    </label>
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      step="0.01"
+                                      value={taxInputs[row.ticker]?.amountSold ?? ''}
+                                      onChange={(event) =>
+                                        updateTaxInput(row.ticker, 'amountSold', event.target.value)
+                                      }
+                                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                      placeholder="0.00"
+                                    />
+                                  </div>
+                                  <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                                      Capital Gains Tax Rate (%)
+                                    </label>
+                                    <input
+                                      type="number"
+                                      min="0"
+                                      step="0.01"
+                                      value={taxInputs[row.ticker]?.taxRate ?? ''}
+                                      onChange={(event) =>
+                                        updateTaxInput(row.ticker, 'taxRate', event.target.value)
+                                      }
+                                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                      placeholder="0"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="mt-4 grid gap-3 md:grid-cols-2 text-sm text-gray-700">
+                                  <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3">
+                                    <span>Gain Realized</span>
+                                    <span className="font-semibold">{formatCurrency(row.gainRealized)}</span>
+                                  </div>
+                                  <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3">
+                                    <span>Tax Owed</span>
+                                    <span className="font-semibold text-rose-600">{formatCurrency(row.taxOwed)}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        <div className="mt-5 grid gap-3 md:grid-cols-2 text-sm text-gray-700">
+                          <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                            <span>Total Capital Gains</span>
+                            <span className="font-semibold">{formatCurrency(taxBreakdown.totalGains)}</span>
+                          </div>
+                          <div className="flex items-center justify-between rounded-xl border border-rose-200 bg-rose-50 px-4 py-3">
+                            <span>Total Estimated Tax Owed</span>
+                            <span className="font-semibold text-rose-600">{formatCurrency(taxBreakdown.totalTax)}</span>
+                          </div>
+                          <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                            <span>AUM (cash + positions)</span>
+                            <span className="font-semibold">{formatCurrency(aumValue)}</span>
+                          </div>
+                          <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                            <span>Tax as % of AUM</span>
+                            <span className="font-semibold">{taxOwedPctOfAum.toFixed(2)}%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
               </div>
-            </div>
-          )}
-        </section>
+            </section>
 
-        <section className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm mt-12">
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-[#082C16]">Project Optimum</h2>
-            <p className="text-sm text-gray-500 mt-1">
-              Input expected returns and risk parameters to simulate the optimal risk to reward portfolios.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-6 mb-8">
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
-              <h3 className="text-sm font-semibold text-[#082C16] mb-4">Portfolio Constraints</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Risk-Free Rate (%)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={riskFreeRate}
-                    onChange={(event) => setRiskFreeRate(event.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Portfolios</label>
-                  <input
-                    type="number"
-                    min="100"
-                    step="100"
-                    value={numPortfolios}
-                    onChange={(event) => setNumPortfolios(event.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Stock Min Weight (%)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={minWeight}
-                    onChange={(event) => setMinWeight(event.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Stock Max Weight (%)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={maxWeight}
-                    onChange={(event) => setMaxWeight(event.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Cash Min Weight (%)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={cashMinWeight}
-                    onChange={(event) => setCashMinWeight(event.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Cash Max Weight (%)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={cashMaxWeight}
-                    onChange={(event) => setCashMaxWeight(event.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
-              <h3 className="text-sm font-semibold text-[#082C16] mb-4">Risk Factor Weights</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {riskFactors.map((factor, index) => (
-                  <div key={factor}>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {factor}
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value={riskFactorWeights[index]}
-                      onChange={(event) => updateRiskFactorWeight(index, event.target.value)}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                    />
+            {/* Monte Carlo Simulation Section */}
+            <section className="py-8 px-6 lg:px-12 pb-20">
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm"
+                >
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center">
+                      <BarChart3 className="w-6 h-6 text-cyan-600" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900">Project Optimum</h2>
+                      <p className="text-sm text-gray-500 mt-1">
+                        Input expected returns and risk parameters to simulate the optimal risk to reward portfolios.
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
-            <h3 className="text-sm font-semibold text-[#082C16] mb-4">Asset Parameters</h3>
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-left text-sm">
-                <thead className="text-gray-600 border-b border-gray-300">
-                  <tr>
-                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Ticker</th>
-                    <th className="px-3 py-2 font-semibold whitespace-nowrap">Expected Return (%)</th>
-                    {riskFactors.map((factor) => (
-                      <th key={factor} className="px-3 py-2 font-semibold text-center whitespace-nowrap">                        {factor}
-                      </th>
-                    ))}
-                    <th className="px-3 py-2 font-semibold whitespace-nowrap">User Weight (%)</th>
-                    <th className="px-3 py-2 font-semibold whitespace-nowrap"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {allocations.map((row, idx) => (
-                    <tr key={row.id} className={idx > 0 ? 'border-t border-gray-200' : ''}>
-                      <td className="px-3 py-2">
-                        <input
-                          type="text"
-                          value={row.ticker}
-                          onChange={(event) => updateAllocation(row.id, 'ticker', event.target.value)}
-                          className="w-20 border border-gray-300 rounded-lg px-2 py-1.5 text-sm"
-                          placeholder="AAPL"
-                        />
-                      </td>
-                      <td className="px-3 py-2">
-                        <input
-                          type="number"
-                          min="0"
-                          step="0.01"
-                          value={row.expectedReturn}
-                          onChange={(event) => updateAllocation(row.id, 'expectedReturn', event.target.value)}
-                          className="w-24 border border-gray-300 rounded-lg px-2 py-1.5 text-sm"
-                          placeholder="0.00"
-                        />
-                      </td>
-                      {row.factorExposures.map((value, index) => (
-                        <td key={`${row.id}-${riskFactors[index]}`} className="px-3 py-2">
+                  <div className="grid lg:grid-cols-2 gap-6 mb-8">
+                    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Settings className="w-4 h-4 text-gray-600" />
+                        <h3 className="text-sm font-semibold text-gray-900">Portfolio Constraints</h3>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Risk-Free Rate (%)</label>
                           <input
                             type="number"
                             min="0"
                             step="0.01"
-                            value={value}
-                            onChange={(event) => updateAllocationExposure(row.id, index, event.target.value)}
-                            className="w-20 border border-gray-300 rounded-lg px-2 py-1.5 text-sm"
-                            placeholder="0.00"
+                            value={riskFreeRate}
+                            onChange={(event) => setRiskFreeRate(event.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                           />
-                        </td>
-                      ))}
-                      <td className="px-3 py-2">
-                        <input
-                          type="number"
-                          min="0"
-                          step="0.01"
-                          value={row.userWeight}
-                          onChange={(event) => updateAllocation(row.id, 'userWeight', event.target.value)}
-                          className="w-24 border border-gray-300 rounded-lg px-2 py-1.5 text-sm"
-                          placeholder="0.00"
-                        />
-                      </td>
-                      <td className="px-3 py-2">
-                        {allocations.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => removeAllocation(row.id)}
-                            className="text-xs font-semibold text-red-600 hover:text-red-700"
-                          >
-                            Remove
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Portfolios</label>
+                          <input
+                            type="number"
+                            min="100"
+                            step="100"
+                            value={numPortfolios}
+                            onChange={(event) => setNumPortfolios(event.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Stock Min Weight (%)</label>
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={minWeight}
+                            onChange={(event) => setMinWeight(event.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Stock Max Weight (%)</label>
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={maxWeight}
+                            onChange={(event) => setMaxWeight(event.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Cash Min Weight (%)</label>
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={cashMinWeight}
+                            onChange={(event) => setCashMinWeight(event.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Cash Max Weight (%)</label>
+                          <input
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            value={cashMaxWeight}
+                            onChange={(event) => setCashMaxWeight(event.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
-            <button
-              type="button"
-              onClick={addAllocation}
-              className="inline-flex items-center justify-center px-4 py-2 border border-emerald-600 text-emerald-700 rounded-lg font-semibold hover:bg-emerald-50"
-            >
-              Add Asset
-            </button>
-            <button
-              type="button"
-              onClick={runMonteCarloSimulation}
-              className="inline-flex items-center justify-center px-6 py-2 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700"
-            >
-              Run Simulation
-            </button>
-          </div>
+                    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Target className="w-4 h-4 text-gray-600" />
+                        <h3 className="text-sm font-semibold text-gray-900">Risk Factor Weights</h3>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        {riskFactors.map((factor, index) => (
+                          <div key={factor}>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              {factor}
+                            </label>
+                            <input
+                              type="number"
+                              min="0"
+                              step="0.01"
+                              value={riskFactorWeights[index]}
+                              onChange={(event) => updateRiskFactorWeight(index, event.target.value)}
+                              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
 
-          {simulationError && <p className="mt-4 text-sm text-red-600 font-semibold">{simulationError}</p>}
+                  <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+                    <h3 className="text-sm font-semibold text-gray-900 mb-4">Asset Parameters</h3>
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full text-left text-sm">
+                        <thead className="text-gray-600 border-b border-gray-300">
+                          <tr>
+                            <th className="px-3 py-2 font-semibold whitespace-nowrap">Ticker</th>
+                            <th className="px-3 py-2 font-semibold whitespace-nowrap">Expected Return (%)</th>
+                            {riskFactors.map((factor) => (
+                              <th key={factor} className="px-3 py-2 font-semibold text-center whitespace-nowrap">
+                                {factor}
+                              </th>
+                            ))}
+                            <th className="px-3 py-2 font-semibold whitespace-nowrap">User Weight (%)</th>
+                            <th className="px-3 py-2 font-semibold whitespace-nowrap"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {allocations.map((row, idx) => (
+                            <tr key={row.id} className={idx > 0 ? 'border-t border-gray-200' : ''}>
+                              <td className="px-3 py-2">
+                                <input
+                                  type="text"
+                                  value={row.ticker}
+                                  onChange={(event) => updateAllocation(row.id, 'ticker', event.target.value)}
+                                  className="w-20 border border-gray-300 rounded-lg px-2 py-1.5 text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                  placeholder="AAPL"
+                                />
+                              </td>
+                              <td className="px-3 py-2">
+                                <input
+                                  type="number"
+                                  min="0"
+                                  step="0.01"
+                                  value={row.expectedReturn}
+                                  onChange={(event) => updateAllocation(row.id, 'expectedReturn', event.target.value)}
+                                  className="w-24 border border-gray-300 rounded-lg px-2 py-1.5 text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                  placeholder="0.00"
+                                />
+                              </td>
+                              {row.factorExposures.map((value, index) => (
+                                <td key={`${row.id}-${riskFactors[index]}`} className="px-3 py-2">
+                                  <input
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    value={value}
+                                    onChange={(event) => updateAllocationExposure(row.id, index, event.target.value)}
+                                    className="w-20 border border-gray-300 rounded-lg px-2 py-1.5 text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                    placeholder="0.00"
+                                  />
+                                </td>
+                              ))}
+                              <td className="px-3 py-2">
+                                <input
+                                  type="number"
+                                  min="0"
+                                  step="0.01"
+                                  value={row.userWeight}
+                                  onChange={(event) => updateAllocation(row.id, 'userWeight', event.target.value)}
+                                  className="w-24 border border-gray-300 rounded-lg px-2 py-1.5 text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                  placeholder="0.00"
+                                />
+                              </td>
+                              <td className="px-3 py-2">
+                                {allocations.length > 1 && (
+                                  <button
+                                    type="button"
+                                    onClick={() => removeAllocation(row.id)}
+                                    className="text-xs font-semibold text-red-600 hover:text-red-700"
+                                  >
+                                    Remove
+                                  </button>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 
-          {simulationChart && (
-            <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
-              <h3 className="text-sm font-semibold text-[#082C16] mb-4">
-                Efficient Frontier (Weighted Composite Risk)
-              </h3>
-              <Scatter data={simulationChart} options={simulationChartOptions} />
-            </div>
-          )}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
+                    <motion.button
+                      type="button"
+                      onClick={addAllocation}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center justify-center px-5 py-2.5 border-2 border-cyan-600 text-cyan-700 rounded-xl font-semibold hover:bg-cyan-50 transition-colors"
+                    >
+                      Add Asset
+                    </motion.button>
+                    <motion.button
+                      type="button"
+                      onClick={runMonteCarloSimulation}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-cyan-600 text-white rounded-xl font-semibold hover:bg-cyan-700 transition-colors"
+                    >
+                      <Zap className="w-4 h-4" />
+                      Run Simulation
+                    </motion.button>
+                  </div>
 
-          {simulationResult && (
-            <div className="mt-8 space-y-6">
-              <div className="text-sm text-gray-500">
-                Generated portfolios: <span className="font-semibold">{simulationResult.totalSamples}</span>
+                  {simulationError && <p className="mt-4 text-sm text-red-600 font-semibold">{simulationError}</p>}
+
+                  {simulationChart && (
+                    <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
+                      <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                        Efficient Frontier (Weighted Composite Risk)
+                      </h3>
+                      <Scatter data={simulationChart} options={simulationChartOptions} />
+                    </div>
+                  )}
+
+                  {simulationResult && (
+                    <div className="mt-8 space-y-6">
+                      <div className="text-sm text-gray-500">
+                        Generated portfolios: <span className="font-semibold text-gray-900">{simulationResult.totalSamples}</span>
+                      </div>
+                      <div className="grid gap-6 md:grid-cols-2">
+                        <div className="bg-red-50 border border-red-200 rounded-2xl p-5">
+                          <h4 className="font-semibold text-gray-900 mb-2">Max Composite Ratio</h4>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Return {(simulationResult.maxSharpe.expectedReturn * 100).toFixed(2)}% • Volatility{' '}
+                            {(simulationResult.maxSharpe.volatility * 100).toFixed(2)}% • Composite Ratio{' '}
+                            {simulationResult.maxSharpe.compositeRatio.toFixed(2)}
+                          </p>
+                          <ul className="space-y-2 text-sm text-gray-700">
+                            {simulationResult.maxSharpe.weights.map((item) => (
+                              <li key={`max-${item.ticker}`} className="flex justify-between">
+                                <span>{item.ticker}</span>
+                                <span className="font-semibold">{(item.weight * 100).toFixed(2)}%</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5">
+                          <h4 className="font-semibold text-gray-900 mb-2">Min Risk</h4>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Return {(simulationResult.minVol.expectedReturn * 100).toFixed(2)}% • Volatility{' '}
+                            {(simulationResult.minVol.volatility * 100).toFixed(2)}% • Composite Ratio{' '}
+                            {simulationResult.minVol.compositeRatio.toFixed(2)}
+                          </p>
+                          <ul className="space-y-2 text-sm text-gray-700">
+                            {simulationResult.minVol.weights.map((item) => (
+                              <li key={`min-${item.ticker}`} className="flex justify-between">
+                                <span>{item.ticker}</span>
+                                <span className="font-semibold">{(item.weight * 100).toFixed(2)}%</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                      {simulationResult.userDefined && (
+                        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+                          <h4 className="font-semibold text-gray-900 mb-2">User-Defined Portfolio</h4>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Return {(simulationResult.userDefined.expectedReturn * 100).toFixed(2)}% • Volatility{' '}
+                            {(simulationResult.userDefined.volatility * 100).toFixed(2)}% • Composite Ratio{' '}
+                            {simulationResult.userDefined.compositeRatio.toFixed(2)}
+                          </p>
+                          <ul className="space-y-2 text-sm text-gray-700">
+                            {simulationResult.userDefined.weights.map((item) => (
+                              <li key={`user-${item.ticker}`} className="flex justify-between">
+                                <span>{item.ticker}</span>
+                                <span className="font-semibold">{(item.weight * 100).toFixed(2)}%</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
               </div>
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
-                  <h4 className="font-semibold text-[#082C16] mb-2">Max Composite Ratio</h4>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Return {(simulationResult.maxSharpe.expectedReturn * 100).toFixed(2)}% • Volatility{' '}
-                    {(simulationResult.maxSharpe.volatility * 100).toFixed(2)}% • Composite Ratio{' '}
-                    {simulationResult.maxSharpe.compositeRatio.toFixed(2)}
-                  </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    {simulationResult.maxSharpe.weights.map((item) => (
-                      <li key={`max-${item.ticker}`} className="flex justify-between">
-                        <span>{item.ticker}</span>
-                        <span className="font-semibold">{(item.weight * 100).toFixed(2)}%</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-5">
-                  <h4 className="font-semibold text-[#082C16] mb-2">Min Risk</h4>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Return {(simulationResult.minVol.expectedReturn * 100).toFixed(2)}% • Volatility{' '}
-                    {(simulationResult.minVol.volatility * 100).toFixed(2)}% • Composite Ratio{' '}
-                    {simulationResult.minVol.compositeRatio.toFixed(2)}
-                  </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    {simulationResult.minVol.weights.map((item) => (
-                      <li key={`min-${item.ticker}`} className="flex justify-between">
-                        <span>{item.ticker}</span>
-                        <span className="font-semibold">{(item.weight * 100).toFixed(2)}%</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              {simulationResult.userDefined && (
-                <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
-                  <h4 className="font-semibold text-[#082C16] mb-2">User-Defined Portfolio</h4>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Return {(simulationResult.userDefined.expectedReturn * 100).toFixed(2)}% • Volatility{' '}
-                    {(simulationResult.userDefined.volatility * 100).toFixed(2)}% • Composite Ratio{' '}
-                    {simulationResult.userDefined.compositeRatio.toFixed(2)}
-                  </p>
-                  <ul className="space-y-2 text-sm text-gray-700">
-                    {simulationResult.userDefined.weights.map((item) => (
-                      <li key={`user-${item.ticker}`} className="flex justify-between">
-                        <span>{item.ticker}</span>
-                        <span className="font-semibold">{(item.weight * 100).toFixed(2)}%</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          )}
-        </section>
-      </div>
-            </motion.div>
+            </section>
           </>
         ) : (
           <>
+            {/* Hero Section - Logged Out */}
+            <section className="pt-32 pb-16 px-6 lg:px-12">
+              <div className="max-w-7xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-center max-w-4xl mx-auto"
+                >
+                  <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
+                    <span className="text-gray-900">Investment</span>
+                    <br />
+                    <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-cyan-500 bg-clip-text text-transparent">
+                      Tools
+                    </span>
+                  </h1>
 
-            <motion.div
-              className="flex justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="w-full max-w-xl px-6 pb-16">
-                <h1 className="text-3xl font-bold text-[#082C16] mb-6 text-center">Tools</h1>
-                <Login onSuccess={() => setLoggedIn(true)} />
+                  <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12">
+                    Access professional-grade analytical tools for EPS projections,
+                    portfolio rebalancing, and Monte Carlo optimization.
+                  </p>
+
+                  {/* Tool Preview Cards */}
+                  <div className="grid sm:grid-cols-3 gap-4 mb-12 max-w-3xl mx-auto">
+                    {[
+                      { icon: TrendingUp, label: 'EPS Projections', desc: '5-year forecasting' },
+                      { icon: PieChart, label: 'Portfolio Rebalancer', desc: 'Optimal allocation' },
+                      { icon: BarChart3, label: 'Monte Carlo', desc: 'Risk optimization' },
+                    ].map((tool, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                        className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm"
+                      >
+                        <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center mx-auto mb-3">
+                          <tool.icon className="w-5 h-5 text-emerald-600" />
+                        </div>
+                        <h3 className="font-semibold text-gray-900 mb-1">{tool.label}</h3>
+                        <p className="text-sm text-gray-500">{tool.desc}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
+            </section>
+
+            {/* Login Section */}
+            <section className="pb-20 px-6 lg:px-12">
+              <div className="max-w-xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg"
+                >
+                  <div className="text-center mb-6">
+                    <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Lock className="w-7 h-7 text-emerald-600" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Sign In to Continue</h2>
+                    <p className="text-gray-500">Enter your credentials to access the tools</p>
+                  </div>
+                  <Login onSuccess={() => setLoggedIn(true)} />
+                </motion.div>
+              </div>
+            </section>
           </>
         )}
-      </motion.div>
+      </div>
     </main>
   )
 }

@@ -47,25 +47,30 @@ const defaultTickers = [
   'AAAU',
   'UNH',
   'ADBE',
+  'META',
+  'NFLX',
 ]
 
 const createDefaultHoldings = () => defaultTickers.map((ticker) => createRow({ ticker }))
 
 const riskFactors = ['Volatility', 'Regulatory', 'Disruption', 'Valuation', 'Earnings Quality']
 
-const defaultRiskFactorWeights = [0.9, 0.3, 0.5, 0.6, 0.8]
+const defaultRiskFactorWeights = [0.9, 0.3, 0.7, 0.6, 0.8]
 
 const defaultFactorExposures = {
-  GOOGL: [0.5, 0.2, 0.4, 0.2, 0.1],
-  AMZN: [0.55, 0.1, 0.25, 0.35, 0.15],
-  UNH: [0.4, 0.6, 0.4, 0.15, 0.5],
-  HLT: [0.25, 0.1, 0.3, 0.45, 0.25],
-  ASML: [0.3, 0.15, 0.1, 0.25, 0.2],
-  MA: [0.2, 0.5, 0.3, 0.3, 0.1],
-  AAAU: [0.2, 0.01, 0.01, 0.5, 0.01],
-  UBER: [0.6, 0.2, 0.5, 0.45, 0.3],
-  BKNG: [0.25, 0.1, 0.3, 0.35, 0.25],
-  ADBE: [0.65, 0.1, 0.65, 0.3, 0.2],
+  MA:    [0.20, 0.50, 0.40, 0.30, 0.10],
+  AMZN:  [0.55, 0.10, 0.20, 0.35, 0.15],
+  GOOGL: [0.50, 0.20, 0.40, 0.20, 0.10],
+  UBER:  [0.70, 0.20, 0.60, 0.75, 0.35],
+  ASML:  [0.30, 0.15, 0.10, 0.25, 0.20],
+  HLT:   [0.25, 0.10, 0.30, 0.45, 0.25],
+  BKNG:  [0.25, 0.10, 0.30, 0.35, 0.25],
+  AAAU:  [0.20, 0.01, 0.01, 0.50, 0.01],
+  UNH:   [0.40, 0.60, 0.40, 0.15, 0.80],
+  ADBE:  [0.75, 0.10, 0.80, 0.35, 0.20],
+  CASH:  [0.00, 0.00, 0.00, 0.00, 0.00],
+  META:  [0.65, 0.20, 0.10, 0.75, 0.50],
+  NFLX:  [0.75, 0.10, 0.20, 0.75, 0.65],
 }
 
 const createAllocationRow = (overrides = {}) => ({
